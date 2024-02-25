@@ -5,8 +5,13 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './chat.component.html',
-  styleUrl: './chat.component.css'
+  styleUrl: '../../../../../front-end-shared/css/Chat.css'
 })
 export class ChatComponent {
+  desplegado: boolean = false;
 
+  // Método para cambiar el estado de la variable "desplegado"
+  toggleDesplegado() {
+    this.desplegado = !this.desplegado;
+  }
 }
