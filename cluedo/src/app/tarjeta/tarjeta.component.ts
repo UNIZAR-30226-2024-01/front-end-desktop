@@ -10,7 +10,7 @@ import { TableRowComponent } from '../table-row/table-row.component';
   standalone: true,
   imports: [CommonModule, TableCellComponent, TableHeadComponent, TableHeaderCellComponent, TableRowComponent],
   templateUrl: './tarjeta.component.html',
-  styleUrl: './tarjeta.component.css'
+  styleUrl: '../../../../../front-end-shared/css/Tarjeta.css'
 })
 export class TarjetaComponent {
   desplegable: boolean = false;
