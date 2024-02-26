@@ -10,10 +10,18 @@ import { Component, Output, EventEmitter } from '@angular/core';
 export class DesplegableComponent {
   // @Output() desplegableClicked: EventEmitter<void> = new EventEmitter();
 
-  // handleClick() {
-  //   console.log('Se hizo clic en el botónnnn');
-  //   this.desplegableClicked.emit();
-  // }
+  desplegado: boolean = false; // Variable para controlar el estado del componente
+  
 
-  //desplegado: boolean = false;
+  handleClick(): void {
+    this.desplegado = !this.desplegado; // Cambia el estado del componente
+    console.log('DesplegableComponent.handleClick()');
+  }
+
+  // Método para cambiar el atributo path del svg en base al estado del componente "desplegado"
+  getPathD(): string {
+    return this.desplegado ?
+      "M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" :
+      "M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3";
+  }
 }
