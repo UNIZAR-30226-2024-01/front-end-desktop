@@ -1,6 +1,6 @@
 <div class="chat-container" [style.left.px]="desplegado ? 0 : -425">
     <div>
-        <app-desplegable class="chat-desplegable"></app-desplegable>
+        <app-desplegable class="chat-desplegable" (desplegableClicked)="desplegar()"></app-desplegable>
     </div>
 
 </div>

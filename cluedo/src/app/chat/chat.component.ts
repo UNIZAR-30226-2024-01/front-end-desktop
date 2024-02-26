@@ -16,8 +16,7 @@ export class ChatComponent {
     this.desplegado = !this.desplegado;
   }
 
-  // handleDesplegableClick() {
-  //   // Realiza la acción deseada cuando se hace clic en el componente desplegable
-  //   console.log('Se hizo clic en el componente desplegable');
-  // }
+  desplegar() {
+    this.toggleDesplegado();
+  }
 }

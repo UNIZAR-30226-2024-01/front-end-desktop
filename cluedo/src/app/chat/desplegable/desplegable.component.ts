@@ -8,13 +8,14 @@ import { Component, Output, EventEmitter } from '@angular/core';
   styleUrl: '../../../../../../front-end-shared/css/Chat.css'
 })
 export class DesplegableComponent {
-  // @Output() desplegableClicked: EventEmitter<void> = new EventEmitter();
+  @Output() desplegableClicked: EventEmitter<void> = new EventEmitter();
 
   desplegado: boolean = false; // Variable para controlar el estado del componente
   
 
   handleClick(): void {
     this.desplegado = !this.desplegado; // Cambia el estado del componente
+    this.desplegableClicked.emit(); // Emite un evento para notificar que se hizo clic en el componente
     console.log('DesplegableComponent.handleClick()');
   }
 
