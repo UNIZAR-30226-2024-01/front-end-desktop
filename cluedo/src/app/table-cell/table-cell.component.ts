@@ -4,14 +4,13 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-table-cell',
   template: `
-    <td (click)="handleClick()" [ngStyle]="style">
+    <td class="td miClaseNueva" (click)="handleClick()" [ngStyle]="style">
       {{ text }}
     </td>
   `,
   standalone: true,
   imports: [CommonModule],
-  styles: [],
-  
+    
 })
 export class TableCellComponent implements OnInit {
   @Input() state: number=1;

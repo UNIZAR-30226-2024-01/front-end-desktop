@@ -1,4 +1,4 @@
-<div id="tarjeta" [ngStyle]="style" >
+<div class="tarjeta" [ngStyle]="style" >
     <!-- <--[ngStyle]="style"
     <div id="desplegable-tarjeta" (click)="toggleDesplegable()">
       <span *ngIf="desplegable">
@@ -12,48 +12,48 @@
       </span>
     </div> -->
 
-    <table id="tabla">
+    <table class="tabla">
       <!-- Contenido de la tabla -->
-      <thead className="cabecera">
+      <thead class="cabecera">
         <tr>
             <th></th>
-            <app-table-header-cell [maxChars]=4 />
-            <app-table-header-cell [maxChars]=4 />
-            <app-table-header-cell [maxChars]=4 />
-            <app-table-header-cell [maxChars]=4 />
-            <app-table-header-cell [maxChars]=4 />
-            <app-table-header-cell [maxChars]=4 />
-            <app-table-header-cell [maxChars]=4 />
+            <app-table-header-cell class= "tableHeaderCell" [maxChars]=4 />
+            <app-table-header-cell class= "tableHeaderCell" [maxChars]=4 />
+            <app-table-header-cell class= "tableHeaderCell" [maxChars]=4 />
+            <app-table-header-cell class= "tableHeaderCell" [maxChars]=4 />
+            <app-table-header-cell class= "tableHeaderCell" [maxChars]=4 />
+            <app-table-header-cell class= "tableHeaderCell" [maxChars]=4 />
+            <app-table-header-cell class= "tableHeaderCell" [maxChars]=4 />
         </tr>
       </thead>
-      <!-- <tbody id="table-body">
-        <app-table-head title="¿QUIÉN?" />
-        <app-table-row name="mr SOPER" />
-        <app-table-row name="miss REDES" />
-        <app-table-row name="mr PROG" />
-        <app-table-row name="miss FISICA" />
-        <app-table-row name="mr DISCRETO" />
-        <app-table-row name="miss IA" />
+      <tbody id="table-body">
+        <app-table-head class= "tableHead" title="¿QUIÉN?" />
+        <app-table-row class= "tableRow" name="mr SOPER" />
+        <app-table-row class= "tableRow" name="miss REDES" />
+        <app-table-row class= "tableRow" name="mr PROG" />
+        <app-table-row class= "tableRow" name="miss FISICA" />
+        <app-table-row class= "tableRow" name="mr DISCRETO" />
+        <app-table-row class= "tableRow" name="miss IA" />
 
-        <app-table-head title="¿CON QUÉ?" />
-        <app-table-row name="teclado" />
-        <app-table-row name="asfixiar con cable de red" />
-        <app-table-row name="raton envenenado" />
-        <app-table-row name="router afilado" />
-        <app-table-row name="troyano" />
-        <app-table-row name="lanzar cd" />
+        <app-table-head class= "tableHead" title="¿CON QUÉ?" />
+        <app-table-row class= "tableRow" name="teclado" />
+        <app-table-row class= "tableRow" name="asfixiar con cable de red" />
+        <app-table-row class= "tableRow" name="raton envenenado" />
+        <app-table-row class= "tableRow" name="router afilado" />
+        <app-table-row class= "tableRow" name="troyano" />
+        <app-table-row class= "tableRow" name="lanzar cd" />
 
-        <app-table-head title="¿DÓNDE?" />
-        <app-table-row name="cafeteria" />
-        <app-table-row name="baños" />
-        <app-table-row name="recepcion" />
-        <app-table-row name="escaleras" />
-        <app-table-row name="bibloteca" />
-        <app-table-row name="laboratorio" />
-        <app-table-row name="despacho" />
-        <app-table-row name="aulas sur" />
-        <app-table-row name="aulas norte" />
-      </tbody> -->
+        <app-table-head class= "tableHead" title="¿DÓNDE?" />
+        <app-table-row class= "tableRow" name="cafeteria" />
+        <app-table-row class= "tableRow" name="baños" />
+        <app-table-row class= "tableRow" name="recepcion" />
+        <app-table-row class= "tableRow" name="escaleras" />
+        <app-table-row class= "tableRow" name="bibloteca" />
+        <app-table-row class= "tableRow" name="laboratorio" />
+        <app-table-row class= "tableRow" name="despacho" />
+        <app-table-row class= "tableRow" name="aulas sur" />
+        <app-table-row class= "tableRow" name="aulas norte" />
+      </tbody> 
     </table>
 
     <span>&#169; 2024 - Desarrollado por Grace Hopper</span>

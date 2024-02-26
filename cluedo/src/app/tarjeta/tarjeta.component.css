@@ -27,7 +27,7 @@
     align-items: center;
 }
 
-#desplegable-tarjeta svg {
+#desplegable-tarjeta svg .tableHeaderCell {
     width: 30px;
     height: 30px;
     fill: #ffffff;
