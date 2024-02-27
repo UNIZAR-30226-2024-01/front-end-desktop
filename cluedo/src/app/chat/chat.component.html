@@ -1,10 +1,7 @@
 <div class="chat-container" [style.left.px]="desplegado ? 0 : -425">
-    
-        <app-desplegable class="chat-desplegable" (desplegableClicked)="desplegar()"></app-desplegable>
-    
-        <app-input-message></app-input-message>
-    
-
+    <app-desplegable class="chat-desplegable" (desplegableClicked)="desplegar()"></app-desplegable>
+    <app-message-list></app-message-list>
+    <app-input-message></app-input-message>
 </div>
 
 <button (click)="toggleDesplegado()" style="position: absolute; right: 20px; top: 20px;">Toggle Desplegado</button>
