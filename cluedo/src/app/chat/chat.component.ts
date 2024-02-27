@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { DesplegableComponent } from './desplegable/desplegable.component';
-
+import { InputMessageComponent } from './input-message/input-message.component';
 @Component({
   selector: 'app-chat',
   standalone: true,
-  imports: [DesplegableComponent],
+  imports: [DesplegableComponent, InputMessageComponent],
   templateUrl: './chat.component.html',
   styleUrl: '../../../../../front-end-shared/css/Chat.css'
 })
