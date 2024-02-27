@@ -1,7 +1,8 @@
-<form class='input-message-container' onSubmit={handleSubmit}>
+<form class='input-message-container' >
     <input 
       type="text"      
       placeholder="escribe aquí..."
+      #mensaje   
     >
-    <button type="submit">Enviar</button>
-  </form>
+    <button type="button" (click)="enviarMensaje(mensaje.value)">Enviar</button>
+</form>

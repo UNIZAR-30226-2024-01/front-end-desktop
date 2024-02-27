@@ -12,12 +12,13 @@ import { MessageListComponent } from './message-list/message-list.component';
 export class ChatComponent {
   desplegado: boolean = false;
 
-  // Método para cambiar el estado de la variable "desplegado"
+  // Método para cambiar el estado de la variable "desplegado" para desplazar el chat
   toggleDesplegado() {
     this.desplegado = !this.desplegado;
   }
 
-  desplegar() {
-    this.toggleDesplegado();
+  // Cuando llega el evento mensajeEnviado del input, se gestiona el mensaje
+  gestionarMensaje(mensaje: string) {
+    console.log("gestionarMensaje - Mensaje: " + mensaje);    
   }
 }

@@ -5,14 +5,14 @@ import { Component, Output, EventEmitter } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './desplegable.component.html',
-  styleUrl: './desplegable.component.css'
+  styleUrl: './desplegable.css'
 })
 export class DesplegableComponent {
   @Output() desplegableClicked: EventEmitter<void> = new EventEmitter();
 
   desplegado: boolean = false; // Variable para controlar el estado del componente
   
-
+  // Gestiona al hacer click en el componente desplegable
   handleClick(): void {
     this.desplegado = !this.desplegado; // Cambia el estado del componente
     this.desplegableClicked.emit(); // Emite un evento para notificar que se hizo clic en el componente
