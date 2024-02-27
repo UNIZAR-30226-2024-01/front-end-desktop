@@ -5,7 +5,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './input-message.component.html',
-  styleUrl: './input-message.component.css'
+  styleUrl: '../../../../../../front-end-shared/css/input-message.css'
 })
 export class InputMessageComponent {
   @Output() mensajeEnviado = new EventEmitter<string>();

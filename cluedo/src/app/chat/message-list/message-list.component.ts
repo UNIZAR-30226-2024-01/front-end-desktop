@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './message-list.component.html',
-  styleUrl: './message-list.component.css'
+  styleUrl: '../../../../../../front-end-shared/css/message-list.css'
 })
 export class MessageListComponent {
 

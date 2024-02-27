@@ -7,7 +7,7 @@ import { MessageListComponent } from './message-list/message-list.component';
   standalone: true,
   imports: [DesplegableComponent, InputMessageComponent, MessageListComponent],
   templateUrl: './chat.component.html',
-  styleUrl: './chat.component.css'
+  styleUrl: '../../../../../front-end-shared/css/chat.css'
 })
 export class ChatComponent {
   desplegado: boolean = false;
