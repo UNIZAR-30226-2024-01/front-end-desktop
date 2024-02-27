@@ -5,7 +5,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './desplegable.component.html',
-  styleUrl: '../../../../../../front-end-shared/css/Chat.css'
+  styleUrl: './desplegable.component.css'
 })
 export class DesplegableComponent {
   @Output() desplegableClicked: EventEmitter<void> = new EventEmitter();

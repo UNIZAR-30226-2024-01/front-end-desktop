@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './input-message.component.html',
-  styleUrl: '../../../../../../front-end-shared/css/Chat.css'
+  styleUrl: './input-message.component.css'
 })
 export class InputMessageComponent {
 

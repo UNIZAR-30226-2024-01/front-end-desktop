@@ -1,0 +1,17 @@
+.input-message-container {
+    width: 100%; /* Ocupa todo el ancho disponible */
+    text-align: center; /* Centra el contenido horizontalmente */
+}
+
+button {
+    background-color: #1315a2;
+    color: #ffffff;
+    border-radius: 10px;
+    margin: 10px;
+    /* padding-top: 20px; */
+    /* padding-bottom: 20px; */
+    padding-left: 20px;
+    padding-right: 20px;
+    /* display: flex;
+    align-items: center; */
+  }
