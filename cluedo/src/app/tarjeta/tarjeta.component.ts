@@ -13,7 +13,7 @@ import { TableRowComponent } from '../table-row/table-row.component';
             TableCellComponent, TableHeadComponent, TableHeaderCellComponent, TableRowComponent,
             DesplegableComponent],
   templateUrl: './tarjeta.component.html',
-  styleUrl: '../../../../../front-end-shared/css/Tarjeta.css'
+  styleUrl: '../../../../../front-end-shared/css/Tarjeta/Tarjeta.css'
 })
 export class TarjetaComponent {
   desplegado: boolean = false;
