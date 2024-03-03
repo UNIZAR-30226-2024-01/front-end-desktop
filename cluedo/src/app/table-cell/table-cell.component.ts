@@ -3,15 +3,10 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-table-cell',
-  template: `
-    <td (click)="handleClick()" [ngStyle]="style">
-      {{ text }}
-    </td>
-  `,
   standalone: true,
   imports: [CommonModule],
-  styles: [],
-  
+  templateUrl: './table-cell.component.html',
+  styleUrl: '../../../../../front-end-shared/css/Tarjeta/table-cell.css',
 })
 export class TableCellComponent implements OnInit {
   @Input() state: number=1;
