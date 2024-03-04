@@ -1,13 +1,15 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, Output, Input, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-desplegable',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './desplegable.component.html',
   styleUrl: '../../../../../front-end-shared/css/desplegable.css'
 })
 export class DesplegableComponent {
+  @Input() componentePadre!: string;  // Para recibir el componente padre y así aplicar estilos específicos
   @Output() desplegableClicked: EventEmitter<void> = new EventEmitter();
 
   desplegado: boolean = false; // Variable para controlar el estado del componente

@@ -11,6 +11,7 @@ import { MessageListComponent } from './message-list/message-list.component';
 })
 export class ChatComponent {
   desplegado: boolean = false;
+  nombreComponente: string ="chat";
 
   // Método para cambiar el estado de la variable "desplegado" para desplazar el chat
   toggleDesplegado() {

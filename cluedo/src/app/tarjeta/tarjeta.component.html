@@ -1,5 +1,5 @@
 <div class="tarjeta" data-hidden="true" [style.right.px]="desplegado ? 0 : -354">
-  <app-desplegable class="tarjeta-desplegable" (desplegableClicked)="toggleDesplegado()"></app-desplegable>  
+  <app-desplegable [componentePadre]="nombreComponente"  (desplegableClicked)="toggleDesplegado()"></app-desplegable>  
   <table class="tabla">
       <thead class="cabecera">
         <tr>

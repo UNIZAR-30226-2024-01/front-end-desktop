@@ -17,6 +17,7 @@ import { TableRowComponent } from '../table-row/table-row.component';
 })
 export class TarjetaComponent {
   desplegado: boolean = false;
+  nombreComponente: string ="tarjeta";
 
   // Método para cambiar el estado de la variable "desplegado" para desplazar el chat
   toggleDesplegado() {
