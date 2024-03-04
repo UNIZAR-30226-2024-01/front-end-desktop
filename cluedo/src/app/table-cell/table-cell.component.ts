@@ -9,9 +9,14 @@ import { CommonModule } from '@angular/common';
   styleUrl: '../../../../../front-end-shared/css/Tarjeta/table-cell.css',
 })
 export class TableCellComponent implements OnInit {
-  @Input() state: number=1;
+  NUM_ESTADOS: number = 4;
+
+  @Input() state: number=0;  
+
+
   texts: string[] = ['', '❌', '✔', '❔'];
   colors: string[] = ['#ffffff', '#995555', '#559955', '#555599'];
+  estado: number = 0;
   text: string = '';
 
   style = {};
@@ -20,9 +25,8 @@ export class TableCellComponent implements OnInit {
     this.updateText();
   }
 
-  handleClick() {
-    const index = this.texts.indexOf(this.text);
-    this.text = this.texts[(index + 1) % this.texts.length];
+  cambiarEstado() {
+    this.estado = this.estado + 1 % this.NUM_ESTADOS;
     this.updateStyle();
   }
 
