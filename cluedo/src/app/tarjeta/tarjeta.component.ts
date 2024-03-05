@@ -2,14 +2,13 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { DesplegableComponent } from '../desplegable/desplegable.component';
 import { TableCellComponent } from '../table-cell/table-cell.component';
-import { TableHeadComponent } from '../table-head/table-head.component';
 import { TableRowComponent } from '../table-row/table-row.component';
 
 @Component({
   selector: 'app-tarjeta',
   standalone: true,
   imports: [CommonModule, 
-            TableCellComponent, TableHeadComponent, TableRowComponent,
+            TableCellComponent, TableRowComponent,
             DesplegableComponent],
   templateUrl: './tarjeta.component.html',
   styleUrl: '../../../../../front-end-shared/css/Tarjeta/Tarjeta.css'
