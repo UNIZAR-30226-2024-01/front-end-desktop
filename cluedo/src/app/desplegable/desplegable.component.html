@@ -1,0 +1,7 @@
+<div (click)="handleClick()"
+     [ngClass]="{'chat': componentePadre === 'chat', 'tarjeta': componentePadre === 'tarjeta'}">
+    <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" [attr.d]="getPathD()" />
+    </svg>
+</div>
+  
