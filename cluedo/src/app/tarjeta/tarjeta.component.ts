@@ -3,14 +3,13 @@ import { Component } from '@angular/core';
 import { DesplegableComponent } from '../desplegable/desplegable.component';
 import { TableCellComponent } from '../table-cell/table-cell.component';
 import { TableHeadComponent } from '../table-head/table-head.component';
-import { TableHeaderCellComponent } from '../table-header-cell/table-header-cell.component';
 import { TableRowComponent } from '../table-row/table-row.component';
 
 @Component({
   selector: 'app-tarjeta',
   standalone: true,
   imports: [CommonModule, 
-            TableCellComponent, TableHeadComponent, TableHeaderCellComponent, TableRowComponent,
+            TableCellComponent, TableHeadComponent, TableRowComponent,
             DesplegableComponent],
   templateUrl: './tarjeta.component.html',
   styleUrl: '../../../../../front-end-shared/css/Tarjeta/Tarjeta.css'
@@ -18,6 +17,11 @@ import { TableRowComponent } from '../table-row/table-row.component';
 export class TarjetaComponent {
   desplegado: boolean = false;
   nombreComponente: string ="tarjeta";
+
+  // Variables para el header
+  maxCharsHeader: number = 4;
+  textHeader: string = "";
+
 
   // Método para cambiar el estado de la variable "desplegado" para desplazar el chat
   toggleDesplegado() {
