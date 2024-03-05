@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { DesplegableComponent } from '../desplegable/desplegable.component';
-import { TableCellComponent } from '../table-cell/table-cell.component';
 
 // Codificación para el estado de las celdas
 enum EstadoCelda {
@@ -19,13 +18,13 @@ interface Celda {
 @Component({
   selector: 'app-tarjeta',
   standalone: true,
-  imports: [CommonModule, 
-            TableCellComponent, 
+  imports: [CommonModule,  
             DesplegableComponent],
   templateUrl: './tarjeta.component.html',
   styleUrl: '../../../../../front-end-shared/css/Tarjeta/Tarjeta.css'
 })
 export class TarjetaComponent {
+  // Se ejecuta al crearse el componente
   constructor() {
     this.inicializarTabla();
   }
@@ -38,13 +37,14 @@ export class TarjetaComponent {
   maxCharsHeader: number = 4;
   textHeader: string = "";
 
-  // Tabla
+  // Variables para la Tabla
   numEstados = Object.keys(EstadoCelda).length / 2; //Para saber cuantos estados hay
   numFilas: number = 21;
   numColumnas: number = 7;
   tabla: Celda[][] = [];
-  
-  inicializarTabla() {
+
+  // Método para poner todas las celdas en el estado "INDEFINIDO"
+  private inicializarTabla() {
     for (let i = 0; i < this.numFilas; i++) {
       this.tabla[i] = [];
       for (let j = 0; j < this.numColumnas; j++) {
@@ -53,12 +53,51 @@ export class TarjetaComponent {
     }
   }
 
+  // Dado un estado de celda, devuelve el siguiente estado
+  private siguienteEstado(estado: EstadoCelda) {
+    return (estado + 1) % this.numEstados;
+  }
+
+  // Método para cambiar el estado de todas las celdas de una fila
   clickFila(numFila: number){
     for (let j = 0; j < this.numColumnas; j++) {
       const celda = this.tabla[numFila][j];
-      celda.estado = (celda.estado + 1) % this.numEstados;
+      celda.estado = this.siguienteEstado(celda.estado);
     }
-    console.log(this.tabla);
+  }
+
+  // Método para cambiar el estado de una celda dada
+  clickCelda(numFila: number, numColumna: number) {
+    const celda = this.tabla[numFila][numColumna];
+    celda.estado = this.siguienteEstado(celda.estado);
+  }
+
+  // Método para obtener el símbolo del estado de una celda
+  obtenerSimbolo(estado: EstadoCelda) {
+    switch (estado) {
+      case EstadoCelda.INDEFINIDO:
+        return "";
+      case EstadoCelda.OK:
+        return "✔";
+      case EstadoCelda.CRUZ:
+        return "❌";
+      case EstadoCelda.INTERROGACION:
+        return "❔";
+    }
+  }
+
+  // Método para obtener el color del estado de una celda
+  obtenerColor(estado: EstadoCelda) {
+    switch (estado) {
+      case EstadoCelda.INDEFINIDO:
+        return "#ffffff";
+      case EstadoCelda.OK:
+        return "#559955";
+      case EstadoCelda.CRUZ:
+        return "#995555";
+      case EstadoCelda.INTERROGACION:
+        return "#555599";
+    }
   }
 
   // Método para cambiar el estado de la variable "desplegado" para desplazar el chat
