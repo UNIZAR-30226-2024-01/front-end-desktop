@@ -23,8 +23,17 @@ export class DesplegableComponent {
 
   // Método para cambiar el atributo path del svg en base al estado del componente "desplegado"
   getPathD(): string {
-    return this.desplegado ?
-      "M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" :
-      "M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3";
+    switch (this.componentePadre) {
+      case 'chat':
+        return this.desplegado ?
+          "M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" :
+          "M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3";
+      case 'tarjeta':
+        return this.desplegado ?
+        "M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" :
+        "M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" ;
+      default:
+        throw new Error("Invalid value for componentePadre");
+    }
   }
 }
