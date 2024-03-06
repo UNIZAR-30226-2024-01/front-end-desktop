@@ -9,6 +9,9 @@
     height: 30px;
   }
 
+.menu-button {
+    margin-left: auto;
+}
 .example-icon {
     padding: 0 14px;
   }
