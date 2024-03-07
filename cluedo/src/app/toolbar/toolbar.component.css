@@ -1,5 +1,6 @@
 .toolbar {
-    color: white; /* Texto blanco */
+    /* color: white; Texto blanco */
+    color:  #1315a2;
     position: fixed; /* Posición fija */
     top: 0; /* Alinear en la parte superior */
     left: 0; /* Alinear a la izquierda */
@@ -12,9 +13,14 @@
 .menu-button {
     margin-left: auto;
 }
-.example-icon {
-    padding: 0 14px;
-  }
-  .example-spacer {
-    flex: 1 1 auto;
-  }
+
+.trespuntos{
+}
+.custom-button {
+  background-color: inherit;
+  margin-left: auto;
+}
+
+.custom-button .mat-icon {
+  color: white; 
+}
