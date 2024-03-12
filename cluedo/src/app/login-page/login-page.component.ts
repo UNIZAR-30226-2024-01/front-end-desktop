@@ -9,13 +9,30 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: '../../../../../front-end-shared/css/Login/Login.css'
 })
 export class LoginPageComponent {
-  constructor(private http: HttpClient) {}
 
-  login(username: string, password: string) {
-    this.http.post('http://localhost:3000/login', { username, password }).subscribe((res) => {
-      console.log(res);
-    });
-  }
+// password: any;
+// username: any;
+//   constructor(private http: HttpClient) {}
+
+//   login(username: string, password: string): void {
+//     const url = 'http://localhost:3000/login'; // Ruta de tu endpoint de login en la API
+
+//     // Objeto con los datos del usuario a enviar al servidor
+//     const body = {
+//       username: username,
+//       password: password
+//     };
+
+//     // Realizar la petición POST al servidor
+//     this.http.post(url, body).subscribe((response) => {
+//       console.log('Respuesta del servidor:', response);
+//       // Aquí puedes manejar la respuesta del servidor, por ejemplo, redirigir al usuario si el login fue exitoso
+//     }, (error) => {
+//       console.error('Error al realizar la petición:', error);
+//       // Manejar el error, por ejemplo, mostrar un mensaje de error al usuario
+//     });
+//   }
+
   
 
 }
