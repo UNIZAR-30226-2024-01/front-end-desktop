@@ -21,5 +21,3 @@ describe('LoginPageComponent', () => {
     expect(component).toBeTruthy();
   });
 });
-
-export class AppRoutingModule { }
