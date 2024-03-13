@@ -1,18 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RegisterPageComponent } from './register-page.component';
-import { ActivatedRoute, Routes } from '@angular/router';
-import { LoginPageComponent } from '../login-page/login-page.component';
-
-const routes: Routes = [
-  {
-    path: 'register',
-    component: RegisterPageComponent
-  },
-  { path: 'login',
-    component: LoginPageComponent
-  },
-];
 
 describe('RegisterPageComponent', () => {
   let component: RegisterPageComponent;
