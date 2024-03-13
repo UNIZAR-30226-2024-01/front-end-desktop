@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
-import { initFlowbite } from 'flowbite';
 import { RouterOutlet } from '@angular/router';
 import { GamePageComponent } from './game-page/game-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
@@ -15,10 +14,6 @@ import { LoginPageComponent } from './login-page/login-page.component';
   styleUrl: './app.component.css'
 })
 
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'cluedo';
-
-  ngOnInit(): void {
-    initFlowbite();
-  }
 }
