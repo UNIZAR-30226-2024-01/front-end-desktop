@@ -1,4 +1,4 @@
-<div class='parent'>
+<div class="parent">
     <div class='container'>
         <h1 class='inicia-sesion'>Inicia sesión</h1>
         <div class='loginForm'>
@@ -10,7 +10,8 @@
         <button class='styled-button' onClick={handleLogin}>Iniciar sesión</button>
     </div>
     <div>
-        <!-- <Link to="/createUser" class='styled-link'>No tengo cuenta...</Link>
-        <Link to="/game" class='styled-link'>Jugar como invitado</Link>     -->
+        <a routerLink="/registerPageComponent" routerLinkActive="active">No tienes cuenta? Regístrate</a>
     </div>        
 </div>
+
+<router-outlet></router-outlet>

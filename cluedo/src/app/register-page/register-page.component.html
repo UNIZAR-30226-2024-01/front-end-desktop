@@ -1,0 +1,18 @@
+<div class="parent">
+    <div class='container'>
+        <h1 class='registrarse'>Inicia sesión</h1>
+        <div class='loginForm'>
+            <p class='p-login-account'>Nombre de usuario</p>
+            <input type="text" placeholder="username"/>
+            <p class='p-login-account'>Contraseña</p>
+            <input type="password" placeholder="password"/>
+            <p class='p-login-account'>Repite la contraseña</p>
+            <input type="password" placeholder="password"/>
+            <p class='p-login-account'>¿No tienes cuenta? <Link to="/createUser" class='styled-link'>Regístrate</Link></p>
+        </div>
+        <button class='styled-button' onClick={handleRegister}>Registrarse</button>
+    </div>   
+    <a routerLink="/loginPageComponent" routerLinkActive="active">¿Ya tienes cuenta? Inicia sesión</a>    
+</div>
+
+<router-outlet></router-outlet>
