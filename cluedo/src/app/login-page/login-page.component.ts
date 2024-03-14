@@ -37,7 +37,7 @@ export class LoginPageComponent {
     
     const data = await response.json();
     if (data.success === true) {
-        this.router.navigate(['/game-user']);
+        this.router.navigate(['/game-page']);
     } else {
         alert('Usuario o contraseña incorrectos');
     }
