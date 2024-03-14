@@ -1,39 +1,10 @@
-<div class="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen">
-    <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900">
-        <img class="w-8 h-8 mr-2" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg" alt="logo" />
-        Flowbite
-    </a>
-    <div class="w-[500px] bg-white rounded-lg shadow mt-0">
-        <div class="p-6 space-y-6">
-            <h1 class="font-bold leading-tight tracking-tight text-gray-900 text-2xl ">
-                Sign in to your account
-            </h1>
-            <form class="space-y-6" action="#">
-                <div>
-                    <label htmlFor="email" class="block mb-2 text-sm font-medium text-gray-900">Your email</label>
-                    <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="name@company.com" required=""/>
-                </div>
-                <div>
-                    <label htmlFor="password" class="block mb-2 text-sm font-medium text-gray-900">Password</label>
-                    <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " required=""/>
-                </div>
-                <div class="flex items-center justify-between">
-                    <div class="flex items-start">
-                        <div class="flex items-center h-5">
-                            <input id="remember" aria-describedby="remember" type="checkbox" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 " required="" />
-                        </div>
-                        <div class="ml-3 text-sm">
-                            <label htmlFor="remember" class="text-gray-500">Remember me</label>
-                        </div>
-                    </div>
-                    <a href="#" class="text-sm font-medium text-primary-600 hover:underline">Forgot password?</a>
-                </div>
-                <!-- (click)="login(username,password)" Esto va en el espacio del button -->
-                <button type="submit" onclick="login(username, password)" class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Sign in</button>
-                <p class="text-sm font-light text-gray-500 ">
-                    Don’t have an account yet? <a href="#" class="font-medium text-primary-600 hover:underline">Sign up</a>
-                </p>
-            </form>
+<form class="row g-3">
+    <div class="col-md-4">
+      <label for="validationServer01" class="form-label">First name</label>
+      <input type="text" class="form-control is-valid" id="validationServer01" value="Mark" required>
+      @if (true){
+        <div class="valid-feedback">
+          Looks good!
         </div>
       } @else {
         <div class="invalid-feedback">
@@ -41,5 +12,59 @@
         </div>
       }
     </div>
-</div>
-
+    <div class="col-md-4">
+      <label for="validationServer02" class="form-label">Last name</label>
+      <input type="text" class="form-control is-valid" id="validationServer02" value="Otto" required>
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label for="validationServerUsername" class="form-label">Username</label>
+      <div class="input-group has-validation">
+        <span class="input-group-text" id="inputGroupPrepend3">oo</span>
+        <input type="text" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
+        <div id="validationServerUsernameFeedback" class="invalid-feedback">
+          Please choose a username.
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label for="validationServer03" class="form-label">City</label>
+      <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" required>
+      <div id="validationServer03Feedback" class="invalid-feedback">
+        Please provide a valid city.
+      </div>
+    </div>
+    <div class="col-md-3">
+      <label for="validationServer04" class="form-label">State</label>
+      <select class="form-select is-invalid" id="validationServer04" aria-describedby="validationServer04Feedback" required>
+        <option selected disabled value="">Choose...</option>
+        <option>...</option>
+      </select>
+      <div id="validationServer04Feedback" class="invalid-feedback">
+        Please select a valid state.
+      </div>
+    </div>
+    <div class="col-md-3">
+      <label for="validationServer05" class="form-label">Zip</label>
+      <input type="text" class="form-control is-invalid" id="validationServer05" aria-describedby="validationServer05Feedback" required>
+      <div id="validationServer05Feedback" class="invalid-feedback">
+        Please provide a valid zip.
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="form-check">
+        <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3" aria-describedby="invalidCheck3Feedback" required>
+        <label class="form-check-label" for="invalidCheck3">
+          Agree to terms and conditions
+        </label>
+        <div id="invalidCheck3Feedback" class="invalid-feedback">
+          You must agree before submitting.
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <button class="btn btn-primary" type="submit">Submit form</button>
+    </div>
+  </form>
