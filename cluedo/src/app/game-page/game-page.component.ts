@@ -4,6 +4,7 @@ import { TarjetaComponent } from '../tarjeta/tarjeta.component';
 import { ChatComponent } from '../chat/chat.component';
 import { LoginPageComponent } from '../login-page/login-page.component';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-game-page',
@@ -13,9 +14,9 @@ import { ToolbarComponent } from '../toolbar/toolbar.component';
     GamePageComponent,
     ChatComponent,
     TarjetaComponent, ToolbarComponent],
-  templateUrl: './game-page.component.html',
-  styleUrl: './game-page.component.css'
+  templateUrl: '../../../../../front-end-shared/css/Tablero/Tablero.css',
 })
 export class GamePageComponent {
+  constructor(private router: Router) { }
   title = 'cluedo';
 }

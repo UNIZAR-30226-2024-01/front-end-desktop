@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './toolbar.component.html',
-  styleUrl: './toolbar.component.css'
+  styleUrl: '../../../../../front-end-shared/css/Login/Login.css'
 })
 export class ToolbarComponent {
 

@@ -6,7 +6,11 @@ import { ActivatedRoute } from '@angular/router';
   standalone: true,
   imports: [],
   templateUrl: './register-page.component.html',
-  styleUrl: './register-page.component.css'
+  styleUrls: ['../../../../../front-end-shared/css/Tarjeta/Tarjeta.css',
+  '../../../../../front-end-shared/css/Tarjeta/table-cell.css',
+  '../../../../../front-end-shared/css/Tarjeta/table-head.css',
+  '../../../../../front-end-shared/css/Tarjeta/table-header-cell.css',
+  '../../../../../front-end-shared/css/Tarjeta/table-row.css']
 })
 export class RegisterPageComponent {
   constructor(private _route: ActivatedRoute) {}
