@@ -14,7 +14,8 @@ import { Router } from '@angular/router';
     GamePageComponent,
     ChatComponent,
     TarjetaComponent, ToolbarComponent],
-  templateUrl: '../../../../../front-end-shared/css/Tablero/Tablero.css',
+  templateUrl: './game-page.component.html',
+  styleUrl: './../../../../../front-end-shared/css/App.css',
 })
 export class GamePageComponent {
   constructor(private router: Router) { }

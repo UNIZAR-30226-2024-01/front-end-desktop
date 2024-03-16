@@ -1,19 +1,18 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AppRoutingModule } from '../app-routing.module'; // Importa el AppRoutingModule
 
 @Component({
   selector: 'app-login-page',
   standalone: true,
   templateUrl: './login-page.component.html',
-  styleUrl: '../../../../../front-end-shared/css/Login/Login.css',
+  styleUrls: ['../../../../../front-end-shared/css/Login/Login.css',
+    '../../../../../front-end-shared/css/Login/CreateUser.css'],
 
   imports: [
-    FormsModule // Agrega FormsModule a la lista de imports
-  ]
+    FormsModule, RouterLink]
 
 })
 export class LoginPageComponent {
