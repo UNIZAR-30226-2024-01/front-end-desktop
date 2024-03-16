@@ -62,11 +62,20 @@ export class TarjetaComponent {
     return (estado + 1) % this.numEstados;
   }
 
+  // Itera el estado de una celda solo entre INDEFINIDO y CRUZ
+  private estadoContrario(estado: EstadoCelda) {
+    if (estado !== EstadoCelda.CRUZ) {
+      return EstadoCelda.CRUZ;
+    } else {
+      return EstadoCelda.INDEFINIDO;
+    }
+  }
+
   // Método para cambiar el estado de todas las celdas de una fila
   clickFila(numFila: number){
     for (let j = 0; j < this.numColumnas; j++) {
       const celda = this.tabla[numFila][j];
-      celda.estado = this.siguienteEstado(celda.estado);
+      celda.estado = this.estadoContrario(celda.estado);
     }
   }
 
