@@ -45,6 +45,9 @@ export class TarjetaComponent {
   numEstados = Object.keys(EstadoCelda).length / 2; //Para saber cuantos estados hay
   numFilas: number = 21;
   numColumnas: number = 7;
+  personajes: string[] = ["mr SOPER", "mr REDES", "mr PROG", "mr FISICA", "mr DISCRETO", "mr IA"];
+  armas: string[] = ["teclado", "cable de red", "raton", "router", "troyano", "cd"];
+  lugares: string[] = ["cafeteria", "baños", "recepcion", "escaleras", "biblioteca", "laboratorio", "despacho", "aulas norte", "aulas sur"];
   tabla: Celda[][] = [];
 
   // Método para poner todas las celdas en el estado "INDEFINIDO"
@@ -118,3 +121,4 @@ export class TarjetaComponent {
     this.desplegado = !this.desplegado;
   }
 }
+
