@@ -21,7 +21,11 @@ interface Celda {
   imports: [CommonModule,  
             DesplegableComponent],
   templateUrl: './tarjeta.component.html',
-  styleUrl: '../../../../../front-end-shared/css/Tarjeta/Tarjeta.css'
+  styleUrls: ['../../../../../front-end-shared/css/Tarjeta/Tarjeta.css',
+              '../../../../../front-end-shared/css/Tarjeta/table-cell.css',
+              '../../../../../front-end-shared/css/Tarjeta/table-head.css',
+              '../../../../../front-end-shared/css/Tarjeta/table-row.css',
+              '../../../../../front-end-shared/css/Tarjeta/table-header-cell.css']
 })
 export class TarjetaComponent {
   // Se ejecuta al crearse el componente
