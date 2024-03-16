@@ -1,16 +1,20 @@
 <div class='parent'>
-  <div class='container'>
-      <h1 class='inicia-sesion'>Registrarse</h1>
-      <div class='loginForm'>
-          <p class='p-login-account'>Nombre de usuario</p>
-          <input type="text" placeholder="username"/>
-          <p class='p-login-account'>Contraseña</p>
-          <input type="password" placeholder="password"/>
-      </div>
-      <button class='styled-button'>Iniciar sesión</button>
-  </div>
-  <div>
-      <a routerLink="/login-page" class='styled-link'>Ya tengo cuenta</a>
-      <a routerLink="/game-page" class='styled-link'>Jugar como invitado</a>   
-  </div>        
+    <div class='container'>
+        <div>
+            <h1 class='create-account'>Crear una cuenta</h1>
+            <div class='loginForm'>
+                <p class='p-login'>Nombre de usuario</p>
+                <input type="text" placeholder="username" [(ngModel)]="username"/>
+                <p class='p-login'>Contraseña</p>
+                <input type="password" placeholder="password" [(ngModel)]="password"/>
+                <p class='p-login'>Repite la contraseña</p>
+                <input type="password" placeholder="repeat password" [(ngModel)]="confirmPassword"/>
+            </div>
+        </div>
+        <button class='styled-button' (click)="handleRegister()">Crear cuenta</button>
+    </div>
+    <div>
+        <a routerLink="/login-page" class='styled-link'>Ya tengo cuenta...</a>
+        <a routerLink="/game-page" class='styled-link'>Jugar como invitado</a>
+    </div>
 </div>
