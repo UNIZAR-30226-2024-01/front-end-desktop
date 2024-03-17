@@ -17,13 +17,13 @@
 
         <tr class="titulos"> <th > ¿QUIÉN? </th> </tr>
 
-        @for (personaje of personajes; track personaje; let index = $index) {
+        @for (personaje of personajes; track personaje; let indexHeader = $index) {
           <tr>
-            <td class="elemento" (click)="clickFila(index)"> {{personaje}} </td>
+            <td class="elemento" (click)="clickFila(obtenerIndexHeader(indexHeader, 'personajes'))"> {{personaje}} </td>
             @for (celda of tabla[0]; track celda; let index = $index) {
-              <td class="ceda" (click)="clickCelda(0, index)"
-              [ngStyle]="{ 'background': obtenerColor(tabla[0][index].estado) }">
-              {{obtenerSimbolo(tabla[0][index].estado)}}
+              <td class="celda" (click)="clickCelda(obtenerIndexHeader(indexHeader, 'personajes'), index)"
+              [ngStyle]="{ 'background': obtenerColor(tabla[obtenerIndexHeader(indexHeader, 'personajes')][index].estado) }">
+              {{obtenerSimbolo(tabla[obtenerIndexHeader(indexHeader, 'personajes')][index].estado)}}
             </td>
           }
           </tr>
@@ -31,13 +31,13 @@
     
         <tr class="titulos"> <th > ¿CON QUÉ? </th> </tr>
 
-        @for (arma of armas; track arma; let index = $index) {
+        @for (arma of armas; track arma; let indexHeader = $index) {
           <tr>
-            <td class="elemento" (click)="clickFila(index)"> {{arma}} </td>
+            <td class="elemento" (click)="clickFila(obtenerIndexHeader(indexHeader, 'armas'))"> {{arma}} </td>
             @for (celda of tabla[0]; track celda; let index = $index) {
-              <td class="ceda" (click)="clickCelda(0, index)"
-              [ngStyle]="{ 'background': obtenerColor(tabla[0][index].estado) }">
-              {{obtenerSimbolo(tabla[0][index].estado)}}
+              <td class="celda" (click)="clickCelda(obtenerIndexHeader(indexHeader, 'armas'), index)"
+              [ngStyle]="{ 'background': obtenerColor(tabla[obtenerIndexHeader(indexHeader, 'armas')][index].estado) }">
+              {{obtenerSimbolo(tabla[obtenerIndexHeader(indexHeader, 'armas')][index].estado)}}
             </td>
           }
           </tr>
@@ -45,13 +45,13 @@
         
         <tr class="titulos"> <th > ¿DONDÉ? </th> </tr>
 
-        @for (lugar of lugares; track lugar; let index = $index) {
+        @for (lugar of lugares; track lugar; let indexHeader = $index) {
           <tr>
-            <td class="elemento" (click)="clickFila(index)"> {{lugar}} </td>
+            <td class="elemento" (click)="clickFila(obtenerIndexHeader(indexHeader, 'lugares'))"> {{lugar}} </td>
             @for (celda of tabla[0]; track celda; let index = $index) {
-              <td class="ceda" (click)="clickCelda(0, index)"
-              [ngStyle]="{ 'background': obtenerColor(tabla[0][index].estado) }">
-              {{obtenerSimbolo(tabla[0][index].estado)}}
+              <td class="celda" (click)="clickCelda(obtenerIndexHeader(indexHeader, 'lugares'), index)"
+              [ngStyle]="{ 'background': obtenerColor(tabla[obtenerIndexHeader(indexHeader, 'lugares')][index].estado) }">
+              {{obtenerSimbolo(tabla[obtenerIndexHeader(indexHeader, 'lugares')][index].estado)}}
             </td>
           }
           </tr>

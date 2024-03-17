@@ -47,7 +47,7 @@ export class TarjetaComponent {
   numColumnas: number = 7;
   personajes: string[] = ["mr SOPER", "mr REDES", "mr PROG", "mr FISICA", "mr DISCRETO", "mr IA"];
   armas: string[] = ["teclado", "cable de red", "raton", "router", "troyano", "cd"];
-  lugares: string[] = ["cafeteria", "baños", "recepcion", "escaleras", "biblioteca", "laboratorio", "despacho", "aulas norte", "aulas sur"];
+  lugares: string[] = ["cafeteria", "baños", "recepcion", "escaleras", "biblioteca", "laboratorio", "despacho", "aulas norte", "aulas sur"];  
   tabla: Celda[][] = [];
 
   // Método para poner todas las celdas en el estado "INDEFINIDO"
@@ -84,8 +84,29 @@ export class TarjetaComponent {
 
   // Método para cambiar el estado de una celda dada
   clickCelda(numFila: number, numColumna: number) {
+    console.log("click en celda " + numFila + ", " + numColumna);
     const celda = this.tabla[numFila][numColumna];
     celda.estado = this.siguienteEstado(celda.estado);
+  }
+
+  // El valor index del @for no coincide con el índice de la tabla, por lo que necesitamos un método 
+  // para obtener el índice correcto de la tabla
+  obtenerIndexHeader(index: number, tipo: string){
+    switch (tipo) {
+      case "personajes":
+        return index;
+      case "armas":
+        return index + this.personajes.length;
+      case "lugares":
+        return index + this.personajes.length + this.armas.length;
+      default:
+        return -1;
+    }
+  }
+
+  // Método para obtener el estado de una celda
+  obtenerEstado(numFila: number, numColumna: number) {
+    return this.tabla[numFila][numColumna].estado;
   }
 
   // Método para obtener el símbolo del estado de una celda
