@@ -41,4 +41,10 @@ export class LoginPageComponent {
         alert('Usuario o contraseña incorrectos');
     }
   }
+
+  ngOnDestroy() {
+    // Limpiar los datos vinculados a ngModel al salir de la página
+    this.username = '';
+    this.password = '';
+  }
 }

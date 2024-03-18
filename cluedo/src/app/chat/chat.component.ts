@@ -2,12 +2,14 @@ import { Component } from '@angular/core';
 import { DesplegableComponent } from '../desplegable/desplegable.component';
 import { InputMessageComponent } from './input-message/input-message.component';
 import { MessageListComponent } from './message-list/message-list.component';
+//import { socket } from './chat.js';
+
 @Component({
   selector: 'app-chat',
   standalone: true,
   imports: [DesplegableComponent, InputMessageComponent, MessageListComponent],
   templateUrl: './chat.component.html',
-  styleUrl: '../../../../../front-end-shared/css/Chat/chat.css'
+  styleUrl: '../../../../../front-end-shared/css/game/Chat/chat.css'
 })
 export class ChatComponent {
   desplegado: boolean = false;
