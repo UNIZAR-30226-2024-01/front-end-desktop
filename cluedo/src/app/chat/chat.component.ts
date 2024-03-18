@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { DesplegableComponent } from '../desplegable/desplegable.component';
 import { InputMessageComponent } from './input-message/input-message.component';
 import { MessageListComponent } from './message-list/message-list.component';
-//import { socket } from './chat.js';
+declare const require: any;
+const socket = require('./chat.js');
+
 
 @Component({
   selector: 'app-chat',
