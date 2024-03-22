@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './message-list.component.html',
-  styleUrl: '../../../../../../front-end-shared/css/game/Chat/message-list.css'
+  styleUrl: '../../../../../../front-end-shared/css/Game/Chat/message-list.css'
 })
 export class MessageListComponent {
 

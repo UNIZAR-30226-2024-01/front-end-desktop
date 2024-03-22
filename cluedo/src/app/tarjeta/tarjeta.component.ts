@@ -21,11 +21,11 @@ interface Celda {
   imports: [CommonModule,  
             DesplegableComponent],
   templateUrl: './tarjeta.component.html',
-  styleUrls: ['../../../../../front-end-shared/css/game/Tarjeta/Tarjeta.css',
-              '../../../../../front-end-shared/css/game/Tarjeta/table-cell.css',
-              '../../../../../front-end-shared/css/game/Tarjeta/table-head.css',
-              '../../../../../front-end-shared/css/game/Tarjeta/table-row.css',
-              '../../../../../front-end-shared/css/game/Tarjeta/table-header-cell.css']
+  styleUrls: ['../../../../../front-end-shared/css/Game/Tarjeta/Tarjeta.css',
+              '../../../../../front-end-shared/css/Game/Tarjeta/table-cell.css',
+              '../../../../../front-end-shared/css/Game/Tarjeta/table-head.css',
+              '../../../../../front-end-shared/css/Game/Tarjeta/table-row.css',
+              '../../../../../front-end-shared/css/Game/Tarjeta/table-header-cell.css']
 })
 export class TarjetaComponent {
   // Se ejecuta al crearse el componente

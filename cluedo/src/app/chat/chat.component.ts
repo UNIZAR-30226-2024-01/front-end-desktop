@@ -11,7 +11,7 @@ const socket = require('./chat.js');
   standalone: true,
   imports: [DesplegableComponent, InputMessageComponent, MessageListComponent],
   templateUrl: './chat.component.html',
-  styleUrl: '../../../../../front-end-shared/css/game/Chat/chat.css'
+  styleUrl: '../../../../../front-end-shared/css/Game/Chat/chat.css'
 })
 export class ChatComponent {
   desplegado: boolean = false;
