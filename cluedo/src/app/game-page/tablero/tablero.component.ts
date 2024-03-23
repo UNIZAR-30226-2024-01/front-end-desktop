@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { CeldaComponent } from '../celda/celda.component';
 
@@ -13,6 +14,7 @@ export class TableroComponent {
   numFilas: number = 24;
   numColumnas: number = 24;
   tablero: CeldaComponent[][] = [];
+  colors = ["Red", "Blue", "White"];
 
   constructor() { 
     // Ejemplo: Crear un tablero de 5x5 e inicializar cada celda
@@ -22,5 +24,6 @@ export class TableroComponent {
         this.tablero[i][j] = new CeldaComponent(); // Puedes inicializar las celdas como desees
       }
     }
+    console.log(this.tablero);
   }
 }
