@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CeldaComponent } from '../celda/celda.component';
 import { CeldaType } from '../celda/celda-type.enum';
 
+import * as infoTablero from '../../../assets/infoTablero.json';
 
 @Component({
   selector: 'app-tablero',
@@ -15,6 +16,7 @@ export class TableroComponent {
   numFilas: number = 24;
   numColumnas: number = 24;
   tablero: any[][] = [];
+  datosTablero = infoTablero.infoTablero;
 
   constructor() { 
     // Ejemplo: Crear un tablero de 5x5 e inicializar cada celda
