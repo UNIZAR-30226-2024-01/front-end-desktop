@@ -1,6 +1,7 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { CeldaComponent } from '../celda/celda.component';
+import { CeldaType } from '../celda/celda-type.enum';
+
 
 @Component({
   selector: 'app-tablero',
@@ -13,15 +14,18 @@ import { CeldaComponent } from '../celda/celda.component';
 export class TableroComponent {
   numFilas: number = 24;
   numColumnas: number = 24;
-  tablero: CeldaComponent[][] = [];
-  colors = ["Red", "Blue", "White"];
+  tablero: any[][] = [];
 
   constructor() { 
     // Ejemplo: Crear un tablero de 5x5 e inicializar cada celda
     for (let i = 0; i < this.numFilas; i++) {
       this.tablero[i] = [];
       for (let j = 0; j < this.numColumnas; j++) {
-        this.tablero[i][j] = new CeldaComponent(); // Puedes inicializar las celdas como desees
+        this.tablero[i][j] = {
+          isRoom: false,
+          roomName: "",
+          hasPlayer: false
+        }; // Puedes inicializar las celdas como desees
       }
     }
     console.log(this.tablero);
