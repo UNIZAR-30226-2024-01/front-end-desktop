@@ -1,4 +1,4 @@
-<form class='input-message-container' onSubmit={handleSubmit}>
+<form class='input-message-container' (ngSubmit)="enviarMensaje()">
 	@if (showGifPicker) {
 	<div class='gif-container'>
 		<!-- <GifPicker height="350px" width="398px" tenorApiKey={"AIzaSyBd-ORku2q-cF9g-rO5UUukLFRMUCAAmCs"} onGifClick={(i) => gifClick(i.url)} /> -->
