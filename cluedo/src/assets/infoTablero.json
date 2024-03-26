@@ -1,6 +1,6 @@
 {
     "infoTablero":[
-        { "isRoom": true,  "roomName": "1", "isStartingCell": false, "isWalkable": true, "isDoor": "10", "idx":0 },
+    { "isRoom": true,  "roomName": "1", "isStartingCell": false, "isWalkable": true, "isDoor": "10", "idx":0 },
     { "isRoom": true,  "roomName": "1", "isStartingCell": false, "isWalkable": true, "isDoor": false, "idx":1 },
     { "isRoom": true,  "roomName": "1", "isStartingCell": false, "isWalkable": true, "isDoor": false, "idx":2 },
     { "isRoom": true,  "roomName": "1", "isStartingCell": false, "isWalkable": true, "isDoor": false, "idx":3 },

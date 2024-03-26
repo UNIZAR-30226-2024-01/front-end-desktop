@@ -23,11 +23,8 @@ export class TableroComponent {
     for (let i = 0; i < this.numFilas; i++) {
       this.tablero[i] = [];
       for (let j = 0; j < this.numColumnas; j++) {
-        this.tablero[i][j] = {
-          isRoom: false,
-          roomName: "",
-          hasPlayer: false
-        }; // Puedes inicializar las celdas como desees
+        this.tablero[i][j] = this.datosTablero[i*this.numColumnas+j] ; // Puedes inicializar las celdas como desees
+        // console.log(this.tablero[i][j].isRoom + "con los indices: " + i + " " + j);
       }
     }
     console.log(this.tablero);

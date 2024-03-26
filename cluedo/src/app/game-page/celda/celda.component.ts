@@ -12,10 +12,15 @@ import { CeldaType } from './celda-type.enum';
 
 export class CeldaComponent {
   estiloCelda: any = {};
-  @Input() tipoCelda!: CeldaType;
+  @Input() propiedadesCelda!: any;
+
+  clase : string = "";
+  estilo: any = {};
   
-  nombreClase: string = "celda";
-  isRoom: boolean = false;
-  roomName: string = "";
-  hasPlayer: boolean = false;
+  isRoom() {return this.propiedadesCelda.isRoom;}
+  roomName() {return this.propiedadesCelda.roomName;}
+  isStartingCell() {return this.propiedadesCelda.isStartingCell;}
+  isWalkable() {return this.propiedadesCelda.isWalkable;}
+  isDoor() {return this.propiedadesCelda.isDoor;}
+  idx() {return this.propiedadesCelda.idx;}
 }

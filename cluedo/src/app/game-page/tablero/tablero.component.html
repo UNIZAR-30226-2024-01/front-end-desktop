@@ -1,9 +1,9 @@
 <div class="tablero-body">
     <div class="tablero">
-        @for (fila of tablero; track fila) {
+        @for (fila of tablero; track fila; let indexFila = $index) {
             <div class="fila"></div>
-            @for (celda of fila; track celda) {
-                <app-celda></app-celda>
+            @for (columna of fila; track columna; let indexColumna = $index) {
+                <app-celda [propiedadesCelda]="tablero[indexFila][indexColumna]"></app-celda>
             } 
         }
     </div>
