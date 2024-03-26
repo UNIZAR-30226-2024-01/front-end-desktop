@@ -3,7 +3,7 @@ import { DesplegableComponent } from '../desplegable/desplegable.component';
 import { InputMessageComponent } from './input-message/input-message.component';
 import { MessageListComponent } from './message-list/message-list.component';
 declare const require: any;
-const socket = require('./chat.js');
+const {socket} = require('../../chat.js');
 
 @Component({
   selector: 'app-chat',
@@ -25,6 +25,13 @@ export class ChatComponent{
     // });
   }
 
+  ngOnInit() {
+    // Conexión con el socket
+    socket.auth.username = 'abel';
+    socket.auth.group = "0";
+    socket.connect();
+  }
+
   // Método para cambiar el estado de la variable "desplegado" para desplazar el chat
   toggleDesplegado() {
     this.desplegado = !this.desplegado;
@@ -32,6 +39,13 @@ export class ChatComponent{
 
   // Cuando llega el evento mensajeEnviado del input, se gestiona el mensaje
   gestionarMensaje(mensaje: string) {
-    console.log("gestionarMensaje - Mensaje: " + mensaje);    
+    console.log(socket.socket)
+    console.log("gestionarMensaje - Mensaje: " + mensaje);  
+    // Enviar mensaje al servidor
+
+    
+
+    socket.emit('chat message', mensaje);  
   }
 }
+  
