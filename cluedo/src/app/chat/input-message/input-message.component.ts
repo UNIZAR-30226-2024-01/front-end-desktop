@@ -14,8 +14,13 @@ export class InputMessageComponent {
   message: string = '';
 
   // Cuando se pulsa el botón de Enviar, se emite un evento mensjeEnviado
-  enviarMensaje(mensaje: string) {
-    this.mensajeEnviado.emit(mensaje);
+  enviarMensaje() {
+    this.mensajeEnviado.emit(this.message);
+    this.message = '';
+  }
+
+  onSubmit() {
+    this.enviarMensaje();
   }
 
   setShowGifPicker(show: boolean) {

@@ -5,7 +5,6 @@ import { MessageListComponent } from './message-list/message-list.component';
 declare const require: any;
 const socket = require('./chat.js');
 
-
 @Component({
   selector: 'app-chat',
   standalone: true,
@@ -13,9 +12,18 @@ const socket = require('./chat.js');
   templateUrl: './chat.component.html',
   styleUrl: '../../../../../front-end-shared/css/Game/Chat/chat.css'
 })
-export class ChatComponent {
+export class ChatComponent{
   desplegado: boolean = false;
+  message: string = '';
+  messages: string[] = [];
   nombreComponente: string ="chat";
+
+  constructor() {
+    // Escucha el evento 'message' del socket y agrega el mensaje a la lista de mensajes
+    // socket.on('message', (data: any) => {
+    //   this.messages.push(data);
+    // });
+  }
 
   // Método para cambiar el estado de la variable "desplegado" para desplazar el chat
   toggleDesplegado() {
