@@ -1,0 +1,20 @@
+<div class='parent'>
+    <div class='container'>
+        <div>
+            <h1 class='create-account'>Crear una cuenta</h1>
+            <div class='loginForm'>
+                <p class='p-login'>Nombre de usuario</p>
+                <input type="text" placeholder="username" #usernameInput/>
+                <p class='p-login'>Contraseña</p>
+                <input type="password" placeholder="password" #passwordInput />
+                <p class='p-login'>Repite la contraseña</p>
+                <input type="password" placeholder="repeat password" #confirmInput/>
+            </div>
+        </div>
+        <button class='styled-button' (click)="handleRegister(usernameInput.value, passwordInput.value, confirmInput.value)">Crear cuenta</button>
+    </div>
+    <div>
+        <a routerLink="/login-page" class='styled-link'>Ya tengo cuenta...</a>
+        <a routerLink="/game-page" class='styled-link'>Jugar como invitado</a>
+    </div>
+</div>

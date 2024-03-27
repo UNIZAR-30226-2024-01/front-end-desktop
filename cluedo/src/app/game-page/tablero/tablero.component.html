@@ -1,0 +1,10 @@
+<div class="tablero-body">
+    <div class="tablero">
+        @for (fila of tablero; track fila) {
+            <div class="fila"></div>
+            @for (celda of fila; track celda) {
+                <app-celda></app-celda>
+            } 
+        }
+    </div>
+</div>

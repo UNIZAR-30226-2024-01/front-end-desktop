@@ -1,1 +1,11 @@
-<p>message-list works!</p>
+<ul ref={chatRef} className="message-list">
+    @for (message of messages; track $index){
+        @if (message){
+            {{message}}
+        }
+        <!-- @else
+        {
+            <SpecialMessage props={messages[i]} />
+        } -->
+    }
+</ul>

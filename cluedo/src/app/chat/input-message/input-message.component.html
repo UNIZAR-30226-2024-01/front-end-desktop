@@ -1,8 +1,20 @@
-<form class='input-message-container' >
-    <input 
-      type="text"      
-      placeholder="escribe aquí..."
-      #mensaje   
-    >
-    <button type="button" (click)="enviarMensaje(mensaje.value)">Enviar</button>
+<form class='input-message-container' (ngSubmit)="enviarMensaje()">
+	@if (showGifPicker) {
+	<div class='gif-container'>
+		<!-- <GifPicker height="350px" width="398px" tenorApiKey={"AIzaSyBd-ORku2q-cF9g-rO5UUukLFRMUCAAmCs"} onGifClick={(i) => gifClick(i.url)} /> -->
+		<button class='button-chat close-gif 'type='button' (click)="setShowGifPicker(false)">Cerrar</button>
+	</div>
+	}@else{
+		<button class='button-chat open-gif' type='button'(click)="setShowGifPicker(true)" >
+		GIFs
+		</button>
+		<input
+		class='input-message'
+		type="text"
+		placeholder="escribe aquí..."
+		[(ngModel)]="message"
+		[ngModelOptions]="{standalone: true}"
+		/>
+		<button class="button-chat" type='button' (click)="enviarMensaje()" >Enviar</button>
+	}
 </form>

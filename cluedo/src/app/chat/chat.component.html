@@ -1,5 +1,5 @@
 <div class="chat-container" [style.left.px]="desplegado ? 0 : -425">
     <app-desplegable [componentePadre]="nombreComponente" (desplegableClicked)="toggleDesplegado()"></app-desplegable>
-    <!-- <app-message-list></app-message-list> -->
+    <app-message-list></app-message-list>
     <app-input-message (mensajeEnviado)="gestionarMensaje($event)"></app-input-message>
 </div>

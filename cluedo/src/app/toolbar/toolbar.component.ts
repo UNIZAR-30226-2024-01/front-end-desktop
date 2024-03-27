@@ -7,7 +7,7 @@ import {MatMenuModule} from '@angular/material/menu';
   standalone: true,
   imports: [MatToolbarModule,MatIconModule,MatMenuModule],
   templateUrl: './toolbar.component.html',
-  styleUrl: './toolbar.component.css'
+  styleUrl: '../../../../../front-end-shared/css/Login/Login.css'
 })
 export class ToolbarComponent {
 
