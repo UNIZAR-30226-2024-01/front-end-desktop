@@ -12,7 +12,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     ChatComponent,
     TarjetaComponent, ToolbarComponent,MatToolbarModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: '../../../../front-end-shared/css/App.css'
 })
 
 export class AppComponent {
