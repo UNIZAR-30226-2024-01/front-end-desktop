@@ -3,7 +3,7 @@
       <strong>{{username}}</strong> as MrSoper:
     </p>
     @if (text.startsWith("https://media.tenor.com")) {
-      <img height="150px" src={text} alt="gif" class="gif" />
+      <img height="150px" src={{text}} alt="gif" class="gif" />
     } @else {
       <p class="message-text">{{text}}</p>
     }

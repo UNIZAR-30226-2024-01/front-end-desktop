@@ -1,4 +1,4 @@
-<ul class="message-list" style="height: 75vh;" id="chat-list">
+<ul class="message-list" id="chat-list">
     @for (message of messages; track $index){
         @if (message.type === 'message'){
             <app-message [text]="message.text" [username]="message.username" class="message"/>
