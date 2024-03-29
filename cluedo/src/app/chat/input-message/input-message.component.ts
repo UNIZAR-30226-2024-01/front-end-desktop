@@ -12,9 +12,16 @@ export class InputMessageComponent {
   @Output() mensajeEnviado = new EventEmitter<string>();
   showGifPicker: boolean = false;
   message: string = '';
+  gifs: any[] = [];
+  query: string = '';
+
+  constructor() { }
 
   // Cuando se pulsa el botón de Enviar, se emite un evento mensjeEnviado
   enviarMensaje() {
+    if (this.message === '') {
+      return;
+    }
     this.mensajeEnviado.emit(this.message);
     this.message = '';
   }

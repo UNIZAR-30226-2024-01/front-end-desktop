@@ -1,4 +1,6 @@
-import { Component } from "@angular/core";
+import { Component, Inject} from "@angular/core";
+import { Input } from "@angular/core";
+
 
 @Component({
     selector: "app-message",
@@ -9,7 +11,8 @@ import { Component } from "@angular/core";
     })
 
 export class MessageComponent {
+    @Input() text: string = "";
+    @Input() username: string = "";
+
     constructor() {}
-    username: string = "";
-    text: string = "";
 }
