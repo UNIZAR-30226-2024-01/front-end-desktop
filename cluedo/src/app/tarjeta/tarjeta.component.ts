@@ -99,6 +99,7 @@ export class TarjetaComponent {
     console.log("click en celda " + numFila + ", " + numColumna);
     const celda = this.tabla[numFila][numColumna];
     celda.estado = this.siguienteEstado(celda.estado);
+    this.rowInverted[numFila] = false;
   }
 
   // El valor index del @for no coincide con el índice de la tabla, por lo que necesitamos un método 

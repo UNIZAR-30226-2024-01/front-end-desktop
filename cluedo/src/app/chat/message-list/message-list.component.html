@@ -1,11 +1,9 @@
-<ul ref={chatRef} className="message-list">
+<ul class="message-list" style="height: 75vh;" id="chat-list">
     @for (message of messages; track $index){
-        @if (message){
-            {{message}}
+        @if (message.type === 'message'){
+            <app-message [text]="message.text" [username]="message.username" class="message"/>
+        }@else{
+            <special-message/>
         }
-        <!-- @else
-        {
-            <SpecialMessage props={messages[i]} />
-        } -->
     }
 </ul>
