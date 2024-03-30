@@ -9,7 +9,6 @@ import { Celda } from './celda.interface';
   styleUrl: '../../../../../../../front-end-shared/css/Game/Tablero/Celda.css'
 })
 
-
 export class CeldaComponent {
   @Input() propiedadesCelda!: Celda;
   @Input() fila!: number;
@@ -17,7 +16,7 @@ export class CeldaComponent {
 
   clase : string = "";
 
-  estilo: { width: number, height: number} = {
+  estiloCelda = {
     width: 26,
     height: 26
   };
@@ -32,12 +31,35 @@ export class CeldaComponent {
   getFila() {return this.fila;}
   getColumna() {return this.columna;}
 
-  constructor() {
+  ngOnInit() {
     this.estilarCelda();
+    this.anadirClase();
+  }
+
+  anadirClase() {
+    if (this?.getIsRoom()) {
+      this.clase = "room room-" + this.getRoomName();
+    } else if (!this?.getIsWalkable()) {
+      this.clase = "invalid";
+    } else {
+      this.clase = "celda ";
+      if (this.fila % 2 === 0) {
+        this.clase += this.columna % 2 === 0 ? "dark" : "light";
+      } else {
+        this.clase += this.columna % 2 === 0 ? "light" : "dark";
+      }
+
+      if (this.getIsStartingCell()) {
+        this.clase += " start start-" + this.getIsStartingCell();
+      }
+    }
   }
 
   estilarCelda() {
-    
+    if (this?.getIsRoom() || !this?.getIsWalkable()) {
+      this.estiloCelda.width += 2;
+      this.estiloCelda.height += 2;
+    }
   }
 
 }

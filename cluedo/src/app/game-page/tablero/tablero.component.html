@@ -1,14 +1,15 @@
 <div class="tablero-body">
     <div class="tablero">
         @for (fila of tablero; track fila; let indexFila = $index) {
-            <div class="fila"></div>
-            @for (columna of fila; track columna; let indexColumna = $index) {
-                <app-celda 
-                    [propiedadesCelda]="tablero[indexFila][indexColumna]"
-                    [fila] = "indexFila"
-                    [columna] = "indexColumna"
-                ></app-celda>
-            } 
+            <div class="fila">
+                @for (columna of fila; track columna; let indexColumna = $index) {
+                    <app-celda 
+                        [propiedadesCelda]="tablero[indexFila][indexColumna]"
+                        [fila] = "indexFila"
+                        [columna] = "indexColumna"
+                    ></app-celda>
+                } 
+            </div>
         }
     </div>
 </div>
