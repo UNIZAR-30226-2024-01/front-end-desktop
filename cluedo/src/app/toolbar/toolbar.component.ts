@@ -17,6 +17,7 @@ export class ToolbarComponent {
 
   constructor() {
     // Inicializar el usuario aquí si es necesario
+    // this.user=
   }
 
   toggleMenu() {
