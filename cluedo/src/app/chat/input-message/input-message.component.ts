@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+// import { GifsModule } from '../gifs/gifs.module';
 
 @Component({
   selector: 'app-input-message',
@@ -12,10 +13,22 @@ export class InputMessageComponent {
   @Output() mensajeEnviado = new EventEmitter<string>();
   showGifPicker: boolean = false;
   message: string = '';
+  gifs: any[] = [];
+  query: string = '';
+
+  constructor() { }
 
   // Cuando se pulsa el botón de Enviar, se emite un evento mensjeEnviado
-  enviarMensaje(mensaje: string) {
-    this.mensajeEnviado.emit(mensaje);
+  enviarMensaje() {
+    if (this.message === '') {
+      return;
+    }
+    this.mensajeEnviado.emit(this.message);
+    this.message = '';
+  }
+
+  onSubmit() {
+    this.enviarMensaje();
   }
 
   setShowGifPicker(show: boolean) {

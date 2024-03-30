@@ -1,4 +1,29 @@
 <div class="toolbar">
-    <ng-content></ng-content>
+    <mat-toolbar color="primary">
+        <mat-toolbar-row>
+            <span>Abandonar partida</span>
+            <span>&nbsp;&nbsp;&nbsp;</span>
+            <span>Pausar partida</span>
+            <span class="spacer"></span> 
+            <!-- mat-icon-button [matMenuTriggerFor]="menu" -->
+            <button class="custom-button" mat-icon-button [matMenuTriggerFor]="menu"  aria-label="Example icon-button with a menu" >
+                <mat-icon class="trespuntos">more_vert</mat-icon>
+              </button> 
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item>
+                  <mat-icon>person</mat-icon>
+                  <span>User</span>
+                </button>
+                <button mat-menu-item >
+                  <mat-icon>hourglass_empty</mat-icon>
+                  <span>XP</span>
+                </button>
+                <button mat-menu-item>
+                  <mat-icon>volume_up</mat-icon>
+                  <span> silenciar</span>
+                </button>
+              </mat-menu>
+        </mat-toolbar-row>
+        
+    </mat-toolbar>
 </div>
-

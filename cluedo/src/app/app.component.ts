@@ -1,10 +1,16 @@
 import { Component } from '@angular/core';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
+import { TarjetaComponent } from './tarjeta/tarjeta.component';
+import { ChatComponent } from './chat/chat.component';
+import { ToolbarComponent } from './toolbar/toolbar.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterModule, RouterOutlet],
+  imports: [RouterOutlet,
+    ChatComponent,
+    TarjetaComponent, ToolbarComponent,MatToolbarModule],
   templateUrl: './app.component.html',
   styleUrl: '../../../../front-end-shared/css/App.css'
 })
