@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+// import { GifsModule } from '../gifs/gifs.module';
 
 @Component({
   selector: 'app-input-message',
