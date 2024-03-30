@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [],
   templateUrl: './special-message.component.html',
-  styleUrl: '../../../../../../front-end-shared/css/game/Chat/special-message.css'
+  styleUrl: '../../../../../../front-end-shared/css/Game/Chat/special-message.css'
 })
 export class SpecialMessage {
     who: string = "MrSoper";
