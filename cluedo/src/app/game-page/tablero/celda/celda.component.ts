@@ -62,4 +62,19 @@ export class CeldaComponent {
     }
   }
 
+  getRotation() {
+    switch(this.getIsDoor()) {
+      case "u":
+        return 270;
+      case "d":
+        return 90;
+      case "l":
+        return 180;
+      case "r":
+        return 0;
+      default:
+        return -1;
+    }
+  }
+
 }
