@@ -11,5 +11,10 @@
                 } 
             </div>
         }
+        <div class="texts">
+            @for (habitacion of habitaciones; track habitacion; let indexHabitacion = $index) {
+                <app-text [idRoom]="habitaciones[indexHabitacion].roomName" ></app-text>
+            }
+        </div>
     </div>
 </div>

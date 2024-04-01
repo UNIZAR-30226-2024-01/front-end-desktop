@@ -6,4 +6,3 @@ export interface Celda {
     isDoor: boolean | string;
     idx: number;
   }
-  
