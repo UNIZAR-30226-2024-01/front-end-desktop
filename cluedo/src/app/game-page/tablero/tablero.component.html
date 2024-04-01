@@ -13,7 +13,11 @@
         }
         <div class="texts">
             @for (habitacion of habitaciones; track habitacion; let indexHabitacion = $index) {
-                <app-text [idRoom]="habitaciones[indexHabitacion].roomName" ></app-text>
+                <app-text [nombre]="habitaciones[indexHabitacion].roomName" 
+                          [idRoom]="indexHabitacion + 1"
+                          [estilo]="habitaciones[indexHabitacion].style"
+                          
+                ></app-text>
             }
         </div>
     </div>

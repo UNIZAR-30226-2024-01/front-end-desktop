@@ -1,3 +1,5 @@
-<div>
-    <p> {{idRoom}} </p>
+<div [class]="'room-name room-name-' + idRoom"
+     [style.left]="estilo.left" 
+     [style.top]="estilo.top" >
+    <p> {{nombre}} </p>
 </div>

@@ -17,5 +17,4 @@ export class TableroComponent {
   numColumnas: number = 24;
   tablero: Celda[][] = infoTablero.infoTablero;    // obtenemos la información del JSON infoTablero.json 
   habitaciones: any = infoTablero.infoHabitaciones;
-  
 }
