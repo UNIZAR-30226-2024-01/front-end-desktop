@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
+import { GameItemsComponent } from '../game-items/game-items.component';
 
 @Component({
   selector: 'app-carta',
   templateUrl: './cartas.component.html',
   standalone: true,
+  imports:[GameItemsComponent],
   styleUrl: '../../../../../front-end-shared/css/Game/Cartas/Carta.css'
 })
 export class CartasComponent {
