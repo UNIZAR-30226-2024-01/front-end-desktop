@@ -18,7 +18,4 @@ export class TextComponent {
   @Input() idRoom!: number;
   @Input() nombre!: number;
   @Input() estilo!: roomStyle;
-
-  
-  
 }
