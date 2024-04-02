@@ -1,29 +1,25 @@
-<div class="toolbar">
-    <mat-toolbar color="primary">
-        <mat-toolbar-row>
-            <span>Abandonar partida</span>
-            <span>&nbsp;&nbsp;&nbsp;</span>
-            <span>Pausar partida</span>
-            <span class="spacer"></span> 
-            <!-- mat-icon-button [matMenuTriggerFor]="menu" -->
-            <button class="custom-button" mat-icon-button [matMenuTriggerFor]="menu"  aria-label="Example icon-button with a menu" >
-                <mat-icon class="trespuntos">more_vert</mat-icon>
-              </button> 
-              <mat-menu #menu="matMenu">
-                <button mat-menu-item>
-                  <mat-icon>person</mat-icon>
-                  <span>User</span>
-                </button>
-                <button mat-menu-item >
-                  <mat-icon>hourglass_empty</mat-icon>
-                  <span>XP</span>
-                </button>
-                <button mat-menu-item>
-                  <mat-icon>volume_up</mat-icon>
-                  <span> silenciar</span>
-                </button>
-              </mat-menu>
-        </mat-toolbar-row>
-        
-    </mat-toolbar>
-</div>
+<nav class="navbar-game">
+  <div class="burger" (click)="toggleMenu()">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      [attr.stroke-width]="1.5"
+      [attr.stroke]="isOpen ? 'white' : 'currentColor'"
+      class="w-6 h-6"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+      ></path>
+    </svg>
+  </div>
+
+  <div *ngIf="isOpen" class="menu">
+  <!-- <div class="menu"> -->
+    <p>Abandonar partida</p>
+    <p>Test_1</p>
+    <p>¡Suerte {{ user }}!</p>
+  </div>
+</nav>
