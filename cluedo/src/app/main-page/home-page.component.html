@@ -1,0 +1,24 @@
+
+<div class="home-root">
+	<!-- <app-navbar-home></app-navbar-home> -->
+	<section class="aux">
+	  <div class="home-username">
+		<p>{{ username }}</p>
+	  </div>
+	  <!-- <app-progress-bar></app-progress-bar> -->
+	</section>
+<div>
+	<section class="home-body">
+	  <img src="../../../../../front-end-shared/images/boardGame.png" alt="Tablero del juego" width="400" height="400">
+	  <aside class="gameModes">
+		<ng-container *ngIf="showGameModes">
+		  <button class="gamemode-button" (click)="toggleShowGameModes()">Solitario</button>
+		  <button class="gamemode-button" (click)="toggleShowGameModes()">Multijugador</button>
+		</ng-container>
+		<ng-container *ngIf="!showGameModes">
+		  <button class="gamemode-button" (click)="newGameClick()">Nueva partida</button>
+		  <button class="gamemode-button" (click)="joinGameClick()">Unirse a partida</button>
+		</ng-container>
+	  </aside>
+	</section>
+</div>

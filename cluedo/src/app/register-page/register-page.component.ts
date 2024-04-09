@@ -38,7 +38,7 @@ export class RegisterPageComponent {
 
     const data = await response.json();
     if (data.success === true) {
-      this.router.navigate(['/game-page']);
+      this.router.navigate(['/home-page']);
     } else {
       alert('Usuario ya registrado');
     } 

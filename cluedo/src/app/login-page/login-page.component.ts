@@ -36,7 +36,8 @@ export class LoginPageComponent {
     
     const data = await response.json();
     if (data.success === true) {
-        this.router.navigate(['/game-page']);
+      localStorage.setItem('username', this.username);
+        this.router.navigate(['/home-page']);
     } else {
         alert('Usuario o contraseña incorrectos');
     }
