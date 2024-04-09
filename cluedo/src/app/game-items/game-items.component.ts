@@ -102,7 +102,6 @@ export class GameItemsComponent {
         this.imageSrc = '../../../../../front-end-shared/images/lugares_imagen/svg/AULASUR.svg';
         this.altText = 'Imagen del logo del lugar aulasur';
         break;
-      // Repite el mismo proceso para el resto de las imágenes
       default:
         this.imageSrc = '../../../../../../assets/images/logo-no-back.svg';
         this.altText = 'Imagen del logo la app';
