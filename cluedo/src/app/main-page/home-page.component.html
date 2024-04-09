@@ -14,11 +14,21 @@
 	  </nav>
 
 	<section class="aux">
-	  <div class="home-username">
+	  <div	 class="home-username">
 		<p>{{ username }}</p>
 	  </div>
 	  <!-- <app-progress-bar></app-progress-bar> -->
 	</section>
+
+	<div class="container-progress" [style.width]="width" [style.height]="height">
+		<div class="container-styles" [style.backgroundColor]="'#e0e0de'">
+		  <div class="filler-styles" [style.width]="completed + '%'"></div>
+		  <div class="border"></div>
+		</div>
+		<span class="xp-percentage" *ngIf="completed !== undefined">{{ completed }}%</span>
+		<span class="xp-level" *ngIf="level !== undefined">Lvl: {{ level }}</span>
+	  </div>
+	  
 <div>
 	<section class="home-body">
 	  <img src="../../../../../front-end-shared/images/boardGame.png" alt="Tablero del juego" width="400" height="400">
