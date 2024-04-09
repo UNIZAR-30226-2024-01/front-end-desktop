@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { CartasComponent } from '../cartas/cartas.component';
+import { DesplegableComponent } from '../desplegable/desplegable.component';
 
 @Component({
   selector: 'app-carta-desplegable',
   templateUrl: './cartas-desplegable.component.html',
   styleUrl: '../../../../../front-end-shared/css/Game/Cartas/CartaDesplegable.css',
   standalone: true,
-  imports:[CartasComponent]
+  imports:[CartasComponent,DesplegableComponent]
 })
 export class CartasDesplegableComponent {
   desplegable: boolean = false;
