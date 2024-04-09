@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './home-page.component.html',
   standalone: true,
   styleUrls: ['../../../../../front-end-shared/css/Login/Login.css',
-  '../../../../../front-end-shared/css/Home/Home.css'],
+  '../../../../../front-end-shared/css/Home/Home.css', '../../../../../front-end-shared/css/Home/NavbarHome.css'],
   imports: [
     CommonModule, RouterLink]
 })
@@ -17,6 +17,7 @@ import { CommonModule } from '@angular/common';
 export class HomeComponent implements OnInit {
   showGameModes: boolean = true;
   username: string = '';
+isMenuOpen: any;
 
   constructor(private router: Router) {}
 
@@ -42,4 +43,16 @@ export class HomeComponent implements OnInit {
   toggleShowGameModes(): void {
     this.showGameModes = !this.showGameModes;
   }
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  goToProfile(): void {
+    this.router.navigate(['/profile-page']);
+  }
+  logout(): void {
+    localStorage.removeItem('username');
+    this.router.navigate(['/login-page']);
+  }
+
 }
