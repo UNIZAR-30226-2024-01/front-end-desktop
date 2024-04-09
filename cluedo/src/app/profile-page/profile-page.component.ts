@@ -16,6 +16,9 @@ export class ProfilePageComponent {
   newPassword = '';
 
   constructor(private router: Router) {}
+  volver(): void {
+    this.router.navigate(['/home-page']);
+  }
 
   async handlePasswordChange(): Promise<void> {
     const url = 'http://localhost:3000/changePassword';
@@ -38,3 +41,4 @@ export class ProfilePageComponent {
       alert("Usuario o contraseña incorrectos");
     }
   }}
+ 
