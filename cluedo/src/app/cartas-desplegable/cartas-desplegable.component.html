@@ -1,5 +1,6 @@
 <!-- <app-desplegable [componentePadre]="cartas" (desplegableClicked)="toggleDesplegado()"></app-desplegable> -->
-<div class="cartadesplegable-body" >
+<div class="cartadesplegable-body" [ngStyle]="{ 'bottom': desplegado ? '0px' : '-335px' }" >
+  <app-desplegable class="desplegable" [componentePadre]="nombreComponente" (desplegableClicked)="toggleDesplegado()"></app-desplegable>
     <!-- <app-desplegable [left_initial]="true" (setStyle)="toggleDesplegable()"></app-desplegable> -->
     <div class="cartadesplegable-cart-container">
       <!-- <app-carta [player_name]="getRandomObject()" [hover]="false"></app-carta>
