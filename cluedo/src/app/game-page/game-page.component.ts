@@ -6,6 +6,7 @@ import { LoginPageComponent } from '../login-page/login-page.component';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
 import { TableroComponent } from './tablero/tablero.component';
 import { CartasDesplegableComponent } from '../cartas-desplegable/cartas-desplegable.component';
+import { MainTableroComponent } from './main-tablero/main-tablero.component';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,7 +16,7 @@ import { Router } from '@angular/router';
     LoginPageComponent,
     GamePageComponent,
     ChatComponent,
-    TableroComponent,
+    TableroComponent, MainTableroComponent,
     TarjetaComponent, ToolbarComponent,
     CartasDesplegableComponent],
   templateUrl: './game-page.component.html',
