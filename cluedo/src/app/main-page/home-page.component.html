@@ -1,4 +1,3 @@
-
 <div class="home-root">
 	<nav class="navbar-home">
 		<div class="burger" (click)="toggleMenu()">
@@ -17,13 +16,11 @@
 	  <div	 class="home-username">
 		<p>{{ username }}</p>
 	  </div>
-	  <!-- <app-progress-bar></app-progress-bar> -->
 	</section>
 
 	<div class="container-progress" [style.width]="width" [style.height]="height">
 		<div class="container-styles" [style.backgroundColor]="'#e0e0de'">
-		  <div class="filler-styles" [style.width]="completed + '%'"></div>
-		  <div class="border"></div>
+			<div class="filler-styles" [style.width]="completed + '%'" [style.backgroundColor]="color"></div>		  <div class="border"></div>
 		</div>
 		<span class="xp-percentage" *ngIf="completed !== undefined">{{ completed }}%</span>
 		<span class="xp-level" *ngIf="level !== undefined">Lvl: {{ level }}</span>
