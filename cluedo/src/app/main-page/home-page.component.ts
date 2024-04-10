@@ -5,6 +5,8 @@ import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
+//import boardGame from "../../../../../front-end-shared/images/boardGame.png";
+
 
 @Component({
   selector: 'app-home',
@@ -18,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 })
 
 export class HomeComponent implements OnInit {
+ // boardGame = boardGame;
   showGameModes: boolean = true;
   username: string = '';
 isMenuOpen: any;
@@ -25,6 +28,7 @@ completed: number | undefined;
 level: number | undefined;
 width: string = "550px";
 height: string = "70px";
+color :string | undefined;
 
   constructor(private router: Router, private http: HttpClient) {}
 
@@ -34,24 +38,25 @@ height: string = "70px";
     } else {
       this.username = localStorage.getItem('username') as string;
     }
-    this.completed = this.completed === undefined ? 0 : this.completed;
-    this.level = this.level === undefined ? 0 : this.level;
     this.obtainXP().then(xp => {
       const lvl = this.calculateLevel(xp);
       this.level = lvl;
       this.calculateXP(lvl, xp);
     });
+    this.completed = this.completed === undefined ? 0 : this.completed;
+    this.level = this.level === undefined ? 0 : this.level;
   }
   async obtainXP(): Promise<number> {
     const username = localStorage.getItem('username');
     
     const url = `http://localhost:3000/obtainXP?username=${username}`;
+    //console.log(url);
     const response = await fetch(url);
     const data = await response.json();
-    if (data.xp === undefined) {
+    if (data.XP === undefined) {
       return 0;
     }
-    return data.xp;
+    return data.XP;
   }
   calculateLevel(xp: number): number {
     return Math.floor(Math.sqrt(xp));
@@ -59,7 +64,9 @@ height: string = "70px";
   calculateXP(level: number, xp: number): void {
     const percentage = Math.trunc((Math.sqrt(xp) - level) * 100);
     this.completed = percentage;
+    this.color = this.getColor();
   }
+
   newGameClick(): void {
     this.router.navigate(['/game-page']);
   }
