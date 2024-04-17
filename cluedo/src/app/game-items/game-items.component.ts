@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,Input } from '@angular/core';
 
 @Component({
   selector: 'app-game-items',
@@ -11,11 +11,14 @@ import { Component } from '@angular/core';
 export class GameItemsComponent {
   imageSrc: string = '';
   altText: string = '';
-
+  @Input() player_name: string | undefined;
+  
   constructor() {
     // Asigna la ruta de la imagen y el texto alternativo según el nombre del jugador
-    const player_name = 'SOPER'; // Por ejemplo, asumiendo que tienes un nombre de jugador aquí
-    switch (player_name.toUpperCase()) {
+    if(this.player_name==undefined){
+      this.player_name = 'FISICA'; // Por ejemplo, asumiendo que tienes un nombre de jugador aquí
+    }
+    switch (this.player_name.toUpperCase()) {
       case 'SOPER':
         this.imageSrc = '../../assets/images/personajes_imagen/svg/MrSoper.svg';
         this.altText = 'Imagen del logo del personaje Mr Soper';
