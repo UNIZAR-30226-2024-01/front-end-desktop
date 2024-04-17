@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TarjetaComponent } from '../tarjeta/tarjeta.component';
 import { ChatComponent } from '../chat/chat.component';
+import { DadosComponent } from '../dados/dados.component';
 import { LoginPageComponent } from '../login-page/login-page.component';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
 import { TableroComponent } from './tablero/tablero.component';
@@ -16,6 +17,7 @@ import { Router } from '@angular/router';
   imports: [RouterOutlet,
     LoginPageComponent,
     GamePageComponent,
+    DadosComponent,
     ChatComponent,
     TableroComponent, MainTableroComponent,
     TarjetaComponent, ToolbarComponent,

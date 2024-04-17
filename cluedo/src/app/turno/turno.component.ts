@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
   standalone:true, 
   styleUrls: [
     '../../../../../front-end-shared/css/Game/Turno/Turno.css',  ],
-    imports: [TemporizadorComponent, DadosComponent,CarrouselComponent,
+    imports: [TemporizadorComponent,DadosComponent,CarrouselComponent,
       CommonModule
     ]
 })

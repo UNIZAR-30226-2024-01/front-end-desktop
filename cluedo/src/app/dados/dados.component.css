@@ -1,0 +1,20 @@
+.dados {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  text-align: center;
+}
+
+.dados img {
+  width: 100px; /* Cambia esto para ajustar el tamaño del dado */
+  height: 100px; /* Cambia esto para ajustar el tamaño del dado */
+  margin: 10px; /* Añade margen alrededor de cada dado */
+}
+
+.dados button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+}
