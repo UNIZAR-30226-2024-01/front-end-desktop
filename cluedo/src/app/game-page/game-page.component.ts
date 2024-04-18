@@ -25,4 +25,6 @@ import { Router } from '@angular/router';
 export class GamePageComponent {
   constructor(private router: Router) { }
   title = 'cluedo';
+
+  personajes: string[] = ["mr SOPER", "mr REDES", "mr PROG", "mr FISICA", "mr DISCRETO", "mr IA"];
 }
