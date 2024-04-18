@@ -11,14 +11,16 @@ import { Component,Input } from '@angular/core';
 export class GameItemsComponent {
   imageSrc: string = '';
   altText: string = '';
-  @Input() player_name: string | undefined;
+  @Input() player_name: string = '';
   
-  constructor() {
+  constructor() {}
+
+  ngOnInit(): void {
     // Asigna la ruta de la imagen y el texto alternativo según el nombre del jugador
     if(this.player_name==undefined){
-      this.player_name = 'FISICA'; // Por ejemplo, asumiendo que tienes un nombre de jugador aquí
+      this.player_name = 'DESPACHO'; // Por ejemplo, asumiendo que tienes un nombre de jugador aquí
     }
-    switch (this.player_name.toUpperCase()) {
+    switch (this.player_name) {
       case 'SOPER':
         this.imageSrc = '../../assets/images/personajes_imagen/svg/MrSoper.svg';
         this.altText = 'Imagen del logo del personaje Mr Soper';
@@ -108,7 +110,7 @@ export class GameItemsComponent {
         this.altText = 'Imagen del logo del lugar aulasur';
         break;
       default:
-        this.imageSrc = '../../../../../../assets/images/logo-no-back.svg';
+        this.imageSrc = '../../assets/images/logo-no-back.svg';
         this.altText = 'Imagen del logo la app';
         break;
     }

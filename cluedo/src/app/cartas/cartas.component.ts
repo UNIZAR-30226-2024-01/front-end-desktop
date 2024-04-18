@@ -10,7 +10,7 @@ import { GameItemsComponent } from '../game-items/game-items.component';
 })
 export class CartasComponent {
   hover: boolean = true;
-  @Input() player_name: string | undefined;
+  @Input() player_name!: string ;
   constructor() {
     // Inicializar el nombre del jugador aquí si es necesario
   }
