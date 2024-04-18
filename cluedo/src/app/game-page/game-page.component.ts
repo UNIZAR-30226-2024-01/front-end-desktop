@@ -2,10 +2,12 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TarjetaComponent } from '../tarjeta/tarjeta.component';
 import { ChatComponent } from '../chat/chat.component';
+import { DadosComponent } from '../dados/dados.component';
 import { LoginPageComponent } from '../login-page/login-page.component';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
 import { TableroComponent } from './tablero/tablero.component';
 import { CartasDesplegableComponent } from '../cartas-desplegable/cartas-desplegable.component';
+import { TurnoComponent } from '../turno/turno.component';
 import { MainTableroComponent } from './main-tablero/main-tablero.component';
 import { Router } from '@angular/router';
 
@@ -15,10 +17,12 @@ import { Router } from '@angular/router';
   imports: [RouterOutlet,
     LoginPageComponent,
     GamePageComponent,
+    DadosComponent,
     ChatComponent,
     TableroComponent, MainTableroComponent,
     TarjetaComponent, ToolbarComponent,
-    CartasDesplegableComponent],
+    CartasDesplegableComponent,
+    TurnoComponent],
   templateUrl: './game-page.component.html',
   styleUrl: './../../../../../front-end-shared/css/App.css',
 })

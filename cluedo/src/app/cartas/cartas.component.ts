@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,Input } from '@angular/core';
 import { GameItemsComponent } from '../game-items/game-items.component';
 
 @Component({
@@ -10,8 +10,7 @@ import { GameItemsComponent } from '../game-items/game-items.component';
 })
 export class CartasComponent {
   hover: boolean = true;
-  player_name: string | undefined;
-
+  @Input() player_name: string | undefined;
   constructor() {
     // Inicializar el nombre del jugador aquí si es necesario
   }
