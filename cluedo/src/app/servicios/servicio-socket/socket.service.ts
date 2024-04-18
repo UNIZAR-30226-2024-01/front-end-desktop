@@ -25,23 +25,42 @@ export class SocketService {
     this.serverListener();
   }
 
-  ngOnInit() {
-    this.requestGameInfo();
-  }
 
-  
+
+  // Método para escuchar eventos del servidor
   private serverListener(): void {
     this.socket.on('connect', () => {
       console.log('Conectado al servidor');
     });
 
-    this.socket.on('disconnect', () => {
-      console.log('Desconectado del servidor');
-    });
-
-    this.socket.on('game-info-response', (gameInfo: any) => {
+    this.socket.on('game-info', (gameInfo: any) => {
       console.log('Game info received from server:', gameInfo);
     });
+
+    this.socket.on('chat-response', async() => {
+      //Pendiende de implementar
+    });
+
+  }
+
+  // Método para indicar al servidor que el cliente se va a desconectar
+  public disconnect(): void {
+    this.socket.emit('disconnect');
+  }
+
+  // Método para indicar al servidor que empiece el juego
+  public startGame(): void {
+    this.socket.emit('start-game');
+  }
+
+  // Método para indicar al servidor que se ha seleccionado un personaje
+  public selectCharacter(character: string): void {
+    this.socket.emit('character-selected', character);
+  }
+
+  // Método para chat message
+  public chatMessage(message: string): void {
+    this.socket.emit('chat-message', message);
   }
 
   // Método para solicitar la información del juego al servidor
