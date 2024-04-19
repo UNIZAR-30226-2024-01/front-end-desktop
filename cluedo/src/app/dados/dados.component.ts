@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input,Output, EventEmitter } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
@@ -24,6 +24,8 @@ export class DadosComponent {
   buttonText: string = 'Roll Dice';
   diceImage1: string = 'assets/images/dado/dice1.png'; // Asegúrate de que esta ruta apunte a la imagen correcta
   diceImage2: string = 'assets/images/dado/dice1.png'; // Asegúrate de que esta ruta apunte a la imagen correcta
+  // @Input() finRoll: any;
+  @Output() finRoll: EventEmitter<number> = new EventEmitter<number>();
 
   rollDice(): void {
     this.diceState1 = 'end';
@@ -36,6 +38,9 @@ export class DadosComponent {
       const diceRoll2 = Math.floor(Math.random() * 6) + 1;
       this.diceImage1 = `assets/images/dado/dice${diceRoll1}.png`;
       this.diceImage2 = `assets/images/dado/dice${diceRoll2}.png`;
+      const diceTotal = diceRoll1 + diceRoll2;
+      console.log("Dados lanzados 1, valor: " + diceTotal);
+      this.finRoll.emit(diceTotal);
     }, 1000); // Duración de la animación en milisegundos
   }
 }

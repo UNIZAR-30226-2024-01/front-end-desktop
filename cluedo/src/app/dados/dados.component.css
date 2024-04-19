@@ -13,6 +13,14 @@
   margin: 10px; /* Añade margen alrededor de cada dado */
 }
 
+.cuadrado{
+  width: 400px; /* Cambia el valor según tus necesidades */
+  height: 400px; /* Igual que el ancho para hacer un cuadrado */
+  background-color: white; /* Establece el color de fondo a blanco */
+  display: flex; /* Usa flexbox para centrar el contenido */
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; 
+}
 .dados button {
   display: block;
   margin: 20px auto;

@@ -32,6 +32,7 @@ export class TurnoComponent implements OnInit {
     // this.desplegablesContext.setOpcionesDesplegado(false);
     console.log("Turno iniciado");
     this.parteTurno = "es-tu-turno";
+    this.iniciarTemporizador();
   }
 
   handleDiceRoll(totalValue: number): void {
@@ -42,6 +43,11 @@ export class TurnoComponent implements OnInit {
     }, 2000);
   }
 
+  iniciarTemporizador(): void {
+    setTimeout(() => {
+      this.parteTurno = 'dados';
+    }, 2000);
+  }
   // Agrega los listeners del socket aquí
 
 }
