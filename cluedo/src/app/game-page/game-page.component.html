@@ -4,4 +4,9 @@
 <app-toolbar></app-toolbar>
 <app-carta-desplegable></app-carta-desplegable>
 <app-dados></app-dados>
+@if (IsAnEventOccurring()) {
+    <div class="game-characters-selection">
+        <app-character-selection></app-character-selection>
+    </div>
+}
 <!-- <app-turno></app-turno> -->

@@ -1,1 +1,13 @@
-<p>character-selection works!</p>
+<div class="characters-container">
+    @for (personaje of gameService.personajes; track personaje; let index = $index) {
+        @if (isCharacterSelected(index)) {
+            <div class="individual-character selected" (click)="selectCharacter(index)">
+                {{ personaje }}
+            </div>
+        } @else {
+            <div class="individual-character" (click)="selectCharacter(index)" >
+                {{ personaje }}
+            </div>
+        }
+    }
+</div>

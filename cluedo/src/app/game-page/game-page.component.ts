@@ -11,6 +11,7 @@ import { TurnoComponent } from '../turno/turno.component';
 import { MainTableroComponent } from './main-tablero/main-tablero.component';
 import { CharacterSelectionComponent } from './character-selection/character-selection.component';
 import { Router } from '@angular/router';
+import { GameService } from '../servicios/servicio-game/game.service';
 
 @Component({
   selector: 'app-game-page',
@@ -29,8 +30,17 @@ import { Router } from '@angular/router';
   styleUrl: './../../../../../front-end-shared/css/Game/Game.css',
 })
 export class GamePageComponent {
-  constructor(private router: Router) { }
+  constructor(private router: Router, private gameService: GameService) { }
   title = 'cluedo';
 
   personajes: string[] = ["mr SOPER", "mr REDES", "mr PROG", "mr FISICA", "mr DISCRETO", "mr IA"];
+
+  //Funcion que devuelve si se esta produciendo un evento, por ahora solo esta el caso de selección de personaje
+  IsAnEventOccurring(): boolean {
+    if (this.gameService.userSelectedACharacter) {
+      return false;
+    } else {
+      return true;
+    }
+  } 
 }
