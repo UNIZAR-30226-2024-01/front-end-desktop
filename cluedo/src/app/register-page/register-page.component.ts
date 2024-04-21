@@ -38,6 +38,7 @@ export class RegisterPageComponent {
 
     const data = await response.json();
     if (data.success === true) {
+      localStorage.setItem('username', username); 
       this.router.navigate(['/home-page']);
     } else {
       alert('Usuario ya registrado');
