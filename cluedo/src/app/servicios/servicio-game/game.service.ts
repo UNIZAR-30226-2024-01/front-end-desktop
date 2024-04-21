@@ -5,6 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class GameService {
 
+  usernames: string[] = ["...", "...", "...", "...", "...", "..."];
+  
   userSelectedACharacter: boolean = false;
 
   charactersSelected: boolean[] = [false, false, false, false, false, false];

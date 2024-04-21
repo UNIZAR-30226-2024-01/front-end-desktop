@@ -11,6 +11,7 @@ import { Input } from '@angular/core';
 export class PlayerInTableroComponent {
   @Input() personaje!: string;
   @Input() lado!: string;
+  @Input() username!: string;
   colorPlayer: string = "red";
 
   getColor(): string {

@@ -19,8 +19,18 @@ export class CharacterSelectionComponent {
   selectCharacter(i: number) {
     this.gameService.charactersSelected[i] = true;
     this.gameService.userSelectedACharacter = true;
+    this.gameService.usernames[i] = this.getUsername();
     console.log("Character selected: " + this.gameService.personajes[i]);
     console.log("Characters used: " + this.gameService.charactersSelected)
+
+    console.log("Usernames: " + this.gameService.usernames);
+  }
+
+
+  //Método para evitar obtener el username evitando el problema de tipado null
+  private getUsername(): string {
+    const username = localStorage.getItem("username");
+    return username ? username : "";
   }
 
 }
