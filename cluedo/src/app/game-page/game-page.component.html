@@ -4,7 +4,6 @@
 <app-toolbar></app-toolbar>
 <app-carta-desplegable></app-carta-desplegable>
 <!-- <app-dados></app-dados> -->
-<app-turno></app-turno>
 @if (IsAnEventOccurring()) {
     <div class="game-characters-selection">
         <app-character-selection></app-character-selection>
@@ -12,6 +11,6 @@
 }
 
 @if (gameService.getTurno() == gameService.userCharacter) {
+    <app-turno></app-turno>
     <app-dados (finRoll)="finDados($event)" ></app-dados>
 }
-<!-- <app-turno></app-turno> -->
