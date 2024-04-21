@@ -5,11 +5,12 @@ import { Injectable } from '@angular/core';
 })
 export class GameService {
 
-  usernames: string[] = ["...", "...", "...", "...", "...", "..."];
-  
-  userSelectedACharacter: boolean = false;
-
   charactersSelected: boolean[] = [false, false, false, false, false, false];
+  usernames: string[] = ["" , "", "", "", "", ""];
+
+  userSelectedACharacter: boolean = false;
+  userCharacter: number = -1;
+
 
   personajes: string[] = ["mr SOPER", "mr REDES", "mr PROG", "mr FISICA", "mr DISCRETO", "mr IA"];
   armas: string[] = ["teclado", "cable de red", "raton", "router", "troyano", "cd"];

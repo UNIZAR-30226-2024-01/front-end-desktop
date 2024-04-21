@@ -18,8 +18,9 @@ export class CharacterSelectionComponent {
 
   selectCharacter(i: number) {
     this.gameService.charactersSelected[i] = true;
-    this.gameService.userSelectedACharacter = true;
     this.gameService.usernames[i] = this.getUsername();
+    this.gameService.userSelectedACharacter = true;
+    this.gameService.userCharacter = i;
     console.log("Character selected: " + this.gameService.personajes[i]);
     console.log("Characters used: " + this.gameService.charactersSelected)
 

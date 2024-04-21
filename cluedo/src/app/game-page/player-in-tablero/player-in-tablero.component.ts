@@ -56,4 +56,8 @@ export class PlayerInTableroComponent {
     return "player " + this.lado;
   }
 
+  mostrarUsername(): string {
+    return this.username === "" ? "..." : this.username;
+  }
+
 }
