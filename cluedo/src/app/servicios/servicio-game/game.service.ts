@@ -5,6 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class GameService {
 
+  username: string = this.getUsername();
+
   numPlayers: number = 6;
   turno: number = 0;
 
@@ -27,5 +29,10 @@ export class GameService {
 
   siguienteTurno(): void {
     this.turno = (this.turno + 1) % this.numPlayers;
+  }
+
+  getUsername(): string {
+    const username = localStorage.getItem("username");
+    return username ? username : "";
   }
 }

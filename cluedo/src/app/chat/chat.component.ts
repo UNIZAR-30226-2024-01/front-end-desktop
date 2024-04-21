@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { DesplegableComponent } from '../desplegable/desplegable.component';
 import { InputMessageComponent } from './input-message/input-message.component';
 import { MessageListComponent } from './message-list/message-list.component';
+import { MessageComponent } from './message/message.component';
+import { LinkedList } from 'linked-list-typescript';
+import { GameService } from '../servicios/servicio-game/game.service';
+
 declare const require: any;
 const {
   socket,
@@ -13,7 +17,7 @@ const {
 @Component({
   selector: 'app-chat',
   standalone: true,
-  imports: [DesplegableComponent, InputMessageComponent, MessageListComponent],
+  imports: [DesplegableComponent, InputMessageComponent, MessageListComponent, MessageComponent],
   templateUrl: './chat.component.html',
   styleUrl: '../../../../../front-end-shared/css/Game/Chat/chat.css',
 })
@@ -21,11 +25,13 @@ export class ChatComponent {
   desplegado: boolean = false;
   message: string = '';
   // Mensajes compuestos por texto, user y offset
-  messages: { type: string; username: string; text: string }[] = [];
+  // messages: { type: string; username: string; text: string }[] = [];
+  messages = new LinkedList<MessageComponent>()
+  
   lastIndex: number = 0;
   nombreComponente: string = 'chat';
-
-  constructor() {}
+  
+  constructor(public gameService: GameService) {}
 
   ngOnInit() {
     // Conexión con el socket
@@ -48,14 +54,20 @@ export class ChatComponent {
     console.log(socket.socket);
     console.log('gestionarMensaje - Mensaje: ' + mensaje);
 
+    
+    // Crear mensaje
+    this.messages.append(this.crearMensaje(mensaje, this.gameService.getUsername()));
+
     // Enviar mensaje al servidor
     socket.emit('chat-message', mensaje);
   }
 
+  
+
   // Recibir mensajes del servidor y pasarlos a la lista de mensajes
   onChatResponseLocal(message: string, user: string, offset: number) {
     let auxMessage = onChatResponse(message, user, offset);
-    this.messages.push(auxMessage);
+    // this.messages.push(auxMessage);          // POR TEMA VIDEO LO HE COMENTADO PERO DABA ERRORES XD 
     this.lastIndex++;
     // Scroll al final del chat
     setTimeout(() => {
@@ -74,5 +86,13 @@ export class ChatComponent {
     socket.off('chat turn', this.onChatTurnLocal);
     socket.off('connect', onConnect);
     socket.disconnect();
+  }
+
+  private crearMensaje(text: string, username: string) {
+    const newMessage = new MessageComponent();
+    newMessage.text = text;
+    newMessage.username = username;
+    newMessage.type = 'message';
+    return newMessage;
   }
 }

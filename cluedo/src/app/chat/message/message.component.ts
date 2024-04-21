@@ -13,6 +13,7 @@ import { Input } from "@angular/core";
 export class MessageComponent {
     @Input() text: string = "";
     @Input() username: string = "";
+    @Input() type: string = "";
 
     constructor() {}
 }
