@@ -30,7 +30,7 @@ import { GameService } from '../servicios/servicio-game/game.service';
   styleUrl: './../../../../../front-end-shared/css/Game/Game.css',
 })
 export class GamePageComponent {
-  constructor(private router: Router, private gameService: GameService) { }
+  constructor(private router: Router, public gameService: GameService) { }
   title = 'cluedo';
 
   personajes: string[] = ["mr SOPER", "mr REDES", "mr PROG", "mr FISICA", "mr DISCRETO", "mr IA"];
@@ -43,4 +43,11 @@ export class GamePageComponent {
       return true;
     }
   } 
+
+  //Funcion que maneja el evento de ok de los dados
+  finDados(event: number): void {
+    this.gameService.siguienteTurno();
+  }
+
+  
 }

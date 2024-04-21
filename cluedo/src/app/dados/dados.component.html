@@ -3,5 +3,7 @@
         <!-- Texto de prueba para comprobar que se muestra el componente de los dados -->
         <img [@rollDice]="diceState1" [src]="diceImage1" alt="Dado">
         <img [@rollDice]="diceState2" [src]="diceImage2" alt="Dado">
-        <button (click)="rollDice()">{{ buttonText }}</button>
+        <button (click)="resultIsShown ? okButton() : rollDice()">
+            {{ resultIsShown ? 'Ok' : buttonText }}
+        </button>
     </div>

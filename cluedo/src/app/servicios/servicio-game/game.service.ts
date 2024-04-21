@@ -5,6 +5,9 @@ import { Injectable } from '@angular/core';
 })
 export class GameService {
 
+  numPlayers: number = 6;
+  turno: number = 0;
+
   charactersSelected: boolean[] = [false, false, false, false, false, false];
   usernames: string[] = ["" , "", "", "", "", ""];
 
@@ -17,4 +20,12 @@ export class GameService {
   lugares: string[] = ["cafeteria", "baños", "recepcion", "escaleras", "biblioteca", "laboratorio", "despacho", "aulas norte", "aulas sur"];
 
   constructor() { }
+
+  getTurno(): number {
+    return this.turno;
+  }
+
+  siguienteTurno(): void {
+    this.turno = (this.turno + 1) % this.numPlayers;
+  }
 }

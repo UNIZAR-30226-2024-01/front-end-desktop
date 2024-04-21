@@ -19,6 +19,9 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
   styleUrls: ['dados.component.css']
 })
 export class DadosComponent {
+  resultIsShown: boolean = false;
+  diceTotal: number = 0;
+
   diceState1: string = 'start';
   diceState2: string = 'start';
   buttonText: string = 'Roll Dice';
@@ -38,9 +41,14 @@ export class DadosComponent {
       const diceRoll2 = Math.floor(Math.random() * 6) + 1;
       this.diceImage1 = `assets/images/dado/dice${diceRoll1}.png`;
       this.diceImage2 = `assets/images/dado/dice${diceRoll2}.png`;
-      const diceTotal = diceRoll1 + diceRoll2;
-      console.log("Dados lanzados 1, valor: " + diceTotal);
-      this.finRoll.emit(diceTotal);
+      this.diceTotal = diceRoll1 + diceRoll2;
+      console.log("Dados lanzados 1, valor: " + this.diceTotal);
+      this.resultIsShown = true;
     }, 1000); // Duración de la animación en milisegundos
+  }
+  
+  okButton(): void {
+    this.resultIsShown = false;
+    this.finRoll.emit(this.diceTotal);
   }
 }
