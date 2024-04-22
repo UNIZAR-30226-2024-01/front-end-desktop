@@ -52,7 +52,7 @@ export class ChatComponent {
   // Cuando llega el evento mensajeEnviado del input, se gestiona el mensaje
   gestionarMensaje(mensaje: string) {
     console.log(socket.socket);
-    console.log('gestionarMensaje - Mensaje: ' + mensaje);
+    console.log('Mensaje del input: ' + mensaje);
 
     
     // Crear mensaje
@@ -93,6 +93,9 @@ export class ChatComponent {
     newMessage.text = text;
     newMessage.username = username;
     newMessage.type = 'message';
+    newMessage.character = this.gameService.getPersonaje();
+
+    console.log("Mensaje creado: ", JSON.stringify(newMessage));
     return newMessage;
   }
 }

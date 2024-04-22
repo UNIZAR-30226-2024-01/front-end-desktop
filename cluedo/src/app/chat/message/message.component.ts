@@ -14,6 +14,7 @@ export class MessageComponent {
     @Input() text: string = "";
     @Input() username: string = "";
     @Input() type: string = "";
+    @Input() character: string = "";
 
     constructor() {}
 }

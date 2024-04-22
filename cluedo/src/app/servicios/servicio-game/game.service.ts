@@ -31,8 +31,14 @@ export class GameService {
     this.turno = (this.turno + 1) % this.numPlayers;
   }
 
+  // Devuelve el nombre de usuario almacenado en el localStorage quitando el tipo null
   getUsername(): string {
     const username = localStorage.getItem("username");
     return username ? username : "";
+  }
+
+  // Devuelve el nombre del personaje seleccionado por el usuario
+  getPersonaje(): string {
+    return this.personajes[this.userCharacter];
   }
 }
