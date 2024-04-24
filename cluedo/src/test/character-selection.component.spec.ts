@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CharacterSelectionComponent } from './character-selection.component';
+import { CharacterSelectionComponent } from '../app/game-page/character-selection/character-selection.component';
 
 describe('CharacterSelectionComponent', () => {
   let component: CharacterSelectionComponent;

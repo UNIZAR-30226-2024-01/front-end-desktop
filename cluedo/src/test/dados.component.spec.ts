@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TextComponent } from './text.component';
+import { DadosComponent } from '../app/dados/dados.component';
 
-describe('TextComponent', () => {
-  let component: TextComponent;
-  let fixture: ComponentFixture<TextComponent>;
+describe('DadosComponent', () => {
+  let component: DadosComponent;
+  let fixture: ComponentFixture<DadosComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TextComponent]
+      imports: [DadosComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(TextComponent);
+    fixture = TestBed.createComponent(DadosComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

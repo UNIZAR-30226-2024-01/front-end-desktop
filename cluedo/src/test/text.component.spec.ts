@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TableroComponent } from './tablero.component';
+import { TextComponent } from '../app/game-page/tablero/text/text.component';
 
-describe('TableroComponent', () => {
-  let component: TableroComponent;
-  let fixture: ComponentFixture<TableroComponent>;
+describe('TextComponent', () => {
+  let component: TextComponent;
+  let fixture: ComponentFixture<TextComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TableroComponent]
+      imports: [TextComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(TableroComponent);
+    fixture = TestBed.createComponent(TextComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

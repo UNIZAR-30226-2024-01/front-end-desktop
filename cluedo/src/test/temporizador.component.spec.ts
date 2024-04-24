@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TemporizadorComponent } from './temporizador.component';
+import { TemporizadorComponent } from '../app/temporizador/temporizador.component';
 
 describe('TemporizadorComponent', () => {
   let component: TemporizadorComponent;

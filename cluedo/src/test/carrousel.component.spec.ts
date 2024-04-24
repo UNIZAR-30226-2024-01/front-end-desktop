@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TurnoComponent } from './turno.component';
+import { CarrouselComponent } from '../app/carrousel/carrousel.component';
 
-describe('TurnoComponent', () => {
-  let component: TurnoComponent;
-  let fixture: ComponentFixture<TurnoComponent>;
+describe('CarrouselComponent', () => {
+  let component: CarrouselComponent;
+  let fixture: ComponentFixture<CarrouselComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TurnoComponent]
+      imports: [CarrouselComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(TurnoComponent);
+    fixture = TestBed.createComponent(CarrouselComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
