@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { CeldaComponent } from './celda/celda.component';
 import { TextComponent } from './text/text.component';
 import { Celda } from './celda/celda.interface'; 
@@ -7,7 +9,7 @@ import * as infoTablero from '../../../assets/infoTablero.json';
 @Component({
   selector: 'app-tablero',
   standalone: true,
-  imports: [CeldaComponent, TextComponent],
+  imports: [CeldaComponent, TextComponent,CommonModule],
   templateUrl: './tablero.component.html',
   styleUrl: '../../../../../../front-end-shared/css/Game/Tablero/Tablero.css'
 })
