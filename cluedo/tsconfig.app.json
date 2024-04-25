@@ -9,6 +9,7 @@
     "src/main.ts"
   ],
   "include": [
-    "src/**/*.d.ts"
+    "src/environments/*.ts", // Incluye todos los archivos .ts
+    "src/**/*.d.ts" // Incluye los archivos de definición de tipo
   ]
 }

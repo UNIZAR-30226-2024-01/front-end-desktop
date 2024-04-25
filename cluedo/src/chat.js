@@ -1,7 +1,7 @@
 import { io } from "socket.io-client";
-import { BACKEND_URL } from "./consts";
-
-const URL = BACKEND_URL;
+import { environment } from "./environments/environment"; 
+const URL = environment.apiURL;
+console.log("URL:", URL);
 
 export const socket = io(URL, {
   auth: {
