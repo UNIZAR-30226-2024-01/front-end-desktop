@@ -3,6 +3,8 @@ import { TemporizadorComponent } from '../temporizador/temporizador.component';
 import { DadosComponent } from '../dados/dados.component';
 import { CarrouselComponent } from '../carrousel/carrousel.component';
 import { CommonModule } from '@angular/common';
+import { TurnoService } from '../turno.service';
+
 
 @Component({
   selector: 'app-turno',
@@ -18,12 +20,7 @@ export class TurnoComponent implements OnInit {
   parteTurno: string = '';
   dice: number = 0;
 
-  constructor(
-    // private desplegablesContext: DesplegablesContext,
-    // private turnoContext: TurnoContext,
-    // private gameInfoContext: GameInfoContext,
-    // private socketContext: SocketContext
-  ) {}
+  constructor(private turnoService: TurnoService) { }
 
   ngOnInit(): void {
     // this.desplegablesContext.setChatDesplegado(false);
@@ -43,6 +40,7 @@ export class TurnoComponent implements OnInit {
       this.parteTurno = "elegir-casilla";
     }, 2000);
     // this.iniciarTemporizadorCasilla();
+    this.turnoService.setParteTurno('elegir-casilla');
   }
 
   iniciarTemporizador(): void {

@@ -1,6 +1,7 @@
-<div [ngClass]="{ 'tablero-body': true, 'being-chosen': parteTurno === 'elegir-casilla' }">
-<!-- <div class="tablero-body"> -->
-    <div class="tablero">
+<div class="tablero-body">  
+    <!-- <div class="tablero being-chosen"> -->
+    <div [ngClass]="{ 'tablero': true, 'being-chosen': parteTurno === 'elegir-casilla' }">
+        
         @for (fila of tablero; track fila; let indexFila = $index) {
             <div class="fila">
                 @for (columna of fila; track columna; let indexColumna = $index) {

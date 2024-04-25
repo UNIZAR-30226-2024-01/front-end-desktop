@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Celda } from './celda.interface'; 
+import { TurnoService } from '../../../turno.service';
+
 
 @Component({
   selector: 'app-celda',
@@ -15,12 +17,18 @@ export class CeldaComponent {
   @Input() columna!: number;
 
   clase : string = "";
+  parteTurno: string | undefined;
 
   estiloCelda = {
     width: 26,
     height: 26
   };
 
+  constructor(private turnoService: TurnoService) {
+    this.turnoService.parteTurno$.subscribe(parteTurno => {
+      this.parteTurno = parteTurno;
+    });
+  }
   
   getIsRoom() {return this.propiedadesCelda.isRoom;}
   getRoomName() {return this.propiedadesCelda.roomName;}
