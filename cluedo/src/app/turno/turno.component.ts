@@ -32,6 +32,7 @@ export class TurnoComponent implements OnInit {
     // this.desplegablesContext.setOpcionesDesplegado(false);
     console.log("Turno iniciado");
     this.parteTurno = "es-tu-turno";
+    
     this.iniciarTemporizador();
   }
 

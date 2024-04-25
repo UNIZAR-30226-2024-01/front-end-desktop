@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { CeldaComponent } from './celda/celda.component';
 import { TextComponent } from './text/text.component';
 import { Celda } from './celda/celda.interface'; 
+import { TurnoService } from '../../turno.service';
 import * as infoTablero from '../../../assets/infoTablero.json';
 
 @Component({
@@ -19,4 +20,11 @@ export class TableroComponent {
   numColumnas: number = 24;
   tablero: Celda[][] = infoTablero.infoTablero;    // obtenemos la información del JSON infoTablero.json 
   habitaciones: any = infoTablero.infoHabitaciones;
+  parteTurno: string | undefined;
+
+  constructor(private turnoService: TurnoService) {
+    this.turnoService.parteTurno$.subscribe(parteTurno => {
+      this.parteTurno = parteTurno;
+    });
+  }
 }

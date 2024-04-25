@@ -4,6 +4,8 @@ import { TarjetaComponent } from './tarjeta/tarjeta.component';
 import { ChatComponent } from './chat/chat.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { TurnoService } from './turno.service';
+
 
 @Component({
   selector: 'app-root',
@@ -11,6 +13,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
   imports: [RouterOutlet,
     ChatComponent,
     TarjetaComponent, ToolbarComponent,MatToolbarModule],
+  providers: [TurnoService],
   templateUrl: './app.component.html',
   styleUrl: '../../../../front-end-shared/css/App.css'
 })
