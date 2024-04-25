@@ -1,7 +1,7 @@
 {
   "name": "cluedo",
   "version": "0.0.0",
-  "main": "main.js",
+  "main": "app/main.js",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -9,7 +9,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "electron": "electron .",
-    "electron-build": "rm -rf dist/* && ng build --base-href ./ && electron .",
+    "electron-build": "ng build --base-href ./ && electron .",
     "clean": "rm -rf dist/*"
   },
   "private": true,

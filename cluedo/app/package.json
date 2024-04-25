@@ -1,0 +1,11 @@
+{
+    "name": "cluedo",
+    "description": "Angular Electron sample",
+    "author": "Grace Hopper",
+    "version": "0.0.0",
+    "main": "main.js",
+    "private": true,
+    "dependencies": {
+    }
+  }
+  
