@@ -3,13 +3,13 @@
 <app-chat></app-chat>
 <app-toolbar></app-toolbar>
 <app-carta-desplegable></app-carta-desplegable>
+<app-turno></app-turno>
 @if (IsAnEventOccurring()) {
     <div class="game-characters-selection">
         <app-character-selection></app-character-selection>
     </div>
 }
 
-@if (gameService.getTurno() == gameService.userCharacter) {
-    <app-turno></app-turno>
-    <app-dados (finRoll)="finDados($event)" ></app-dados>
-}
+<!-- @if (gameService.getTurno() == gameService.userCharacter) { -->
+    <!-- <app-dados (finRoll)="finDados($event)" ></app-dados> -->
+<!-- } -->

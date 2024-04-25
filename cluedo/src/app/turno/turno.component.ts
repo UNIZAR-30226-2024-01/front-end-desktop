@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './turno.component.html',
   standalone:true, 
   styleUrls: [
-    '../../../../../front-end-shared/css/Game/Turno/Turno.css',  ],
+    './turno.component.css',  ],
     imports: [TemporizadorComponent,DadosComponent,CarrouselComponent,
       CommonModule
     ]
@@ -41,6 +41,7 @@ export class TurnoComponent implements OnInit {
     setTimeout(() => {
       this.parteTurno = "elegir-casilla";
     }, 2000);
+    // this.iniciarTemporizadorCasilla();
   }
 
   iniciarTemporizador(): void {
@@ -49,5 +50,9 @@ export class TurnoComponent implements OnInit {
     }, 2000);
   }
   // Agrega los listeners del socket aquí
-
+  iniciarTemporizadorCasilla(): void {
+    setTimeout(() => {
+      this.parteTurno = 'elegir-pregunta';
+    }, 4000);
+  }
 }

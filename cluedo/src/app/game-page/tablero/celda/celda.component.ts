@@ -35,7 +35,28 @@ export class CeldaComponent {
     this.estilarCelda();
     this.anadirClase();
   }
-
+  handleClick() {
+    // if (!this.celdasOptions[this.index]) return;
+  
+    // if (this.infoCell.isDoor || this.infoCell.isRoom) {
+    //   let cells = this.casillasPorHabitacion[this.infoCell.roomName - 1].cells;
+    //   cells = cells.filter((c) => !this.playerPositions.includes(c));
+    //   const randomCell = cells[Math.floor(Math.random() * cells.length)];
+    //   this.handleClickOnCell(randomCell, false);
+    //   setTimeout(() => {
+    //     this.setParteTurno('elegir-pregunta');
+    //   }, 2000);
+    //   return;
+    // }
+  
+    // if (this.playerPositions.includes(this.index)) return;
+  
+    // this.handleClickOnCell(this.index, true);
+    // setTimeout(() => {
+    //   this.setParteTurno('espera-resto');
+    // }, 2000);
+  }
+  
   anadirClase() {
     if (this?.getIsRoom()) {
       this.clase = "room room-" + this.getRoomName();

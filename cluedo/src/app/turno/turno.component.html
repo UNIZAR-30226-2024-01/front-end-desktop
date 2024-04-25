@@ -27,14 +27,8 @@
     </ng-container>
   
     <ng-container *ngIf="parteTurno == 'elegir-casilla'">
-      <div id="turno-tablero">
-        <h1>¡Elige una casilla!</h1>
-        <!-- Poner un onClick para que se cambie a "elegir-pregunta" cuando se seleccione una casilla -->
-        <!-- <script>
-              {setTimeout(() => {
-                setParteTurno("elegir-pregunta");
-              }, 2000)}
-            </script> -->
+      <div class="turno-tablero" style="pointer-events: none;">
+        <h1 style="background: none; border: none;">¡Elige una casilla!</h1>
       </div>
     </ng-container>
   

@@ -1,0 +1,65 @@
+.turno {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+  
+    width: 100vw;
+    height: 100vh;
+  
+    /* background-color: rgb(0, 0, 0, 0.7); */
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    pointer-events: none;
+  }
+  
+  #turno-dados {
+    display: flex;
+    flex-direction: column;
+    transition: all 0.5s;
+    pointer-events: auto;
+    
+    h1 {
+      color: white;
+      font-size: 50px;
+      margin-top: 270px;
+      margin-bottom: 10px;
+    }
+  }
+  
+  #turno-cartas {
+    pointer-events: auto;
+
+    padding: 15px;
+    background-color: rgb(201, 194, 194);
+    border-radius: 15px;
+  }
+  
+  .turno-tablero {
+    /* Tamaño del tablero */
+    width: 696px;
+    height: 696px;
+    pointer-events: none; /* Hace que el contenedor no capture eventos del mouse */
+
+    /* Anula el fondo oscuro del contenedor principal */
+    background-color: transparent;
+
+    h1 {
+      position: absolute;
+      top: 20px; /* Ajusta este valor para colocarlo más arriba */
+      width: inherit;
+      display: flex;
+      justify-content: center;
+      color: white;
+    }
+}
+  
+  
+  .tu-turno-texto {
+    font-size: 200px;
+    color: white;
+  }
+  
