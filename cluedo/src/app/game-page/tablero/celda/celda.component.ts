@@ -17,7 +17,6 @@ export class CeldaComponent {
   @Input() propiedadesCelda!: Celda;
   @Input() fila!: number;
   @Input() columna!: number;
-
   index = this.fila * 24 + this.columna;
   clase : string = "";
   parteTurno: string | undefined;
@@ -25,9 +24,10 @@ export class CeldaComponent {
   characters :  string[] | undefined;
   estiloCelda = {
     width: 26,
-    height: 26
+    height: 26,
+    fill: "red"
   };
-
+  
   constructor(public gameService: GameService,private turnoService: TurnoService, private celdasService: CeldasService) {
     this.turnoService.parteTurno$.subscribe(parteTurno => {
       this.parteTurno = parteTurno;
@@ -36,12 +36,8 @@ export class CeldaComponent {
       this.playerPositions = playerPositions;
     });
     this.characters = this.gameService.personajes;
-    if (this.playerPositions !== undefined) {
-        this.player2color(this.characters[this.playerPositions?.indexOf(this.index)])
-    }
     
   }
-  
   getIsRoom() {return this.propiedadesCelda.isRoom;}
   getRoomName() {return this.propiedadesCelda.roomName;}
   getIsStartingCell() {return this.propiedadesCelda.isStartingCell;}
@@ -54,6 +50,17 @@ export class CeldaComponent {
   ngOnInit() {
     this.estilarCelda();
     this.anadirClase();
+    this.characters = this.gameService.personajes;
+    this.index = this.fila * 24 + this.columna;
+    
+    console.log("mi fila", this.fila);
+    if(this.playerPositions?.includes(this.index)){
+      console.log('Vector playerPositions:', this.playerPositions);
+      if (this.playerPositions !== undefined) {
+          this.estiloCelda.fill = this.player2color(this.characters[this.playerPositions?.indexOf(this.index)])
+      }
+      
+    }
   }
   handleClick() {
     // if (!this.celdasOptions[this.index]) return;
