@@ -3,7 +3,7 @@ import { TemporizadorComponent } from '../temporizador/temporizador.component';
 import { DadosComponent } from '../dados/dados.component';
 import { CarrouselComponent } from '../carrousel/carrousel.component';
 import { CommonModule } from '@angular/common';
-import { TurnoService } from '../turno.service';
+import { TurnoService } from '../servicios/servicio-turno/turno.service';
 
 
 @Component({

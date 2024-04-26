@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Celda } from './celda.interface'; 
-import { TurnoService } from '../../../turno.service';
+import { TurnoService } from '../../../servicios/servicio-turno/turno.service';
+import { GameService } from '../../../servicios/servicio-game/game.service';
+import { CeldasService } from '../../../servicios/servicio-celdas/celdas.service';
 
 
 @Component({
@@ -16,18 +18,28 @@ export class CeldaComponent {
   @Input() fila!: number;
   @Input() columna!: number;
 
+  index = this.fila * 24 + this.columna;
   clase : string = "";
   parteTurno: string | undefined;
-
+  playerPositions: number[] | undefined; 
+  characters :  string[] | undefined;
   estiloCelda = {
     width: 26,
     height: 26
   };
 
-  constructor(private turnoService: TurnoService) {
+  constructor(public gameService: GameService,private turnoService: TurnoService, private celdasService: CeldasService) {
     this.turnoService.parteTurno$.subscribe(parteTurno => {
       this.parteTurno = parteTurno;
     });
+    this.celdasService.playerPositions$.subscribe(playerPositions => {
+      this.playerPositions = playerPositions;
+    });
+    this.characters = this.gameService.personajes;
+    if (this.playerPositions !== undefined) {
+        this.player2color(this.characters[this.playerPositions?.indexOf(this.index)])
+    }
+    
   }
   
   getIsRoom() {return this.propiedadesCelda.isRoom;}
@@ -56,7 +68,7 @@ export class CeldaComponent {
     //   }, 2000);
     //   return;
     // }
-  
+    
     // if (this.playerPositions.includes(this.index)) return;
   
     // this.handleClickOnCell(this.index, true);
@@ -105,5 +117,25 @@ export class CeldaComponent {
         return -1;
     }
   }
+
+  player2color(player: string) {
+    switch (player) {
+      case 'mr SOPER':
+        return '#80b37e';
+      case 'miss REDES':
+        return '#fcfd7f';
+      case 'mr PROG':
+        return '#7fd2e7';
+      case 'miss FISICA':
+        return '#fdfdfd';
+      case 'mr DISCRETO':
+        return '#dea9fb';
+      case 'miss IA':
+        return '#fc7e7e';
+      default:
+        return 'black';
+    }
+  }
+  
 
 }
