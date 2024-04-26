@@ -3,6 +3,7 @@ import { Celda } from './celda.interface';
 import { TurnoService } from '../../../servicios/servicio-turno/turno.service';
 import { GameService } from '../../../servicios/servicio-game/game.service';
 import { CeldasService } from '../../../servicios/servicio-celdas/celdas.service';
+import * as infoTablero from '../../../../assets/infoTablero.json';
 
 
 @Component({
@@ -53,11 +54,14 @@ export class CeldaComponent {
     this.characters = this.gameService.personajes;
     this.index = this.fila * 24 + this.columna;
     
-    console.log("mi fila", this.fila);
+    // console.log("mi fila", this.fila);
     if(this.playerPositions?.includes(this.index)){
-      console.log('Vector playerPositions:', this.playerPositions);
+      // console.log('Vector playerPositions:', this.playerPositions);
       if (this.playerPositions !== undefined) {
-          this.estiloCelda.fill = this.player2color(this.characters[this.playerPositions?.indexOf(this.index)])
+        console.log('soy',this.characters[this.playerPositions?.indexOf(this.index)] );
+        this.estiloCelda.fill = this.player2color(this.characters[this.playerPositions?.indexOf(this.index)])
+        console.log('con color', this.estiloCelda.fill);
+
       }
       
     }
@@ -65,7 +69,7 @@ export class CeldaComponent {
   handleClick() {
     // if (!this.celdasOptions[this.index]) return;
   
-    // if (this.infoCell.isDoor || this.infoCell.isRoom) {
+    // if ( this.getIsDoor() || this.getIsRoom()) {
     //   let cells = this.casillasPorHabitacion[this.infoCell.roomName - 1].cells;
     //   cells = cells.filter((c) => !this.playerPositions.includes(c));
     //   const randomCell = cells[Math.floor(Math.random() * cells.length)];

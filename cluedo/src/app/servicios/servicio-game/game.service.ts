@@ -17,7 +17,7 @@ export class GameService {
   userCharacter: number = -1;
 
 
-  personajes: string[] = ["mr SOPER", "mr REDES", "mr PROG", "mr FISICA", "mr DISCRETO", "mr IA"];
+  personajes: string[] = ["mr SOPER", "miss REDES", "mr PROG", "miss FISICA", "mr DISCRETO", "miss IA"];
   armas: string[] = ["teclado", "cable de red", "raton", "router", "troyano", "cd"];
   lugares: string[] = ["cafeteria", "baños", "recepcion", "escaleras", "biblioteca", "laboratorio", "despacho", "aulas norte", "aulas sur"];
 
