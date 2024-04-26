@@ -38,7 +38,11 @@ export class GameService {
   }
 
   // Devuelve el nombre del personaje seleccionado por el usuario
-  getPersonaje(): string {
+  getPersonajeUsuario(): string {
     return this.personajes[this.userCharacter];
+  }
+
+  getPersonaje(usuario: string): string {
+    return this.personajes[this.usernames.indexOf(usuario)];
   }
 }

@@ -15,6 +15,7 @@ export class MessageComponent {
     @Input() username: string = "";
     @Input() type: string = "";
     @Input() character: string = "";
+    @Input() timestamp: string = "";
 
     constructor() {}
 }

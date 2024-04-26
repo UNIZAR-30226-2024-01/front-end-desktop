@@ -5,6 +5,7 @@ import { MessageListComponent } from './message-list/message-list.component';
 import { MessageComponent } from './message/message.component';
 import { LinkedList } from 'linked-list-typescript';
 import { GameService } from '../servicios/servicio-game/game.service';
+import { SocketService } from '../servicios/servicio-socket/socket.service';
 
 declare const require: any;
 const {
@@ -31,71 +32,43 @@ export class ChatComponent {
   lastIndex: number = 0;
   nombreComponente: string = 'chat';
   
-  constructor(public gameService: GameService) {}
+  constructor(public gameService: GameService, private socketService: SocketService) {}
 
   ngOnInit() {
-    // Conexión con el socket
-    socket.auth.username = 'abel';
-    socket.auth.group = '0';
-    socket.connect();
+    // Escuchar eventos de socket service para ser notificado de nuevos mensajes
+    this.socketService.getMessageObservable().subscribe(
+      (message) => {
+        this.handleNewMessage(message);
+      }
+    );
+  }
 
-    socket.on('connect', onConnect);
-    socket.on('chat response', this.onChatResponseLocal.bind(this));
-    socket.on('chat turn', this.onChatTurnLocal);
+  // Cuando llega el evento mensajeEnviado del input, se gestiona el mensaje
+  enviarMensaje(mensaje: string) {
+    console.log('Mensaje del input que se va a enviar: ' + mensaje);
+    // Enviar mensaje al servidor
+    this.socketService.chatMessage(mensaje);
+  }
+
+  // Método para gestionar un nuevo mensaje que ha llegado del servidor
+  private handleNewMessage(message: any) {
+    this.messages.append(this.crearMensaje(message.msg, message.emisor, message.currentTimestamp));
+  }
+        
+  private crearMensaje(text: string, username: string, timestamp: string) {
+    const newMessage = new MessageComponent();
+    newMessage.text = text;
+    newMessage.username = username;
+    newMessage.type = 'message';
+    newMessage.timestamp = timestamp;
+    newMessage.character = this.gameService.getPersonaje(username);
+    
+    console.log("Mensaje creado: ", JSON.stringify(newMessage));
+    return newMessage;
   }
 
   // Método para cambiar el estado de la variable "desplegado" para desplazar el chat
   toggleDesplegado() {
     this.desplegado = !this.desplegado;
-  }
-
-  // Cuando llega el evento mensajeEnviado del input, se gestiona el mensaje
-  gestionarMensaje(mensaje: string) {
-    console.log(socket.socket);
-    console.log('Mensaje del input: ' + mensaje);
-
-    
-    // Crear mensaje
-    this.messages.append(this.crearMensaje(mensaje, this.gameService.getUsername()));
-
-    // Enviar mensaje al servidor
-    socket.emit('chat-message', mensaje);
-  }
-
-  
-
-  // Recibir mensajes del servidor y pasarlos a la lista de mensajes
-  onChatResponseLocal(message: string, user: string, offset: number) {
-    let auxMessage = onChatResponse(message, user, offset);
-    // this.messages.push(auxMessage);          // POR TEMA VIDEO LO HE COMENTADO PERO DABA ERRORES XD 
-    this.lastIndex++;
-    // Scroll al final del chat
-    setTimeout(() => {
-      let chat = document.getElementById('chat-list');
-      if (chat) chat.scrollTop = chat.scrollHeight;
-    }, 0);
-  }
-
-  // Recibir turno del servidor
-  onChatTurnLocal(username: string) {
-    // return onChatTurn(username);
-  }
-
-  ngOnDestroy() {
-    socket.off('chat response', this.onChatResponseLocal);
-    socket.off('chat turn', this.onChatTurnLocal);
-    socket.off('connect', onConnect);
-    socket.disconnect();
-  }
-
-  private crearMensaje(text: string, username: string) {
-    const newMessage = new MessageComponent();
-    newMessage.text = text;
-    newMessage.username = username;
-    newMessage.type = 'message';
-    newMessage.character = this.gameService.getPersonaje();
-
-    console.log("Mensaje creado: ", JSON.stringify(newMessage));
-    return newMessage;
   }
 }
