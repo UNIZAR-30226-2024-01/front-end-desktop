@@ -41,7 +41,7 @@ export class CeldaComponent {
   }
   getIsRoom() {return this.propiedadesCelda.isRoom;}
   getRoomName() {return this.propiedadesCelda.roomName;}
-  getIsStartingCell() {return this.propiedadesCelda.isStartingCell;}
+  getIsStartingCell() {return this.playerPositions?.includes(this.index);}
   getIsWalkable() {return this.propiedadesCelda.isWalkable;}
   getIsDoor() {return this.propiedadesCelda.isDoor;}
   getIdx() {return this.propiedadesCelda.idx;}
@@ -68,7 +68,14 @@ export class CeldaComponent {
   }
   handleClick() {
     // if (!this.celdasOptions[this.index]) return;
-  
+    const updatedVector = this. playerPositions;
+
+    if (updatedVector !== undefined && this.characters !== undefined) {
+      updatedVector[3] = this.index;
+
+      this.celdasService.setPlayerPositions(updatedVector);
+      this.estiloCelda.fill = this.player2color(this.characters[3])
+    }
     // if ( this.getIsDoor() || this.getIsRoom()) {
     //   let cells = this.casillasPorHabitacion[this.infoCell.roomName - 1].cells;
     //   cells = cells.filter((c) => !this.playerPositions.includes(c));
