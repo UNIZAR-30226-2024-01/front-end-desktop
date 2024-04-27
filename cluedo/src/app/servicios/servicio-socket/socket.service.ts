@@ -87,13 +87,27 @@ export class SocketService {
 
   }
   
-  // Método para solicitar la información del juego al servidor
-  public requestGameInfo(): void {
-    this.emitirEvento(() => {
-      console.log("Enviando solicitud de información del juego");
-      this.socket.emit('request-game-info');
+  public requestGameInfo(): Promise<any> {
+    // Promesa que se resuelve después de cierto tiempo (timeout)
+    const timeoutPromise = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        reject("Timeout: No se recibió un ACK antes del tiempo especificado");
+      }, 2000); // 2000 milisegundos = 2 segundos (ajusta este valor según sea necesario)
     });
+  
+    // Llamar a la función asincrónica y esperar por el ACK
+    const asyncFunctionPromise = this.emitirEvento(() => {
+      console.log("Enviando solicitud de información del juego");
+      this.socket.emit('request-game-info', () => {});      
+    });
+  
+    // Si el timeout se cumple antes de recibir el ACK, se vuelve a intentar
+    
+    return Promise.race([asyncFunctionPromise, timeoutPromise]);
+
   }
+  
+  
   
   private obtenerFechaActual() {
     const fecha = new Date();

@@ -63,7 +63,7 @@ export class ChatComponent {
     newMessage.timestamp = timestamp;
     newMessage.character = this.gameService.getPersonaje(username);
     
-    console.log("Mensaje creado: ", JSON.stringify(newMessage));
+    // console.log("Mensaje creado: ", JSON.stringify(newMessage));
     return newMessage;
   }
 
