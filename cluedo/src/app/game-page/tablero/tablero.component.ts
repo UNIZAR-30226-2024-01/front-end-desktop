@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { CeldaComponent } from './celda/celda.component';
 import { TextComponent } from './text/text.component';
 import { Celda } from './celda/celda.interface'; 
-import { TurnoService } from '../../turno.service';
+import { TurnoService } from '../../servicios/servicio-turno/turno.service';
 import * as infoTablero from '../../../assets/infoTablero.json';
 
 @Component({

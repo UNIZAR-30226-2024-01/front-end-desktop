@@ -14,9 +14,21 @@
     ]
     ,
 
+    "casillasPorHabitacion":
+    [
+        { "roomName":"Aulas Norte", "roomNumber": 1, "cells":[72,73,74,75,76,77] },
+        { "roomName":"Recepción", "roomNumber": 2, "cells":[107,108,109,131,132,133] },
+        { "roomName":"Laboratorio", "roomNumber": 3, "cells":[138,139,140,141,142,143] },
+        { "roomName": "Escaleras", "roomNumber": 4, "cells": [169, 170, 171, 172, 173, 174] },
+        { "roomName": "ADA BYRON", "roomNumber": 5, "cells": []}, 
+        { "roomName": "Biblioteca", "roomNumber": 6, "cells": [281, 282, 283, 284, 285, 286] },
+        { "roomName":"Baños", "roomNumber": 7, "cells":[312,313,314,315,316,317] },
+        { "roomName":"Despacho", "roomNumber": 8,  "cells":[480,481,482,483,484,485] },
+        { "roomName":"Cafetería", "roomNumber": 9, "cells":[513,514,515,516,517,518] },
+        { "roomName":"Aulas Sur", "roomNumber": 10, "cells":[475,476, 477, 478, 479] }
+    ]
 
-
-
+    ,
 
 
 

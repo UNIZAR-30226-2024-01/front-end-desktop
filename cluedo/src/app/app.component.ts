@@ -4,7 +4,7 @@ import { TarjetaComponent } from './tarjeta/tarjeta.component';
 import { ChatComponent } from './chat/chat.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import { TurnoService } from './turno.service';
+import { TurnoService } from './servicios/servicio-turno/turno.service';
 
 
 @Component({

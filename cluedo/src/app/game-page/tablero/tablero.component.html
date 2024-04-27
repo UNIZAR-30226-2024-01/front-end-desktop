@@ -7,8 +7,8 @@
                 @for (columna of fila; track columna; let indexColumna = $index) {
                     <app-celda 
                         [propiedadesCelda]="tablero[indexFila][indexColumna]"
-                        [fila] = "indexFila"
-                        [columna] = "indexColumna"
+                        [fila]="indexFila"
+                        [columna]="indexColumna"
                     ></app-celda>
                 } 
             </div>

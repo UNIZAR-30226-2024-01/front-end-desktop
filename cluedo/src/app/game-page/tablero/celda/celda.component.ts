@@ -1,6 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { Celda } from './celda.interface'; 
-import { TurnoService } from '../../../turno.service';
+import { TurnoService } from '../../../servicios/servicio-turno/turno.service';
+import { GameService } from '../../../servicios/servicio-game/game.service';
+import { CeldasService } from '../../../servicios/servicio-celdas/celdas.service';
+import * as infoTablero from '../../../../assets/infoTablero.json';
 
 
 @Component({
@@ -15,24 +18,30 @@ export class CeldaComponent {
   @Input() propiedadesCelda!: Celda;
   @Input() fila!: number;
   @Input() columna!: number;
-
+  index = this.fila * 24 + this.columna;
   clase : string = "";
   parteTurno: string | undefined;
-
+  playerPositions: number[] | undefined; 
+  characters :  string[] | undefined;
   estiloCelda = {
     width: 26,
-    height: 26
+    height: 26,
+    fill: "red"
   };
-
-  constructor(private turnoService: TurnoService) {
+  
+  constructor(public gameService: GameService,private turnoService: TurnoService, private celdasService: CeldasService) {
     this.turnoService.parteTurno$.subscribe(parteTurno => {
       this.parteTurno = parteTurno;
     });
+    this.celdasService.playerPositions$.subscribe(playerPositions => {
+      this.playerPositions = playerPositions;
+    });
+    this.characters = this.gameService.personajes;
+    
   }
-  
   getIsRoom() {return this.propiedadesCelda.isRoom;}
   getRoomName() {return this.propiedadesCelda.roomName;}
-  getIsStartingCell() {return this.propiedadesCelda.isStartingCell;}
+  getIsStartingCell() {return this.playerPositions?.includes(this.index);}
   getIsWalkable() {return this.propiedadesCelda.isWalkable;}
   getIsDoor() {return this.propiedadesCelda.isDoor;}
   getIdx() {return this.propiedadesCelda.idx;}
@@ -42,11 +51,32 @@ export class CeldaComponent {
   ngOnInit() {
     this.estilarCelda();
     this.anadirClase();
+    this.characters = this.gameService.personajes;
+    this.index = this.fila * 24 + this.columna;
+    
+    // console.log("mi fila", this.fila);
+    if(this.playerPositions?.includes(this.index)){
+      // console.log('Vector playerPositions:', this.playerPositions);
+      if (this.playerPositions !== undefined) {
+        console.log('soy',this.characters[this.playerPositions?.indexOf(this.index)] );
+        this.estiloCelda.fill = this.player2color(this.characters[this.playerPositions?.indexOf(this.index)])
+        console.log('con color', this.estiloCelda.fill);
+
+      }
+      
+    }
   }
   handleClick() {
     // if (!this.celdasOptions[this.index]) return;
-  
-    // if (this.infoCell.isDoor || this.infoCell.isRoom) {
+    const updatedVector = this. playerPositions;
+
+    if (updatedVector !== undefined && this.characters !== undefined) {
+      updatedVector[3] = this.index;
+
+      this.celdasService.setPlayerPositions(updatedVector);
+      this.estiloCelda.fill = this.player2color(this.characters[3])
+    }
+    // if ( this.getIsDoor() || this.getIsRoom()) {
     //   let cells = this.casillasPorHabitacion[this.infoCell.roomName - 1].cells;
     //   cells = cells.filter((c) => !this.playerPositions.includes(c));
     //   const randomCell = cells[Math.floor(Math.random() * cells.length)];
@@ -56,7 +86,7 @@ export class CeldaComponent {
     //   }, 2000);
     //   return;
     // }
-  
+    
     // if (this.playerPositions.includes(this.index)) return;
   
     // this.handleClickOnCell(this.index, true);
@@ -105,5 +135,25 @@ export class CeldaComponent {
         return -1;
     }
   }
+
+  player2color(player: string) {
+    switch (player) {
+      case 'mr SOPER':
+        return '#80b37e';
+      case 'miss REDES':
+        return '#fcfd7f';
+      case 'mr PROG':
+        return '#7fd2e7';
+      case 'miss FISICA':
+        return '#fdfdfd';
+      case 'mr DISCRETO':
+        return '#dea9fb';
+      case 'miss IA':
+        return '#fc7e7e';
+      default:
+        return 'black';
+    }
+  }
+  
 
 }
