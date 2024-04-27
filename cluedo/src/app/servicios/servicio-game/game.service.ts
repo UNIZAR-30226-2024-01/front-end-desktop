@@ -17,11 +17,31 @@ export class GameService {
   userCharacter: number = -1;
 
 
-  personajes: string[] = ["mr SOPER", "mr REDES", "mr PROG", "mr FISICA", "mr DISCRETO", "mr IA"];
-  armas: string[] = ["teclado", "cable de red", "raton", "router", "troyano", "cd"];
-  lugares: string[] = ["cafeteria", "baños", "recepcion", "escaleras", "biblioteca", "laboratorio", "despacho", "aulas norte", "aulas sur"];
+  personajes: string[] = ["", "", "", "", "", ""];
+  armas: string[] = ["", "", "", "", "", ""];
+  lugares: string[] = ["", "", "", "", "", "", "", "", ""];
 
   constructor() { }
+
+  public setPersonajes(personajes: string[]): void {
+    this.personajes = personajes;
+    console.log("Personajes: ", this.personajes);
+  }
+
+  public setArmas(armas: string[]): void {
+    this.armas = armas;
+    console.log("Armas: ", this.armas);
+  }
+
+  public setLugares(lugares: string[]): void {
+    this.lugares = lugares;
+    console.log("Lugares: ", this.lugares);
+  }
+
+  public setUsuarios(usuarios: string[]): void {
+    this.usernames = usuarios;
+    console.log("Usuarios: ", this.usernames);
+  }
 
   getTurno(): number {
     return this.turno;

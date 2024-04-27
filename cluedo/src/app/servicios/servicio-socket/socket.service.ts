@@ -12,8 +12,8 @@ import { GameService } from '../servicio-game/game.service';
 export class SocketService {
   private socket: Socket;
   private eventMessage = new Subject<any>();   // Subject para emitir eventos a los componentes que lo necesiten
-  
-  constructor(gameService: GameService) { 
+
+  constructor(private gameService: GameService) { 
     const options = {
       auth: {
         username: gameService.username,
@@ -31,12 +31,13 @@ export class SocketService {
 
   // Método para escuchar eventos del servidor
   private serverListener(): void {
-    this.socket.on('connect', () => {
-      console.log('Conectado al servidor');
-    });
 
     this.socket.on('game-info', (gameInfo: any) => {
       console.log('Game info received from server:', gameInfo);
+      this.gameService.setPersonajes(gameInfo.names);
+      this.gameService.setArmas(gameInfo.guns);
+      this.gameService.setLugares(gameInfo.rooms);
+      this.gameService.setUsuarios(gameInfo.available);
     });
     
     this.socket.on('chat-response', (emisor, msg, currentTimestamp, date) => {    
@@ -45,30 +46,53 @@ export class SocketService {
 
   }
 
+
+  // Método para emitir eventos al servidor teniendo en cuenta si el cliente está conectado o no
+  private emitirEvento(callback: () => void) {
+    // Si está conectado, emitir el evento
+    console.log('Valor de this.socket.connected: ' + this.socket.connected);
+    if (this.socket.connected) {
+      callback();
+    } else {
+      // Si no está conectado, esperar a conectarse y luego emitir el evento
+      console.log('No se puede emitir el evento porque no se ha conectado al servidor');
+      this.socket.on('connect', () => {
+        console.log('Valor de this.socket.connected: ' + this.socket.connected);
+        console.log('Conectado al servidor!, emitiendo evento ' + callback.name + '...');
+        callback();
+      });
+    }
+  }
+
   
   // Método para indicar al servidor que el cliente se va a desconectar
   public disconnect(): void {
-    this.socket.emit('disconnect');
+    this.emitirEvento(() => this.socket.emit('disconnect'));
   }
   
   // Método para indicar al servidor que empiece el juego
   public startGame(): void {
-    this.socket.emit('start-game');
+    this.emitirEvento(() => this.socket.emit('start-game'));
   }
 
   // Método para indicar al servidor que se ha seleccionado un personaje
   public selectCharacter(character: string): void {
-    this.socket.emit('character-selected', character);
+    this.emitirEvento(() => this.socket.emit('character-selected', character));
+    
   }
   
   // Método para chat message
   public chatMessage(message: string): void {
-    this.socket.emit('chat-message', message);
+    this.emitirEvento(() => this.socket.emit('chat-message', message));
+
   }
   
   // Método para solicitar la información del juego al servidor
   public requestGameInfo(): void {
-    this.socket.emit('request-game-info');
+    this.emitirEvento(() => {
+      console.log("Enviando solicitud de información del juego");
+      this.socket.emit('request-game-info');
+    });
   }
   
   private obtenerFechaActual() {
