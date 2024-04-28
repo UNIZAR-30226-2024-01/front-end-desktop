@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TemporizadorComponent } from '../temporizador/temporizador.component';
 import { DadosComponent } from '../dados/dados.component';
-import { CarrouselComponent } from '../carrousel/carrousel.component';
+import { CarruselComponent } from '../carrusel/carrusel.component';
 import { CommonModule } from '@angular/common';
 import { TurnoService } from '../servicios/servicio-turno/turno.service';
 
@@ -12,7 +12,7 @@ import { TurnoService } from '../servicios/servicio-turno/turno.service';
   standalone:true, 
   styleUrls: [
     './turno.component.css',  ],
-    imports: [TemporizadorComponent,DadosComponent,CarrouselComponent,
+    imports: [TemporizadorComponent,DadosComponent,CarruselComponent,
       CommonModule
     ]
 })
