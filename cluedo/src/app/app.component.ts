@@ -15,7 +15,7 @@ import { TurnoService } from './servicios/servicio-turno/turno.service';
     TarjetaComponent, ToolbarComponent,MatToolbarModule],
   providers: [TurnoService],
   templateUrl: './app.component.html',
-  styleUrl: '../../../../front-end-shared/css/App.css'
+  styleUrl: '../app.component.css'
 })
 
 export class AppComponent {

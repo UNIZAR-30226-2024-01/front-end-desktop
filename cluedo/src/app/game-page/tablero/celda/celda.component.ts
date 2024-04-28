@@ -23,6 +23,7 @@ export class CeldaComponent {
   parteTurno: string | undefined;
   playerPositions: number[] | undefined; 
   characters :  string[] | undefined;
+  celdasOptions: any;
   estiloCelda = {
     width: 26,
     height: 26,
@@ -37,7 +38,10 @@ export class CeldaComponent {
       this.playerPositions = playerPositions;
     });
     this.characters = this.gameService.personajes;
-    
+    this.celdasService.celdasOptions$.subscribe(options => {
+      // Asigna el valor de celdasOptions
+      this.celdasOptions = options;
+    });
   }
   getIsRoom() {return this.propiedadesCelda.isRoom;}
   getRoomName() {return this.propiedadesCelda.roomName;}
@@ -70,11 +74,20 @@ export class CeldaComponent {
     // if (!this.celdasOptions[this.index]) return;
     const updatedVector = this. playerPositions;
 
+    //DE MOMENTO LO QUITO PARA PROBAR LO DEMAS(SIN BACKEND NO VA)
+    // if (!this.celdasOptions[this.index]){
+    //  console.log("esta no vale");
+    // return;}
+
     if (updatedVector !== undefined && this.characters !== undefined) {
       updatedVector[3] = this.index;
 
       this.celdasService.setPlayerPositions(updatedVector);
       this.estiloCelda.fill = this.player2color(this.characters[3])
+      setTimeout(() => {
+        this.turnoService.setParteTurno('elegir-pregunta');
+      }, 2000);
+      return;
     }
     // if ( this.getIsDoor() || this.getIsRoom()) {
     //   let cells = this.casillasPorHabitacion[this.infoCell.roomName - 1].cells;

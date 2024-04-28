@@ -20,7 +20,11 @@ export class TurnoComponent implements OnInit {
   parteTurno: string = '';
   dice: number = 0;
 
-  constructor(private turnoService: TurnoService) { }
+  constructor(private turnoService: TurnoService) {
+    this.turnoService.parteTurno$.subscribe(parteTurno => {
+      this.parteTurno = parteTurno;
+    });
+   }
 
   ngOnInit(): void {
     // this.desplegablesContext.setChatDesplegado(false);
@@ -45,13 +49,17 @@ export class TurnoComponent implements OnInit {
 
   iniciarTemporizador(): void {
     setTimeout(() => {
-      this.parteTurno = 'dados';
+      // this.parteTurno = 'dados';
+      this.turnoService.setParteTurno('dados');
+
     }, 2000);
   }
   // Agrega los listeners del socket aquí
   iniciarTemporizadorCasilla(): void {
     setTimeout(() => {
-      this.parteTurno = 'elegir-pregunta';
+      // this.parteTurno = 'elegir-pregunta';
+      this.turnoService.setParteTurno('elegir-pregunta');
+      
     }, 4000);
   }
 }

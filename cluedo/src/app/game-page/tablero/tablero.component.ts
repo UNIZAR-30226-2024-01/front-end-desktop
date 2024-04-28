@@ -13,6 +13,8 @@ import * as infoTablero from '../../../assets/infoTablero.json';
   imports: [CeldaComponent, TextComponent,CommonModule],
   templateUrl: './tablero.component.html',
   styleUrl: '../../../../../../front-end-shared/css/Game/Tablero/Tablero.css'
+
+  
 })
 
 export class TableroComponent {
@@ -28,4 +30,22 @@ export class TableroComponent {
     });
   }
   
+  handleClickOnCell() {
+    if ( this.parteTurno === 'elegir-casilla') {
+      // const player_idx = usernames.indexOf(cookies.username);
+  
+  
+      // setCeldasOptions(Array(24 * 24).fill(false));
+      // setPlayerPositions((prev) => {
+      //   const newPlayerPosition = [...prev];
+      //   newPlayerPosition[player_idx] = idx;
+      //   return newPlayerPosition;
+      // });
+
+
+      // gameLogicTurnoMovesTo(socket, cookies.username, idx, fin);
+    }
+  }
+  
+
 }
