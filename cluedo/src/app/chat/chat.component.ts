@@ -50,6 +50,7 @@ export class ChatComponent {
     this.socketService.chatMessage(mensaje);
   }
 
+
   // Método para gestionar un nuevo mensaje que ha llegado del servidor
   private handleNewMessage(message: any) {
     this.messages.append(this.crearMensaje(message.msg, message.emisor, message.currentTimestamp));

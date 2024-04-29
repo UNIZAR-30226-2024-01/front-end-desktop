@@ -86,6 +86,9 @@ export class SocketService {
     this.emitirEvento(() => this.socket.emit('chat-message', message));
 
   }
+  public abandonar() {
+    this.emitirEvento(() => this.socket.emit('leave-game'));
+  }
   
   public requestGameInfo(): Promise<any> {
     // Promesa que se resuelve después de cierto tiempo (timeout)
