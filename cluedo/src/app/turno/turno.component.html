@@ -41,7 +41,7 @@
             <p>Elige un sospechoso</p>
             <!-- <Carta /> -->
             <div class="slider">
-              <app-carrusel ></app-carrusel>
+              <app-carrusel [products]="personajes" ></app-carrusel>
             </div>
             
           </div>
@@ -49,12 +49,18 @@
             <h2>¿Con qué lo hizo?</h2>
             <p>Elige un arma</p>
             <!-- <app-carrusel ></app-carrusel> -->
+            <div class="slider">
+              <app-carrusel [products]="armas" ></app-carrusel>
+            </div>
           </div>
           <div class="carta-donde">
             <h2>¿Dónde lo hizo?</h2>
             <p>Elige una habitación</p>
             <!-- <app-carrusel [options]="gameInfoContext.rooms"></app-carrusel> -->
             <!-- <app-carrusel ></app-carrusel> -->
+            <div class="slider">
+              <app-carrusel [products]="lugares" ></app-carrusel>
+            </div>
           </div>
         </div>
         <button style="margin-top: 15px">Realizar sospecha🧐</button>

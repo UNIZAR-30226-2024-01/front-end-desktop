@@ -4,6 +4,7 @@ import { DadosComponent } from '../dados/dados.component';
 import { CarruselComponent } from '../carrusel/carrusel.component';
 import { CommonModule } from '@angular/common';
 import { TurnoService } from '../servicios/servicio-turno/turno.service';
+import { GameService } from '../servicios/servicio-game/game.service';
 
 
 @Component({
@@ -19,11 +20,18 @@ import { TurnoService } from '../servicios/servicio-turno/turno.service';
 export class TurnoComponent implements OnInit {
   parteTurno: string = '';
   dice: number = 0;
-
-  constructor(private turnoService: TurnoService) {
+  
+  personajes: string[] = ["SOPER", "REDES", "PROG", "FISICA", "DISCRETO", "IA"];
+  armas: string[] = ["TECLADO", "CABLE", "TAZA", "ROUTER", "TROYANO", "DISCO"];
+  lugares: string[] = ["CAFETERIA", "BANIO", "RECEPCION", "ESCALERAS", "BIBLIOTECA", "LABORATORIO", "DESPACHO", "AULANORTE", "AULASUR"];
+  
+  constructor(private turnoService: TurnoService, private gameService: GameService) {
     this.turnoService.parteTurno$.subscribe(parteTurno => {
       this.parteTurno = parteTurno;
     });
+    // this.personajes=gameService.personajes
+    // this.armas=gameService.armas
+    // this.lugares=gameService.lugares
    }
 
   ngOnInit(): void {

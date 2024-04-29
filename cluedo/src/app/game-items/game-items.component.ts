@@ -77,7 +77,7 @@ export class GameItemsComponent {
         this.imageSrc = '../../assets/images/lugares_imagen/svg/CAFETERIA.svg';
         this.altText = 'Imagen del logo del lugar cafetería';
         break;
-      case 'BAÑOS':
+      case 'BANIO':
         this.imageSrc = '../../assets/images/lugares_imagen/svg/BANIO.svg';
         this.altText = 'Imagen del logo del lugar baños';
         break;
