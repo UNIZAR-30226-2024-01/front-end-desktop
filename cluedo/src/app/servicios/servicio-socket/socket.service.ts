@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
 import { Observable, Subject } from 'rxjs';
 import { GameService } from '../servicio-game/game.service';
+import { environment } from "../../../environments/environment";
 // const {
 //   socket
 // } = require('../../chat.js');
@@ -23,7 +24,7 @@ export class SocketService {
       transports: ['polling', 'websocket']
     };
 
-    this.socket = io('http://localhost:3000', options);
+    this.socket = io(environment.apiUrl, options);
     this.serverListener();
   }
 
@@ -90,12 +91,10 @@ export class SocketService {
     this.emitirEvento(() => this.socket.emit('leave-game'));
   }
   
-  public requestGameInfo(): Promise<any> {
+  public requestGameInfo(): void {
     // Promesa que se resuelve después de cierto tiempo (timeout)
     const timeoutPromise = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        reject("Timeout: No se recibió un ACK antes del tiempo especificado");
-      }, 2000); // 2000 milisegundos = 2 segundos (ajusta este valor según sea necesario)
+      setTimeout(resolve, 500, "TIMEOUT");
     });
   
     // Llamar a la función asincrónica y esperar por el ACK
@@ -105,9 +104,17 @@ export class SocketService {
     });
   
     // Si el timeout se cumple antes de recibir el ACK, se vuelve a intentar
+    console.log("TRYING TO GET GAME INFO");
     
-    return Promise.race([asyncFunctionPromise, timeoutPromise]);
-
+    Promise.race([timeoutPromise, asyncFunctionPromise]).then((value) => {
+      console.log("Valor de value: " + value);
+      if (value === "TIMEOUT") {
+        console.log("Timeout alcanzado, reintentando...");
+        return this.requestGameInfo();
+      } else {
+        return value;
+      }
+    });
   }
   
   
