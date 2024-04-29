@@ -9,14 +9,14 @@ On Windows client computers, the execution of PowerShell scripts is disabled by 
 Carefully read the message displayed after executing the command and follow the instructions. Make sure you understand the implications of setting an execution policy.
 
 * 3) npm install -g @angular/cli
+* 4) npm install
 
+Those are the steps to install the Angular CLI and the project dependencies. The next steps depend on the target platform:
 
 ## APP.EXE
-* 4) npm install -g electron
-* 5) npm install -g electron-packager
-* 6) electron-packager ./ cluedo --platform=win32 --overwrite
+* 5) "npm run electron-build" to build the project for the desktop platform
 ---------------------------------------------------------------
 
 ## BROWSER
-* 4) ng version (optional to verify it is working correctly)
-* 5) ng serve (--open to open in browser)
+* 5) "ng version" (optional to verify it is working correctly)
+* 6) "npm run dev" (or "ng serve") to open the project in the browser in development mode

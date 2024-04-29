@@ -10,7 +10,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "electron": "electron .",
-    "electron-build": "ng build --base-href ./ && electron .",
+    "electron-build": "ng build --configuration production --base-href ./ && electron .",
     "clean": "rm -rf dist/*"
   },
   "private": true,
