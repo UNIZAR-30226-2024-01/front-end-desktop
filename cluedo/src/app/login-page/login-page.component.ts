@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-
+//import {BACKEND_URL} from  '../../../consts.js';
 @Component({
   selector: 'app-login-page',
   standalone: true,
@@ -35,7 +35,7 @@ export class LoginPageComponent {
     });
     
     const data = await response.json();
-    if (data.success === true) {
+    if (data.exito === true) {
       localStorage.setItem('username', this.username);
         this.router.navigate(['/home-page']);
     } else {

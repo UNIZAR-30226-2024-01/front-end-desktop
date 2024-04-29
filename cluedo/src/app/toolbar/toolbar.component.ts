@@ -13,12 +13,14 @@ import { CommonModule } from '@angular/common';
   styleUrl: '../../../../../front-end-shared/css/Game/NavbarGame.css'
 })
 export class ToolbarComponent {
+pausarPartida() {
+  alert("Partida pausada (falta implementar)");
+}
 constructor(private router: Router/*, private http: HttpClient*/)  {
   // Inicializar el usuario aquí si es necesario
   // this.user=
 }
 abandonarPartida() {
-  
   this.router.navigate(['/home-page']);
 }
   isOpen: boolean = false;
