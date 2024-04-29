@@ -5,8 +5,10 @@ import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
-//import boardGame from "../../../../../front-end-shared/images/boardGame.png";
+import { environment } from "../../environments/environment"; 
 
+const BACKEND_URL = environment.apiUrl;
+console.log(BACKEND_URL);
 
 @Component({
   selector: 'app-home',
@@ -29,6 +31,7 @@ level: number | undefined;
 width: string = "550px";
 height: string = "70px";
 color :string | undefined;
+partida: string | undefined |null;
 
   constructor(private router: Router, private http: HttpClient) {}
 
@@ -37,6 +40,8 @@ color :string | undefined;
       this.username = 'Invitado';
     } else {
       this.username = localStorage.getItem('username') as string;
+      this.partida=localStorage.getItem('partida_actual') as string;
+     this.partida = this.partida === "undefined" ? null : this.partida;
     }
     this.obtainXP().then(xp => {
       const lvl = this.calculateLevel(xp);
@@ -67,20 +72,84 @@ color :string | undefined;
     this.color = this.getColor();
   }
 
-  newGameClick(): void {
-    this.router.navigate(['/game-page']);
-  }
 
-  joinGameClick(): void {
-    const gameId = prompt('Please enter the game ID:');
-    if (gameId) {
-      this.router.navigate(['/game-page', gameId]);
+
+  async newGameClick(gameMode: string) {
+    if (gameMode === '') {
+      alert('Por favor, selecciona un modo de juego.');
+      return;
+    }
+  
+    const url = /*BACKEND_URL +*/ 'http://localhost:3000/createGame';
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        body: JSON.stringify({
+          type: gameMode,
+        })
+      });
+      const data = await response.json();
+      if (data && data.exito === true) {
+        const idGame = data.id_partida;
+        localStorage.setItem('partida_actual', idGame);
+        this.router.navigate(['/game/' + idGame]);
+      } else {
+        alert('No se ha podido crear la partida. Inténtalo de nuevo.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
     }
   }
 
-  toggleShowGameModes(): void {
-    this.showGameModes = !this.showGameModes;
+  async useJoinGameClick() {
+    let execute = true;
+  
+    if (this.partida) {
+      this.router.navigate(['/game/' + this.partida]);
+      execute = false;
+    }
+  
+    if (execute) {
+     // await this.useJoinGame(null, execute, false);
+    }
   }
+  /*
+  async useJoinGame(gameId: string | null = null, execute: boolean, fromUrl: boolean = true) {
+    if (execute) {
+      console.log('gameId:', gameId);
+      if (!gameId) gameId = window.prompt('Introduzca el ID de la partida (6 dígitos):');
+      if (gameId) {
+        const url = BACKEND_URL + '/getGame?idGame=' + gameId;
+        try {
+          const response = await fetch(url);
+          console.log('data:', response);
+  
+          if (response.exito === true) {
+            if (fromUrl) {
+              localStorage.setItem('partida_actual', JSON.stringify({ partida: gameId }));
+            } else {
+              if (response.tipo === 'l') {
+                alert('No se puede unir a una partida local.');
+              } else if (response.tipo === 'o') {
+                localStorage.setItem('partida_actual', JSON.stringify({ partida: gameId }));
+                this.router.navigate(['/game/' + gameId]);
+              } else {
+                alert('Error al obtener el tipo de partida.');
+              }
+            }
+          } else {
+            alert('No se ha podido unirse a la partida. Inténtalo de nuevo.');
+            this.router.navigate(['/']);
+          }
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      } else {
+        alert('ID de partida no válido.');
+      }
+    }
+  }
+*/
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
@@ -90,6 +159,7 @@ color :string | undefined;
   }
   logout(): void {
     localStorage.removeItem('username');
+    localStorage.removeItem('partida_actual');
     this.router.navigate(['/login-page']);
   }
 

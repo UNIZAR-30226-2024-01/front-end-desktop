@@ -1,7 +1,6 @@
 import { io } from "socket.io-client";
 import { environment } from "./environments/environment"; 
-const URL = environment.apiURL;
-console.log("URL:", URL);
+const URL = environment.apiUrl;
 
 export const socket = io(URL, {
   auth: {

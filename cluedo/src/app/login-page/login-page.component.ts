@@ -37,6 +37,8 @@ export class LoginPageComponent {
     const data = await response.json();
     if (data.exito === true) {
       localStorage.setItem('username', this.username);
+      localStorage.setItem('partida_actual', data.id_partida_actual);
+      console.log(localStorage.getItem('partida_actual'));
         this.router.navigate(['/home-page']);
     } else {
         alert('Usuario o contraseña incorrectos');

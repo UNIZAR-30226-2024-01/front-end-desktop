@@ -26,18 +26,17 @@
 		<span class="xp-level" *ngIf="level !== undefined">Lvl: {{ level }}</span>
 	  </div>
 	  
-<div>
-	<section class="home-body">
-	  <img src="assets/images/boardGame.png" alt="Tablero del juego" width="400" height="400">
-	  <aside class="gameModes">
-		<ng-container *ngIf="showGameModes">
-		  <button class="gamemode-button" (click)="toggleShowGameModes()">Solitario</button>
-		  <button class="gamemode-button" (click)="toggleShowGameModes()">Multijugador</button>
-		</ng-container>
-		<ng-container *ngIf="!showGameModes">
-		  <button class="gamemode-button" (click)="newGameClick()">Nueva partida</button>
-		  <button class="gamemode-button" (click)="joinGameClick()">Unirse a partida</button>
-		</ng-container>
-	  </aside>
-	</section>
-</div>
+	  <div>
+		<section class="home-body">
+		  <img src="assets/images/boardGame.png" alt="Tablero del juego" width="400" height="400">
+		  <aside class="gameModes">
+			<ng-container *ngIf="!partida !== undefined">
+				<button class="gamemode-button" (click)="newGameClick('l')">Crear partida solitario</button>
+				<button class="gamemode-button" (click)="newGameClick('o')">Crear partida multijugador</button>
+			</ng-container>
+			<button class="gamemode-button" (click)="useJoinGameClick()">
+			  {{partida ? 'Continuar partida: ' + partida : 'Unirse a partida'}}
+			</button>
+		  </aside>
+		</section>
+	  </div>
