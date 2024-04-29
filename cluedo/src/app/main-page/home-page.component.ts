@@ -91,7 +91,7 @@ partida: string | undefined |null;
       if (data && data.exito === true) {
         const idGame = data.id_partida;
         localStorage.setItem('partida_actual', idGame);
-        this.router.navigate(['/game/' + idGame]);
+        this.router.navigate(['/game-page/' + idGame]);
       } else {
         alert('No se ha podido crear la partida. Inténtalo de nuevo.');
       }
@@ -137,7 +137,7 @@ partida: string | undefined |null;
                 alert('No se puede unir a una partida local.');
               } else if (data.tipo === 'o') {
                 localStorage.setItem('partida_actual', JSON.stringify({ partida: gameId }));
-                this.router.navigate(['/game/' + gameId]);
+                this.router.navigate(['/game-page/' + gameId]);
               } else {
                 alert('Error al obtener el tipo de partida.');
               }
