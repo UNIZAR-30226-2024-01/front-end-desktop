@@ -23,7 +23,8 @@ export class CarruselComponent {
     }
 
     ngOnInit() {
-      this.products = this.gameService.armas.concat(this.gameService.lugares, this.gameService.personajes)
+      // this.products = this.gameService.armas.concat(this.gameService.lugares, this.gameService.personajes)
+      this.products=  ["SOPER","FISICA"]
      this.responsiveOptions = [
           {
               breakpoint: '1199px',

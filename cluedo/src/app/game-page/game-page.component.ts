@@ -43,9 +43,9 @@ export class GamePageComponent implements OnInit{
       this.router.navigate(['/home-page']);
     }
     this.checkGameExists();
-    this.socketService.auth.username = this.gameService.getUsername() ?? 'anonymous';
-    this.socketService.auth.group = this.idGame ?? this.gameService. ?? '0';
-    this.socketService.connect();
+    // this.socketService.auth.username = this.gameService.getUsername() ?? 'anonymous';
+    // this.socketService.auth.group = this.idGame ?? this.gameService. ?? '0';
+    // this.socketService.connect();
   }
   title = 'cluedo';
 

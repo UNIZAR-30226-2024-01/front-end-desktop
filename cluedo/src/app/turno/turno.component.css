@@ -118,7 +118,9 @@
   align-items: center;
   gap: 10px;
 }
-
+.slider{
+  max-width: 350px;
+}
 #turno-tablero {
   /* Tamaño del tablero */
   width: 696px;
