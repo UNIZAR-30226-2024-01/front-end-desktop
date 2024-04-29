@@ -8,7 +8,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { environment } from "../../environments/environment"; 
 
 const BACKEND_URL = environment.apiUrl;
-console.log(BACKEND_URL);
 
 @Component({
   selector: 'app-home',
@@ -80,7 +79,7 @@ partida: string | undefined |null;
       return;
     }
   
-    const url = /*BACKEND_URL +*/ 'http://localhost:3000/createGame';
+    const url = BACKEND_URL + '/createGame';
     try {
       const response = await fetch(url, {
         method: 'POST',
@@ -105,15 +104,15 @@ partida: string | undefined |null;
     let execute = true;
   
     if (this.partida) {
-      this.router.navigate(['/game/' + this.partida]);
+      this.router.navigate(['/game-page/'/* + this.partida*/]);
       execute = false;
     }
   
     if (execute) {
-     // await this.useJoinGame(null, execute, false);
+      await this.useJoinGame(null, execute, false);
     }
   }
-  /*
+  
   async useJoinGame(gameId: string | null = null, execute: boolean, fromUrl: boolean = true) {
     if (execute) {
       console.log('gameId:', gameId);
@@ -121,16 +120,22 @@ partida: string | undefined |null;
       if (gameId) {
         const url = BACKEND_URL + '/getGame?idGame=' + gameId;
         try {
-          const response = await fetch(url);
-          console.log('data:', response);
+          const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
+          const data = await response.json();
+          console.log('data:', data);
   
-          if (response.exito === true) {
+          if (data.exito === true) {
             if (fromUrl) {
               localStorage.setItem('partida_actual', JSON.stringify({ partida: gameId }));
             } else {
-              if (response.tipo === 'l') {
+              if (data.tipo === 'l') {
                 alert('No se puede unir a una partida local.');
-              } else if (response.tipo === 'o') {
+              } else if (data.tipo === 'o') {
                 localStorage.setItem('partida_actual', JSON.stringify({ partida: gameId }));
                 this.router.navigate(['/game/' + gameId]);
               } else {
@@ -149,7 +154,7 @@ partida: string | undefined |null;
       }
     }
   }
-*/
+
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
