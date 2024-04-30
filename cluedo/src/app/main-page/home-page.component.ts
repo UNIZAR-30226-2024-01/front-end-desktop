@@ -51,10 +51,8 @@ partida: string | undefined |null;
     this.level = this.level === undefined ? 0 : this.level;
   }
   async obtainXP(): Promise<number> {
-    const username = localStorage.getItem('username');
     
-    const url = `http://localhost:3000/obtainXP?username=${username}`;
-    //console.log(url);
+    const url = `${BACKEND_URL}/obtainXP?username=${this.username}`;
     const response = await fetch(url);
     const data = await response.json();
     if (data.XP === undefined) {
@@ -81,13 +79,18 @@ partida: string | undefined |null;
   
     const url = BACKEND_URL + '/createGame';
     try {
+      console.log('gameMode:', gameMode);
       const response = await fetch(url, {
         method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify({
           type: gameMode,
         })
       });
       const data = await response.json();
+      console.log('data:', data);
       if (data && data.exito === true) {
         const idGame = data.id_partida;
         localStorage.setItem('partida_actual', idGame);
@@ -104,7 +107,7 @@ partida: string | undefined |null;
     let execute = true;
   
     if (this.partida) {
-      this.router.navigate(['/game-page/'/* + this.partida*/]);
+      this.router.navigate([`/game-page/${this.partida}`]);
       execute = false;
     }
   

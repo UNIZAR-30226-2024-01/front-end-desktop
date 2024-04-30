@@ -15,7 +15,7 @@ export class SocketService {
   private eventMessage = new Subject<any>();   // Subject para emitir eventos a los componentes que lo necesiten
 
   constructor(private gameService: GameService) { 
-    const options = {
+    const options: { auth: { username: string, group: string, offset: string }, transports: string[] } = {
       auth: {
         username: gameService.username,
         group: '0',
@@ -26,6 +26,13 @@ export class SocketService {
 
     this.socket = io(environment.apiUrl, options);
     this.serverListener();
+  }
+  setUsername(username: string) {
+    (this.socket.auth as { username: string })['username'] = username;
+  }
+  
+  setGroup(group: string) {
+    (this.socket.auth as { group: string })['group'] = group;
   }
 
 
@@ -59,7 +66,7 @@ export class SocketService {
       console.log('No se puede emitir el evento porque no se ha conectado al servidor');
       this.socket.on('connect', () => {
         console.log('Valor de this.socket.connected: ' + this.socket.connected);
-        console.log('Conectado al servidor!, emitiendo evento ' + callback.name + '...');
+        console.log('Conectado al servidor!, emitiendo evento...');
         callback();
       });
     }
@@ -89,32 +96,6 @@ export class SocketService {
   }
   public abandonar() {
     this.emitirEvento(() => this.socket.emit('leave-game'));
-  }
-  
-  public requestGameInfo(): void {
-    // Promesa que se resuelve después de cierto tiempo (timeout)
-    const timeoutPromise = new Promise((resolve, reject) => {
-      setTimeout(resolve, 500, "TIMEOUT");
-    });
-  
-    // Llamar a la función asincrónica y esperar por el ACK
-    const asyncFunctionPromise = this.emitirEvento(() => {
-      console.log("Enviando solicitud de información del juego");
-      this.socket.emit('request-game-info', () => {});      
-    });
-  
-    // Si el timeout se cumple antes de recibir el ACK, se vuelve a intentar
-    console.log("TRYING TO GET GAME INFO");
-    
-    Promise.race([timeoutPromise, asyncFunctionPromise]).then((value) => {
-      console.log("Valor de value: " + value);
-      if (value === "TIMEOUT") {
-        console.log("Timeout alcanzado, reintentando...");
-        return this.requestGameInfo();
-      } else {
-        return value;
-      }
-    });
   }
   
   

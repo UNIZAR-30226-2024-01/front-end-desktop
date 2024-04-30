@@ -17,8 +17,4 @@ export class MainTableroComponent {
   @Input() personajes: string[] = []; 
 
   constructor(private socketService: SocketService, public gameservice: GameService) {    }
-
-  ngOnInit() {
-    this.socketService.requestGameInfo();
-  }
 }
