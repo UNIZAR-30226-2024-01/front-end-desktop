@@ -15,7 +15,7 @@ export class SocketService {
   private eventMessage = new Subject<any>();   // Subject para emitir eventos a los componentes que lo necesiten
 
   constructor(private gameService: GameService) { 
-    const options = {
+    const options: { auth: { username: string, group: string, offset: string }, transports: string[] } = {
       auth: {
         username: gameService.username,
         group: '0',
@@ -26,6 +26,13 @@ export class SocketService {
 
     this.socket = io(environment.apiUrl, options);
     this.serverListener();
+  }
+  setUsername(username: string) {
+    (this.socket.auth as { username: string })['username'] = username;
+  }
+  
+  setGroup(group: string) {
+    (this.socket.auth as { group: string })['group'] = group;
   }
 
 
