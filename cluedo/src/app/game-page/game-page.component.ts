@@ -13,6 +13,7 @@ import { CharacterSelectionComponent } from './character-selection/character-sel
 import { SocketService } from '../servicios/servicio-socket/socket.service';
 import { Router } from '@angular/router';
 import { GameService } from '../servicios/servicio-game/game.service';
+import { TurnoService } from '../servicios/servicio-turno/turno.service';
 import { environment } from "../../environments/environment"; 
 
 const BACKEND_URL = environment.apiUrl;
@@ -36,7 +37,7 @@ const BACKEND_URL = environment.apiUrl;
 export class GamePageComponent implements OnInit{
   idGame: string | undefined;
 
-  constructor(private router: Router, public gameService: GameService, private socketService: SocketService) { }
+  constructor(private router: Router, public gameService: GameService, private socketService: SocketService, private turnoService: TurnoComponent) { }
   ngOnInit() {
     this.idGame = localStorage.getItem('partida_actual') ?? undefined;
     if (this.idGame === undefined) {
@@ -60,6 +61,14 @@ export class GamePageComponent implements OnInit{
     }
   } 
 
+  isMyTurn():boolean{
+    //falta poner que sea mi turno
+    if(this.turnoService ){
+      return true;
+    }else{
+      return false;
+    }
+  }
   //Funcion que maneja el evento de ok de los dados
   finDados(event: number): void {
     this.gameService.siguienteTurno();

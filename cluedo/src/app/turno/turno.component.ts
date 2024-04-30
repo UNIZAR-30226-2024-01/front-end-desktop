@@ -42,6 +42,7 @@ export class TurnoComponent implements OnInit {
     console.log("Se ha elegido el personaje", this.characterSelected);
     console.log("Se ha elegido el arma", this.gunSelected);
     console.log("Se ha elegido la habitacion", this.roomSelected);
+    this.turnoService.setParteTurno('espera-resto');
     //mandar a la BD
   }
 
@@ -64,7 +65,6 @@ export class TurnoComponent implements OnInit {
   }
   setRoomSelected(value:string):void {this.roomSelected=value
     console.log("product selected", value);
-
   }
 
   handleDiceRoll(totalValue: number): void {

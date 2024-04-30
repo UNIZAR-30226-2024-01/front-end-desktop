@@ -67,5 +67,6 @@ export class CarruselComponent {
     console.log('Producto ha cambiado');
     console.log('Producto activo:', activeProduct);
     this.cartaElegida.emit(activeProduct);
+    
   }
 }

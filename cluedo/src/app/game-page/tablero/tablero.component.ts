@@ -13,8 +13,6 @@ import * as infoTablero from '../../../assets/infoTablero.json';
   imports: [CeldaComponent, TextComponent,CommonModule],
   templateUrl: './tablero.component.html',
   styleUrl: '../../../../../../front-end-shared/css/Game/Tablero/Tablero.css'
-
-  
 })
 
 export class TableroComponent {
