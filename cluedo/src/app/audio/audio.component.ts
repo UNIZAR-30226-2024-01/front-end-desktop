@@ -3,7 +3,7 @@ import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/co
 @Component({
   selector: 'app-audio',
   standalone:true,
-  template: `<audio #audioRef loop controls style="display: none;">
+  template: `<audio #audioRef loop autoplay controls style="display: none;">
               <source src="../../assets/CluedoBanger.mp3" type="audio/mpeg">
             </audio>`
 })
@@ -13,6 +13,7 @@ export class AudioComponent implements OnInit, OnDestroy {
   constructor() { }
 
   ngOnInit(): void {
+    
     const playAudio = () => {
       this.audioRef.nativeElement.play();
     };
@@ -20,7 +21,11 @@ export class AudioComponent implements OnInit, OnDestroy {
     document.addEventListener('click', playAudio);
   }
 
+  playAudio(): void {
+    this.audioRef.nativeElement.play();
+  }
+
   ngOnDestroy(): void {
     // document.removeEventListener('click', this.playAudio);
-  }
+  } 
 }

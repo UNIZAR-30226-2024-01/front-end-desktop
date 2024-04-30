@@ -10,7 +10,7 @@
     </ngx-slick-carousel>
   </div> -->
  <div class="slider-container">  
-  <p-carousel [value]="products" [numVisible]="1" [numScroll]="1" [circular]="false" >
+  <p-carousel [value]="products" [numVisible]="1" [numScroll]="1" [circular]="false" (onPage)="onProductChange($event)" >
     <ng-template let-product pTemplate="item">
             <div class="slider-conatiner-card">
                 <!-- <h4 class="">hola</h4> -->

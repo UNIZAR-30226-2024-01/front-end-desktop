@@ -1,4 +1,4 @@
-import { Component, Input, viewChild } from '@angular/core';
+import { Component, Input,EventEmitter,Output, viewChild } from '@angular/core';
 import { CartasComponent } from '../cartas/cartas.component';
 import { CarouselModule } from 'primeng/carousel';
 import { GameService } from '../servicios/servicio-game/game.service';
@@ -14,6 +14,7 @@ import { GameService } from '../servicios/servicio-game/game.service';
 export class CarruselComponent {
   @Input() options: string[] |undefined;
   @Input() type: string | undefined;
+  @Output() cartaElegida: EventEmitter<string> = new EventEmitter<string>();
 
   @Input() products: any[] ;
 
@@ -55,7 +56,16 @@ export class CarruselComponent {
   //   initialSlide: 0,
   // };
 
-  onChange(option: string) {
-    // Aquí puedes manejar el cambio de opción
+  onProductChange(event:any): void {
+    // Obtener el índice del producto activo
+    const activeIndex: number = event.page;
+    
+    // Obtener el producto activo usando el índice
+    const activeProduct = this.products[activeIndex];
+
+    // Hacer lo que necesites con el producto activo
+    console.log('Producto ha cambiado');
+    console.log('Producto activo:', activeProduct);
+    this.cartaElegida.emit(activeProduct);
   }
 }
