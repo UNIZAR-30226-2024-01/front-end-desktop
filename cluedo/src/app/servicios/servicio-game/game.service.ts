@@ -7,17 +7,17 @@ export class GameService {
   pausedGame: boolean = false;
   requestedPause: boolean = false;
   username: string = this.getUsername();
-
+  started: boolean = false;
   numPlayers: number = 6;
   turno: number = 0;
   cards: string[] = [];
-
+  private sospechas: string[] = new Array(28).fill('');
   charactersSelected: boolean[] = [false, false, false, false, false, false];
   usernames: string[] = ["" , "", "", "", "", ""];
 
   userSelectedACharacter: boolean = false;
   userCharacter: number = -1;
-
+  
 
   personajes: string[] = ["", "", "", "", "", ""];
   armas: string[] = ["", "", "", "", "", ""];
@@ -39,6 +39,18 @@ export class GameService {
     this.cards = newCards;
   }
   
+
+  getSospechas(): string[] {
+    return this.sospechas;
+  }
+  setStarted(value: boolean): void {
+    this.started = value;
+  }
+
+  setSospechas(sospechas: string[]): void {
+    this.sospechas = sospechas;
+  }
+
   public setLugares(lugares: string[]): void {
     this.lugares = lugares;
     console.log("Lugares: ", this.lugares);

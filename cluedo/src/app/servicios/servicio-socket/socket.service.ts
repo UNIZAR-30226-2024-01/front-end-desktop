@@ -132,6 +132,9 @@ export class SocketService {
   public turnoCardSelected(usernameAsking: string, usernameShower: string, card: string){
     this.emitirEvento(() => this.socket.emit('turno-card-selected', usernameAsking, usernameShower, card));
   }
+  public sendSospechas(sospecha: string[]){
+    this.emitirEvento(() => this.socket.emit('response-sospechas', sospecha));
+  }
   
   obtenerFechaActual() {
     const fecha = new Date();

@@ -13,6 +13,12 @@ export class TurnoService {
   parteTurno$: Observable<string> = this.parteTurnoSubject.asObservable();
   dados$: Observable<number | undefined> = this.dadosSubject.asObservable();
 
+   restartTurno = (): void => {
+    this.setTurnoOwner('');
+    this.setParteTurno('espera-resto');
+    this.setDados(undefined);
+  }
+
   setTurnoOwner(turnoOwner: string): void {
     this.turnoOwnerSubject.next(turnoOwner);
   }

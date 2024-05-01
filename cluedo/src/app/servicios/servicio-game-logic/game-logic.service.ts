@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable, OnDestroy, numberAttribute } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
 import { SocketService } from '../servicio-socket/socket.service';
 import { TurnoService } from '../servicio-turno/turno.service';
@@ -27,14 +27,13 @@ export class GameLogicService implements OnDestroy {
   private router: Router;
   infoTablero: any;
   casillasPorHabitacion: any;
-  CardsService: any;
 
   constructor(
     socketio: SocketService,
     turnoService: TurnoService,
     celdasService: CeldasService,
     gameService: GameService,
-    CartasService: ShowCardsService,
+    cartasService: ShowCardsService,
     // private socketService: SocketService,
     // showCardsService: ShowCardsService,
     router: Router
@@ -42,6 +41,7 @@ export class GameLogicService implements OnDestroy {
     this.socketio = socketio;
     this.turnoService = turnoService;
     this.celdasService = celdasService;
+    this.cartasService=cartasService;
     this.infoTablero = infoTablero;
     this.casillasPorHabitacion = casillasPorHabitacion;
     this.gameService = gameService;
@@ -108,7 +108,7 @@ export class GameLogicService implements OnDestroy {
         this.socketio.turnoCardSelected(usernameAsking, usernameShower, card);
       };
       
-      this.cartasService.showCardElection(usernameAsking, this.gameService.get,[character, gun, room], onClick);
+      this.cartasService.showCardElection(usernameAsking, this.gameService.cards,[character, gun, room], onClick);
     });
 
     this.socket.on('turno-show-cards',(usernameAsking: string, usernameShower: string, card: string[], characterAsked: string, gunAsked: string, roomAsked: string)=>{
@@ -152,6 +152,8 @@ this.socket.on('game-over', (username: string, win: boolean) => {
 
 });
 
+
+
 this.socket.on('close-connection', () => {
   if (this.verbose) console.log('onCloseConnection');
   // muestra un modal con el mensaje de que se ha cerrado la conexión
@@ -159,72 +161,111 @@ this.socket.on('close-connection', () => {
   this.socket.disconnect();
   this.router.navigate(['/home-page']);
 });
-    ///////////////////////
 
-    this.socket.on('game-state', (gameState: any) => {
-      if (this.verbose) console.log('onGameState', gameState);
-      // actualiza el estado del juego
-      this.gameService.setGameState(gameState);
-    });
 
-    this.socket.on('cards', (cards: any) => {
-      if (this.verbose) console.log('onCards', cards);
-      // actualiza las cartas del jugador
-      this.gameService.setCards(cards);
-    });
+this.socket.on('game-state', ( posiciones, cartas, sospechas, turnoOwner) => {
+  if (this.verbose) console.log('onGameState',posiciones, cartas, sospechas, turnoOwner);
+  this.celdasService.setPlayerPositions(posiciones);
+  this.gameService.setCards(cartas);
+  // this.gameService.setSospechas(sospechas);
+  if (turnoOwner === this.socketio.getUserName()) {
+    console.log('Reiniciando turno...');
+    this.turnoService.restartTurno();
+  } else {
+    console.log('turnoOwner != a mí mismo', turnoOwner);
+    this.turnoService.setTurnoOwner(turnoOwner);
+  }
+});
 
-    this.socket.on('game-info', (data: any) => {
-      console.log('Game info:', data);
+  this.socket.on('cards', (cards: any) => {
+    if (this.verbose) console.log('onCards', cards);
+    // actualiza las cartas del jugador
+    this.gameService.setCards(cards);
+  });
 
-      if (data.cards) {
-        this.gameService.setCards(data.cards);
-        this.gameService.setStarted(true);
-      }
-  
-      if (data.sospechas) {
-        const json = data.sospechas.replace(/{/g, '[').replace(/}/g, ']');
-        const newSospechas = JSON.parse(json);
-        this.gameService.setSospechas(newSospechas);
-      }
-  
-      if (data.posiciones) {
-        const newPositions = [];
-        for (const pos of data.posiciones) {
-          const inRoom = infoTablero[pos].isRoom;
-          if (inRoom) {
-            const roomName = infoTablero[pos].roomName;
-            let { cells } = casillasPorHabitacion[parseInt(roomName) - 1];
-            cells = cells.filter((c) => !newPositions.includes(c));
-            const randomCell = cells[Math.floor(Math.random() * cells.length)];
-            newPositions.push(randomCell);
-          } else {
-            newPositions.push(pos);
-          }
-        }
-        this.celdasService.setPlayerPositions(newPositions);
-      }
-  
-      if (data.turnoOwner) {
-        if (data.turnoOwner === this.socketService.getUsername()) {
-          console.log('Reiniciando turno...');
-          this.turnoService.restartTurno();
+  this.socket.on('game-info', (data: any) => {
+    console.log('Game info:', data);
+
+    if (data.cards) {
+      this.gameService.setCards(data.cards);
+      this.gameService.setStarted(true);
+    }
+
+    if (data.sospechas) {
+      const json = data.sospechas.replace(/{/g, '[').replace(/}/g, ']');
+      const newSospechas = JSON.parse(json);
+      this.gameService.setSospechas(newSospechas);
+    }
+
+    if (data.posiciones) {
+      const newPositions: number[]=[];
+      for (const pos of data.posiciones) {
+        const inRoom = infoTablero[pos].isRoom;
+        if (inRoom) {
+          const roomName = infoTablero[pos].roomName;
+          let { cells } = casillasPorHabitacion[parseInt(roomName) - 1];
+          cells = cells.filter((c:number) => !newPositions.includes(c));
+          const randomCell = cells[Math.floor(Math.random() * cells.length)];
+          newPositions.push(randomCell);
         } else {
-          console.log('turnoOwner != a mí mismo', data.turnoOwner);
-          this.turnoService.setTurnoOwner(data.turnoOwner);
-          this.turnoService.setParteTurno('es-tu-turno');
+          newPositions.push(pos);
         }
       }
+      this.celdasService.setPlayerPositions(newPositions);
+    }
+
+    if (data.turnoOwner) {
+      if (data.turnoOwner === this.socketio.getUserName()) {
+        console.log('Reiniciando turno...');
+        this.turnoService.restartTurno();
+      } else {
+        console.log('turnoOwner != a mí mismo', data.turnoOwner);
+        this.turnoService.setTurnoOwner(data.turnoOwner);
+        this.turnoService.setParteTurno('es-tu-turno');
+      }
+    }
+
+  });
+
     
+    this.socket.on('start-game', (info_partida) => {
+      console.log('Game info received from server:', info_partida);
+      this.gameService.setPersonajes(info_partida.names);
+      this.gameService.setArmas(info_partida.guns);
+      this.gameService.setLugares(info_partida.rooms);
+      this.gameService.setUsuarios(info_partida.available);
+      this.celdasService.setPlayerPositions(info_partida.posiciones);
+    });
+  
+
+    //game-paused-response
+    this.socket.on('game-paused-response', () => {
+      console.log('Game paused');
+      alert('La partida ha sido pausada');
+      this.gameService.setRequestedPause(false);
+      this.gameService.setPausedGame(true);
     });
 
-    this.socket.on('start-game', (gameState: any) => {
-      if (this.verbose) console.log('onStartGame', gameState);
-      // actualiza el estado del juego
-      this.gameService.setGameState(gameState);
+
+    // game-resumed-response
+    this.socket.on('game-resumed-response', () => {
+      console.log('Game resumed');
+      alert('La partida ha sido reanudada');
+      this.gameService.setRequestedPause(false);
+      this.gameService.setPausedGame(false);
+    });
+
+
+
+    // request-sospechas
+
+    this.socket.on('request-sospechas', () => {
+      console.log('Request sospechas');
+      this.socketio.sendSospechas(this.gameService.getSospechas());
     });
   }
 
 
- }
 }
+
     

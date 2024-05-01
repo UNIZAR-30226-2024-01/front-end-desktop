@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 import { GameService } from '../servicios/servicio-game/game.service';
 import { TurnoService } from '../servicios/servicio-turno/turno.service';
 import { environment } from "../../environments/environment"; 
+import { io, Socket } from 'socket.io-client';
 
 const BACKEND_URL = environment.apiUrl;
 
@@ -60,6 +61,12 @@ export class GamePageComponent implements OnInit{
       return true;
     }
   } 
+
+  startGame(): void {
+    this.gameService.started = true;
+    console.log('start game');
+    this.socketService.startGame();
+  }
 
   isMyTurn():boolean{
     //falta poner que sea mi turno
