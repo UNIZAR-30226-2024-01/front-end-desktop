@@ -95,6 +95,7 @@ partida: string | undefined |null;
         const idGame = data.id_partida;
         localStorage.setItem('partida_actual', idGame);
         this.router.navigate(['/game-page/' + idGame]);
+        alert('Partida creada con éxito.');
       } else {
         alert('No se ha podido crear la partida. Inténtalo de nuevo.');
       }
