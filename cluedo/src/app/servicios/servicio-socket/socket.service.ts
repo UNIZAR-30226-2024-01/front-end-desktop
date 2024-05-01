@@ -34,6 +34,12 @@ export class SocketService {
   setGroup(group: string) {
     (this.socket.auth as { group: string })['group'] = group;
   }
+  getUserName() {
+    return (this.socket.auth as { username: string })['username'];
+  }
+  getGroup() {
+    return (this.socket.auth as { group: string })['group'];
+  } 
 
 
 
@@ -50,6 +56,10 @@ export class SocketService {
     
     this.socket.on('chat-response', (emisor, msg, currentTimestamp, date) => {    
       this.sendData({emisor, msg, currentTimestamp, date});
+    });
+
+    this.socket.on('turno-owner(username_owner)', (username_owner) => {
+      //Llamamos a alguna funcion del servicio game-logic
     });
 
   }

@@ -63,7 +63,7 @@ export class GamePageComponent implements OnInit{
 
   isMyTurn():boolean{
     //falta poner que sea mi turno
-    if(this.turnoService ){
+    if(this.turnoService, this.socketService.getUserName()){
       return true;
     }else{
       return false;
