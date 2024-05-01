@@ -37,7 +37,7 @@ const BACKEND_URL = environment.apiUrl;
 export class GamePageComponent implements OnInit{
   idGame: string | undefined;
 
-  constructor(private router: Router, public gameService: GameService, private socketService: SocketService, private turnoService: TurnoComponent) { }
+  constructor(private router: Router, public gameService: GameService, private socketService: SocketService, private turnoService: TurnoService) { }
   ngOnInit() {
     this.idGame = localStorage.getItem('partida_actual') ?? undefined;
     if (this.idGame === undefined) {
