@@ -6,6 +6,8 @@ import {MatMenuModule} from '@angular/material/menu';
 import { CommonModule } from '@angular/common';
 import { Socket } from 'socket.io-client';
 import { SocketService } from '../servicios/servicio-socket/socket.service';
+import { Inject } from '@angular/core';
+import { GameService } from '../servicios/servicio-game/game.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -15,12 +17,22 @@ import { SocketService } from '../servicios/servicio-socket/socket.service';
   styleUrl: '../../../../../front-end-shared/css/Game/NavbarGame.css'
 })
 export class ToolbarComponent {
-pausarPartida() {
-  alert("Partida pausada (falta implementar)");
+pausarPartida(): void  {
+  if (this.gameService.pausedGame) {
+    this.socketService.continuar_partida();
+    this.gameService.setPausedGame(false);
+    this.gameService.setRequestedPause(false);
+  } else if (this.gameService.requestedPause) {
+    // Toast: la pausa ya está solicitada
+  } else {
+    this.socketService.pausar_partida();
+    this.gameService.setRequestedPause(true);
+    this.gameService.setPausedGame(false);
+  }
 }
-constructor(private router: Router, private socketService: SocketService)  {
-  // Inicializar el usuario aquí si es necesario
-  // this.user=
+constructor(private router: Router, private socketService: SocketService, public gameService: GameService)  {
+   //Inicializar el usuario aquí si es necesario
+   this.user=localStorage.getItem('username') ?? undefined;
 }
 abandonarPartida() {
   this.socketService.abandonar();

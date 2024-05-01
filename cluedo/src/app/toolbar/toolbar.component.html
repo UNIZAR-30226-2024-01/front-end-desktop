@@ -19,7 +19,9 @@
   <div *ngIf="isOpen" class="menu">
   <!-- <div class="menu"> -->
     <p (click)="abandonarPartida()">Abandonar partida</p>
-    <p (click)="pausarPartida()">Pausar partida</p>
-    <p>¡Suerte {{ user }}!</p>
+    <p (click)="pausarPartida()">
+      {{ gameService.isPausedGame() ? 'Reanudar partida' : gameService.isRequestedPause() ? 'Pausa solicitada' : 'Pausar partida' }}
+    </p>
+    <p>¡Suerte {{ this.user }}!</p>
   </div>
 </nav>

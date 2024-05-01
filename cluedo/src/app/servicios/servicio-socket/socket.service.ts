@@ -123,7 +123,12 @@ export class SocketService {
   public abandonar() {
     this.emitirEvento(() => this.socket.emit('leave-game'));
   }
-  
+  public continuar_partida() {
+    this.emitirEvento(() => this.socket.emit('request-resume-game', {}));
+  }
+  public pausar_partida() {
+    this.emitirEvento(() => this.socket.emit('request-pause-game', {}));
+  }
   
   
   obtenerFechaActual() {

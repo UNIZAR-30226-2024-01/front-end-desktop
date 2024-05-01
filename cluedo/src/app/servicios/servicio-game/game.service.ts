@@ -4,7 +4,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class GameService {
-
+  pausedGame: boolean = false;
+  requestedPause: boolean = false;
   username: string = this.getUsername();
 
   numPlayers: number = 6;
@@ -37,7 +38,20 @@ export class GameService {
     this.lugares = lugares;
     console.log("Lugares: ", this.lugares);
   }
+  setPausedGame(value: boolean): void {
+    this.pausedGame = value;
+  }
 
+  setRequestedPause(value: boolean): void {
+    this.requestedPause = value;
+  }
+public isRequestedPause(): boolean {
+    return this.requestedPause;
+  }
+
+  public isPausedGame(): boolean {
+    return this.pausedGame;
+  } 
   public setUsuarios(usuarios: string[]): void {
     this.usernames = usuarios;
     console.log("Usuarios: ", this.usernames);
