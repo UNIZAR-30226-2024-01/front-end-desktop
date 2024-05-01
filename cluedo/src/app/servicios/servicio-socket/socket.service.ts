@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
 import { Observable, Subject } from 'rxjs';
 import { GameService } from '../servicio-game/game.service';
-import { GameLogicService } from '../servicio-game-logic/game-logic.service';
+// import { GameLogicService } from '../servicio-game-logic/game-logic.service';
 import { environment } from "../../../environments/environment";
 // const {
 //   socket
@@ -15,7 +15,7 @@ export class SocketService {
   private socket: Socket;
   private eventMessage = new Subject<any>();   // Subject para emitir eventos a los componentes que lo necesiten
 
-  constructor(private gameService: GameService, private gameLogicService: GameLogicService) { 
+  constructor(private gameService: GameService) { 
     const options: { auth: { username: string, group: string, offset: string }, transports: string[] } = {
       auth: {
         username: gameService.username,
@@ -75,7 +75,7 @@ export class SocketService {
 
     this.socket.on('turno-owner(username_owner)', (username_owner) => {
       //Llamamos a alguna funcion del servicio game-logic
-      this.gameLogicService.onTurnoOwner(username_owner)
+      // this.gameLogicService.onTurnoOwner(username_owner)
     });
 
   }
