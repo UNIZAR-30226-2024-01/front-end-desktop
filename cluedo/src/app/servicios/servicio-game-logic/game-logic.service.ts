@@ -7,8 +7,8 @@ import { GameService } from '../servicio-game/game.service';
 import { environment } from "../../../environments/environment";
 // import { ShowCardsService } from './show-cards.service';
 import { Router } from '@angular/router';
-import { infoTablero, casillasPorHabitacion } from '../../../../../../front-end-shared/infoTablero';
 
+const { infoTablero, casillasPorHabitacion } = require('../../../../front-end-shared/infoTablero.js');
 
 @Injectable({
   providedIn: 'root'
