@@ -39,7 +39,8 @@ partida: string | undefined |null;
       this.username = 'Invitado';
     } else {
       this.username = localStorage.getItem('username') as string;
-      this.partida=localStorage.getItem('partida_actual') as string;
+     this.playerInfo();
+     this.partida = localStorage.getItem('partida_actual');
      this.partida = this.partida === "undefined" ? null : this.partida;
     }
     this.obtainXP().then(xp => {
@@ -69,7 +70,16 @@ partida: string | undefined |null;
     this.color = this.getColor();
   }
 
-
+ async playerInfo(){
+  const url = BACKEND_URL + '/playerInformation?username=' + this.username;
+  const response = await fetch(url);
+    const data = await response.json();
+    if (data.exito === true && data.partida_actual) {
+      localStorage.setItem('partida_actual', data.partida_actual);
+    } else {
+      localStorage.setItem('partida_actual', '');
+    }
+  }
 
   async newGameClick(gameMode: string) {
     if (gameMode === '') {
