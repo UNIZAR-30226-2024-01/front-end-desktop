@@ -115,22 +115,28 @@ partida: string | undefined |null;
   }
 
   async useJoinGameClick() {
-    let execute = true;
-  
-    if (this.partida) {
-      this.router.navigate([`/game-page/${this.partida}`]);
-      execute = false;
+    if (!this.partida) {
+      let par = window.prompt('Introduzca el ID de la partida (6 dígitos):');
+      if (par) {
+        this.router.navigate(['/game-page/' + par]);
+      } else {
+        alert('ID de partida no válido.');
+      }
+      return;
     }
-  
-    if (execute) {
-      await this.useJoinGame(null, execute, false);
-    }
+    this.router.navigate(['/game-page/' + this.partida]);
+    return;
   }
   
-  async useJoinGame(gameId: string | null = null, execute: boolean, fromUrl: boolean = true) {
+  async useJoinGame(gameId: number | null = null, execute: boolean, fromUrl: boolean = true) {
     if (execute) {
       console.log('gameId:', gameId);
-      if (!gameId) gameId = window.prompt('Introduzca el ID de la partida (6 dígitos):');
+      if (!gameId){
+        const userInput = window.prompt('Introduzca el ID de la partida (6 dígitos):');
+        if (userInput) {
+          gameId = parseInt(userInput);
+        }
+      }
       if (gameId) {
         const url = BACKEND_URL + '/getGame?idGame=' + gameId;
         try {
