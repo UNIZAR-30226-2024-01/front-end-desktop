@@ -10,6 +10,7 @@ export class GameService {
 
   numPlayers: number = 6;
   turno: number = 0;
+  cards: string[] = [];
 
   charactersSelected: boolean[] = [false, false, false, false, false, false];
   usernames: string[] = ["" , "", "", "", "", ""];
@@ -34,6 +35,10 @@ export class GameService {
     console.log("Armas: ", this.armas);
   }
 
+  setCards(newCards: string[]): void {
+    this.cards = newCards;
+  }
+  
   public setLugares(lugares: string[]): void {
     this.lugares = lugares;
     console.log("Lugares: ", this.lugares);
