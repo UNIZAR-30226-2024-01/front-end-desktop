@@ -129,7 +129,9 @@ export class SocketService {
   public pausar_partida() {
     this.emitirEvento(() => this.socket.emit('request-pause-game', {}));
   }
-  
+  public turnoCardSelected(usernameAsking: string, usernameShower: string, card: string){
+    this.emitirEvento(() => this.socket.emit('turno-card-selected', usernameAsking, usernameShower, card));
+  }
   
   obtenerFechaActual() {
     const fecha = new Date();

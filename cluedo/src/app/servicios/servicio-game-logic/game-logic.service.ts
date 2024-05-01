@@ -7,6 +7,8 @@ import { GameService } from '../servicio-game/game.service';
 import { environment } from "../../../environments/environment";
 // import { ShowCardsService } from './show-cards.service';
 import { Router } from '@angular/router';
+import { infoTablero, casillasPorHabitacion } from '../../../../../../front-end-shared/infoTablero';
+
 
 @Injectable({
   providedIn: 'root'
@@ -21,18 +23,23 @@ export class GameLogicService implements OnDestroy {
   private gameService: GameService;
   // private showCardsService: ShowCardsService;
   private router: Router;
+  infoTablero: any;
+  casillasPorHabitacion: any;
 
   constructor(
     socketio: SocketService,
     turnoService: TurnoService,
     celdasService: CeldasService,
     gameService: GameService,
+    private socketService: SocketService,
     // showCardsService: ShowCardsService,
     router: Router
   ) {
     this.socketio = socketio;
     this.turnoService = turnoService;
     this.celdasService = celdasService;
+    this.infoTablero = infoTablero;
+    this.casillasPorHabitacion = casillasPorHabitacion;
     this.gameService = gameService;
     const options: { auth: { username: string, group: string, offset: string }, transports: string[] } = {
       auth: {
@@ -75,6 +82,14 @@ export class GameLogicService implements OnDestroy {
 
     this.socket.on('turno-moves-to-response', (username: string, position: number) => {
       if (this.verbose) console.log('onTurnoMovesToResponse', username, position);
+
+      if (this.infoTablero[position].isRoom) {
+        const roomName = this.infoTablero[position].roomName;
+        let cells = this.casillasPorHabitacion[parseInt(roomName) - 1].cells;
+        cells = cells.filter((c: number) => !this.celdasService.getPlayerPositions().includes(c));
+        position = cells[Math.floor(Math.random() * cells.length)];
+      }
+
       const playerIdx = this.gameService.usernames.indexOf(username);
       const newPlayerPositions = [...this.celdasService.getPlayerPositions()];
       newPlayerPositions[playerIdx] = position;
@@ -86,8 +101,10 @@ export class GameLogicService implements OnDestroy {
 
       const onClick = (card: string) => {
         console.log('card selected', card);
-        // this.socket.emit('turno-card-selected', usernameAsking, this.cookies.username, card);
+        this.socketService.turnoCardSelected(usernameAsking, usernameShower, card);
       };
+      
+
     });
  }
 }
