@@ -1,8 +1,10 @@
 import { Injectable, OnDestroy } from '@angular/core';
+import { io, Socket } from 'socket.io-client';
 import { SocketService } from '../servicio-socket/socket.service';
 import { TurnoService } from '../servicio-turno/turno.service';
 import { CeldasService } from '../servicio-celdas/celdas.service';
 import { GameService } from '../servicio-game/game.service';
+import { environment } from "../../../environments/environment";
 // import { ShowCardsService } from './show-cards.service';
 import { Router } from '@angular/router';
 
@@ -12,6 +14,7 @@ import { Router } from '@angular/router';
 export class GameLogicService implements OnDestroy {
   private verbose = true;
   private socket: SocketService;
+  private socketReal: Socket;
   private turnoService: TurnoService;
   private celdasService: CeldasService;
   private gameService: GameService;
@@ -30,6 +33,15 @@ export class GameLogicService implements OnDestroy {
     this.turnoService = turnoService;
     this.celdasService = celdasService;
     this.gameService = gameService;
+    const options: { auth: { username: string, group: string, offset: string }, transports: string[] } = {
+      auth: {
+        username: gameService.username,
+        group: '0',
+        offset: this.socket.obtenerFechaActual()
+      },
+      transports: ['polling', 'websocket']
+    };
+    this.socketReal = io(environment.apiUrl, options);
     // this.showCardsService = showCardsService;
     this.router = router;
 
@@ -37,51 +49,38 @@ export class GameLogicService implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.socket.removeListener('turno-owner');
-    this.socket.removeListener('turno-moves-to-response');
-    this.socket.removeListener('turno-show-cards');
-    this.socket.removeListener('turno-select-to-show');
-    this.socket.removeListener('turno-asks-for-response');
-    this.socket.removeListener('game-over');
-    this.socket.removeListener('close-connection');
-    this.socket.removeListener('game-state');
-    this.socket.removeListener('cards');
-    this.socket.removeListener('game-info');
-    this.socket.removeListener('start-game');
+    this.socket.onDestroy();
   }
 
   private initializeSocketListeners(): void {
     if (!this.socket) return;
+    this.socket.serverListener();
+  }
+    
+   onTurnoOwner(username: string): void {
+    if (this.verbose) console.log('onTurnoOwner', username);
+    this.turnoService.setTurnoOwner(username);
+    this.turnoService.setParteTurno('es-tu-turno');
+  }
 
-    this.socket.on('turno-owner', (username: string) => {
-      if (this.verbose) console.log('onTurnoOwner', username);
-      this.turnoService.setTurnoOwner(username);
-      this.turnoService.setParteTurno('es-tu-turno');
-    });
+   onTurnoMovesToResponse(username: string, position: number): void {
+    if (this.verbose) console.log('onTurnoMovesToResponse', username, position);
+    const playerIdx = this.gameService.usernames.indexOf(username);
+    const newPlayerPositions = [...this.celdasService.getPlayerPositions()];
+    newPlayerPositions[playerIdx] = position;
+    this.celdasService.setPlayerPositions(newPlayerPositions); 
+    
+  }
 
-    this.socket.on('turno-moves-to-response', (username: string, position: number) => {
-      if (this.verbose) console.log('onTurnoMovesToResponse', username, position);
-      const playerIdx = this.gameInfoService.usernames.indexOf(username);
-      this.celdasService.setPlayerPositions((prev) => {
-        const newPlayerPositions = [...prev];
-        newPlayerPositions[playerIdx] = position;
-        return newPlayerPositions;
-      });
-    });
+   onTurnoSelectToShow(usernameAsking: string, usernameShower: string, character: string, gun: string, room: string): void {
+    if (this.verbose) console.log('onTurnoSelectToShow', usernameAsking, usernameShower, character, gun, room);
 
-    this.socket.on('turno-select-to-show', (usernameAsking: string, usernameShower: string, character: string, gun: string, room: string) => {
-      if (this.verbose) console.log('onTurnoSelectToShow', usernameAsking, usernameShower, character, gun, room);
+    const onClick = (card: string) => {
+      console.log('card selected', card);
+      this.socket.emitirEvento(() => this.socketReal.emit('turno-card-selected', usernameAsking, card));
 
-      const onClick = (card: string) => {
-        console.log('card selected', card);
-        this.socket.emit('turno-card-selected', usernameAsking, this.cookies.username, card);
-      };
-
-      // showCardElection(username_asking, cards, [character, gun, room], onClick);
-    });
-
-    // Add more socket event listeners here...
-
-    // Don't forget to remove the listeners in the ngOnDestroy method
+    };
+    // showCardElection(username_asking, cards, [character, gun, room], onClick);
   }
 }
+      // showCardElection(username_asking, cards, [character, gun, room], onClick);

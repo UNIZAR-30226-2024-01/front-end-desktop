@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
 import { Observable, Subject } from 'rxjs';
 import { GameService } from '../servicio-game/game.service';
+import { GameLogicService } from '../servicio-game-logic/game-logic.service';
 import { environment } from "../../../environments/environment";
 // const {
 //   socket
@@ -14,7 +15,7 @@ export class SocketService {
   private socket: Socket;
   private eventMessage = new Subject<any>();   // Subject para emitir eventos a los componentes que lo necesiten
 
-  constructor(private gameService: GameService) { 
+  constructor(private gameService: GameService, private gameLogicService: GameLogicService) { 
     const options: { auth: { username: string, group: string, offset: string }, transports: string[] } = {
       auth: {
         username: gameService.username,
@@ -42,9 +43,23 @@ export class SocketService {
   } 
 
 
+  onDestroy():void{
+    this.socket.removeListener('turno-owner');
+    this.socket.removeListener('turno-moves-to-response');
+    this.socket.removeListener('turno-show-cards');
+    this.socket.removeListener('turno-select-to-show');
+    this.socket.removeListener('turno-asks-for-response');
+    this.socket.removeListener('game-over');
+    this.socket.removeListener('close-connection');
+    this.socket.removeListener('game-state');
+    this.socket.removeListener('cards');
+    this.socket.removeListener('game-info');
+    this.socket.removeListener('start-game');
+  }
+
 
   // Método para escuchar eventos del servidor
-  private serverListener(): void {
+  serverListener(): void {
 
     this.socket.on('game-info', (gameInfo: any) => {
       console.log('Game info received from server:', gameInfo);
@@ -60,13 +75,14 @@ export class SocketService {
 
     this.socket.on('turno-owner(username_owner)', (username_owner) => {
       //Llamamos a alguna funcion del servicio game-logic
+      this.gameLogicService.onTurnoOwner(username_owner)
     });
 
   }
 
 
   // Método para emitir eventos al servidor teniendo en cuenta si el cliente está conectado o no
-  private emitirEvento(callback: () => void) {
+  emitirEvento(callback: () => void) {
     // Si está conectado, emitir el evento
     console.log('Valor de this.socket.connected: ' + this.socket.connected);
     if (this.socket.connected) {
@@ -110,7 +126,7 @@ export class SocketService {
   
   
   
-  private obtenerFechaActual() {
+  obtenerFechaActual() {
     const fecha = new Date();
     const año = fecha.getFullYear();
     const mes = ("0" + (fecha.getMonth() + 1)).slice(-2);

@@ -28,4 +28,9 @@ export class CeldasService {
   setPlayerPositions(playerPositions: number[]): void {
     this.playerPositionsSubject.next(playerPositions);
   }
+  
+  getPlayerPositions(): number[] {
+    return this.playerPositionsSubject.getValue();
+  }
+
 }
