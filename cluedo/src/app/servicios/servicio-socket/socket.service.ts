@@ -18,7 +18,7 @@ export class SocketService {
   constructor(private gameService: GameService) { 
     const options: { auth: { username: string, group: string, offset: string }, transports: string[] } = {
       auth: {
-        username: gameService.username,
+        username: localStorage.getItem('username') ?? 'Anonymous',
         group: '0',
         offset: this.obtenerFechaActual()
       },

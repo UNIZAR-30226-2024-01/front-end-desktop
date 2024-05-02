@@ -130,52 +130,52 @@ partida: string | undefined |null;
     return;
   }
   
-  async useJoinGame(gameId: number | null = null, execute: boolean, fromUrl: boolean = true) {
-    if (execute) {
-      console.log('gameId:', gameId);
-      if (!gameId){
-        const userInput = window.prompt('Introduzca el ID de la partida (6 dígitos):');
-        if (userInput) {
-          gameId = parseInt(userInput);
-        }
-      }
-      if (gameId) {
-        const url = BACKEND_URL + '/getGame?idGame=' + gameId;
-        try {
-          const response = await fetch(url, {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          });
-          const data = await response.json();
-          console.log('data:', data);
+  // async useJoinGame(gameId: number | null = null, execute: boolean, fromUrl: boolean = true) {
+  //   if (execute) {
+  //     console.log('gameId:', gameId);
+  //     if (!gameId){
+  //       const userInput = window.prompt('Introduzca el ID de la partida (6 dígitos):');
+  //       if (userInput) {
+  //         gameId = parseInt(userInput);
+  //       }
+  //     }
+  //     if (gameId) {
+  //       const url = BACKEND_URL + '/getGame?idGame=' + gameId;
+  //       try {
+  //         const response = await fetch(url, {
+  //           method: 'GET',
+  //           headers: {
+  //             'Content-Type': 'application/json',
+  //           },
+  //         });
+  //         const data = await response.json();
+  //         console.log('data:', data);
   
-          if (data.exito === true) {
-            if (fromUrl) {
-              localStorage.setItem('partida_actual', JSON.stringify({ partida: gameId }));
-            } else {
-              if (data.tipo === 'l') {
-                alert('No se puede unir a una partida local.');
-              } else if (data.tipo === 'o') {
-                localStorage.setItem('partida_actual', JSON.stringify({ partida: gameId }));
-                this.router.navigate(['/game-page/' + gameId]);
-              } else {
-                alert('Error al obtener el tipo de partida.');
-              }
-            }
-          } else {
-            alert('No se ha podido unirse a la partida. Inténtalo de nuevo.');
-            this.router.navigate(['/']);
-          }
-        } catch (error) {
-          console.error('Error:', error);
-        }
-      } else {
-        alert('ID de partida no válido.');
-      }
-    }
-  }
+  //         if (data.exito === true) {
+  //           if (fromUrl) {
+  //             localStorage.setItem('partida_actual', JSON.stringify({ partida: gameId }));
+  //           } else {
+  //             if (data.tipo === 'l') {
+  //               alert('No se puede unir a una partida local.');
+  //             } else if (data.tipo === 'o') {
+  //               localStorage.setItem('partida_actual', JSON.stringify({ partida: gameId }));
+  //               this.router.navigate(['/game-page/' + gameId]);
+  //             } else {
+  //               alert('Error al obtener el tipo de partida.');
+  //             }
+  //           }
+  //         } else {
+  //           alert('No se ha podido unirse a la partida. Inténtalo de nuevo.');
+  //           this.router.navigate(['/']);
+  //         }
+  //       } catch (error) {
+  //         console.error('Error:', error);
+  //       }
+  //     } else {
+  //       alert('ID de partida no válido.');
+  //     }
+  //   }
+  // }
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;

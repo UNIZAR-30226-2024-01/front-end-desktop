@@ -45,6 +45,9 @@ export class GamePageComponent implements OnInit{
     if (this.idGame === undefined) {
       this.router.navigate(['/home-page']);
     }
+    const haveISelected= this.gameService.getUsernames().includes(localStorage.getItem('username') ?? '');
+    console.log('Have I selected a character?', haveISelected);
+    this.gameService.setCharacterSelection(haveISelected);
     this.checkGameExists();
     this.socketService.setUsername(this.gameService.getUsername() ?? 'anonymous');
     this.socketService.setGroup(this.idGame ?? '0');
@@ -55,32 +58,32 @@ export class GamePageComponent implements OnInit{
   personajes: string[] = ["mr SOPER", "mr REDES", "mr PROG", "mr FISICA", "mr DISCRETO", "mr IA"];
 
   //Funcion que devuelve si se esta produciendo un evento, por ahora solo esta el caso de selección de personaje
-  IsAnEventOccurring(): boolean {
-    if (this.gameService.userSelectedACharacter) {
-      return false;
-    } else {
-      return true;
-    }
-  } 
 
-  startGame(): void {
-    this.gameService.started = true;
+  startGame(): void { 
+    this.gameService.setStarted(true);
     console.log('start game');
     this.socketService.startGame();
   }
 
-  isMyTurn():boolean{
-    //falta poner que sea mi turno
-    if(this.turnoService, this.socketService.getUserName()){
+  isMyTurn(): boolean {
+    // falta poner que sea mi turno
+    if (this.turnoService.getTurnoOwner() === localStorage.getItem('username')) {
       return true;
-    }else{
+    } else {
       return false;
     }
   }
-  //Funcion que maneja el evento de ok de los dados
+  // Funcion que maneja el evento de ok de los dados
   finDados(event: number): void {
     this.gameService.siguienteTurno();
   }
+/*
+* Deja entrar en una partida en los siguientes casos:
+* - Ya estoy dentro de la partida (tengo un personaje seleccionado)
+* - No ha habido error, no ha empezado todavía y no estoy en otra partida
+* - Mis cookies son correctas (idGame adecuado)
+* - Es una partida local y esta vacia de jugadores
+*/
   checkGameExists() {
     console.log('Checking if game exists');
    // console.log('gameId:', this.idGame);
@@ -91,12 +94,21 @@ export class GamePageComponent implements OnInit{
         'Content-Type': 'application/json',
       },
     }).then((response) => response.json()).then((data) => {
-      const am_i_in = data.areAvailable.includes((this.gameService.getUsername()));
-      if (data.exito === true || am_i_in) {
+      const am_i_in = data.areAvailable.includes(localStorage.getItem('username'));
+      if (
+        am_i_in ||
+        (data.exito && data.estado === '0' && data.tipo == 'o' && localStorage.getItem('partida_actual') === '') ||
+        localStorage.getItem('partida_actual') == this.idGame ||
+        (data.areAvailable?.every((item: string) => item === '') && data.estado === '0' && data.tipo === 'l')
+      ) {
+        // no ha habido error y no ha empezado todavía, o bien estoy en la partida y mis cookies son correctas
+        localStorage.setItem('partida_actual', this.idGame ?? '');
+        this.gameService.setPausedGame(data.estado === 'p');
+        this.gameService.setRequestedPause(false);
         console.log('Game exists');
       } else {
         alert('No se ha podido unirse a la partida. Inténtalo de nuevo.');
-        this.router.navigate(['/']);
+        this.router.navigate(['/home-page']);
       }
     });
   }

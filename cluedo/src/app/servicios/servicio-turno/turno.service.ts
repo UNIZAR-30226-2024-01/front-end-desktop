@@ -22,7 +22,9 @@ export class TurnoService {
   setTurnoOwner(turnoOwner: string): void {
     this.turnoOwnerSubject.next(turnoOwner);
   }
-
+  getTurnoOwner(): string {
+    return this.turnoOwnerSubject.getValue();
+  }
   setParteTurno(parteTurno: string): void {
     this.parteTurnoSubject.next(parteTurno);
   }

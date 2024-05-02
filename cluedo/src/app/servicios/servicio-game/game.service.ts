@@ -5,8 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class GameService {
   pausedGame: boolean = false;
-  requestedPause: boolean = false;
   username: string = this.getUsername();
+  requestedPause: boolean = false;
   started: boolean = false;
   numPlayers: number = 6;
   turno: number = 0;
@@ -28,6 +28,12 @@ export class GameService {
   public setPersonajes(personajes: string[]): void {
     this.personajes = personajes;
     console.log("Personajes: ", this.personajes);
+  }
+  public setCharacterSelection(characterSelected: boolean): void {
+    this.userSelectedACharacter = characterSelected;
+  }
+  public getCharacterSelection(): boolean {
+    return this.userSelectedACharacter;
   }
 
   public setArmas(armas: string[]): void {
@@ -83,11 +89,13 @@ public isRequestedPause(): boolean {
   }
 
   // Devuelve el nombre de usuario almacenado en el localStorage quitando el tipo null
+  getUsernames(): string[] {
+    return this.usernames;
+  }
   getUsername(): string {
     const username = localStorage.getItem("username");
     return username ? username : "";
   }
-
   // Devuelve el nombre del personaje seleccionado por el usuario
   getPersonajeUsuario(): string {
     return this.personajes[this.userCharacter];
