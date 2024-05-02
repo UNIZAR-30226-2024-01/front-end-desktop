@@ -44,6 +44,7 @@ export class TurnoComponent implements OnInit {
     console.log("Se ha elegido la habitacion", this.roomSelected);
     this.turnoService.setParteTurno('espera-resto');
     //mandar a la BD
+    this.dice=0;
   }
 
   ngOnInit(): void {
@@ -52,9 +53,25 @@ export class TurnoComponent implements OnInit {
     // this.desplegablesContext.setCartasDesplegado(false);
     // this.desplegablesContext.setOpcionesDesplegado(false);
     console.log("Turno iniciado");
-    this.turnoService.setParteTurno('es-tu-turno');
+    // this.turnoService.setParteTurno('es-tu-turno');
 
     
+    // this.iniciarTemporizador();
+  }
+
+  vaAserTuTurno():void{
+    // this.turnoService.setParteTurno('dados');
+    // setTimeout(() => {
+      // this.parteTurno = 'dados';
+      this.turnoService.setParteTurno('es-tu-turno');
+      this.iniciarTemporizador();
+
+    // }, 2000);
+    // this.temporizadorDados();
+  }
+
+  temporizadorDados():void{
+    this.turnoService.setParteTurno('dados');
     this.iniciarTemporizador();
   }
 
@@ -72,10 +89,11 @@ export class TurnoComponent implements OnInit {
     this.dice = totalValue;
     console.log("Dados lanzados, valor: " + totalValue);
     setTimeout(() => {
-      this.parteTurno = "elegir-casilla";
+      // this.parteTurno = "elegir-casilla";
+      this.turnoService.setParteTurno('elegir-casilla');
     }, 2000);
     // this.iniciarTemporizadorCasilla();
-    this.turnoService.setParteTurno('elegir-casilla');
+    
   }
 
   iniciarTemporizador(): void {
