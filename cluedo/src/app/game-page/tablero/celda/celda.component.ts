@@ -72,7 +72,7 @@ export class CeldaComponent {
   }
   handleClick() {
     // if (!this.celdasOptions[this.index]) return;
-    const updatedVector = this. playerPositions;
+    const updatedVector = this.playerPositions;
 
     //DE MOMENTO LO QUITO PARA PROBAR LO DEMAS(SIN BACKEND NO VA)
     // if (!this.celdasOptions[this.index]){
@@ -80,10 +80,11 @@ export class CeldaComponent {
     // return;}
 
     if (updatedVector !== undefined && this.characters !== undefined) {
-      updatedVector[3] = this.index;
-
+      const character = this.gameService.getPersonajeUsuario();
+      const indexCharacter= this.characters.indexOf(character)
+      updatedVector[indexCharacter] = this.index;
       this.celdasService.setPlayerPositions(updatedVector);
-      this.estiloCelda.fill = this.player2color(this.characters[3])
+      this.estiloCelda.fill = this.player2color(character)
       setTimeout(() => {
         this.turnoService.setParteTurno('elegir-pregunta');
       }, 2000);

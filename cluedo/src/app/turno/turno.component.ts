@@ -44,7 +44,7 @@ export class TurnoComponent implements OnInit {
     console.log("Se ha elegido la habitacion", this.roomSelected);
     this.turnoService.setParteTurno('espera-resto');
     //mandar a la BD
-    this.dice=0;
+    this.dice=0;  
   }
 
   ngOnInit(): void {
