@@ -1,26 +1,27 @@
+@if (!this.gameService.getCharacterSelection()&& (!this.gameService.started)){
+  <div class="game-characters-selection">
+      <app-character-selection></app-character-selection>
+  </div>
+}
+@if ((this.gameService.getCharacterSelection()) && (!this.gameService.started)) {
+    <section class="start-game-button-main-angular">
+        <div class="start-game-button-container-angular">
+            <h1>Esperando a que empiece la partida...</h1>
+            <h2>
+                <u>ID de partida:</u> {{ this.idGame }}
+            </h2>
+            <button class="start-game-button-angular" (click)="startGame()">Comenzar partida</button>
+        </div>
+    </section>
+}
+
+{{isMyTurn()}}
+{{this.gameService.started}}
+@if(isMyTurn() && this.gameService.started){
+  <app-turno></app-turno>
+}
 <app-tarjeta></app-tarjeta>
 <app-main-tablero [personajes]="personajes"></app-main-tablero>
 <app-chat></app-chat>
 <app-toolbar></app-toolbar>
 <app-carta-desplegable></app-carta-desplegable>
-
-
-@if ((!this.gameService.getCharacterSelection()) && (!this.gameService.started)) {
-    <section class="start-game-button-main">
-        <div class="start-game-button-container">
-            <h1>Esperando a que empiece la partida...</h1>
-            <h2>
-                <u>ID de partida:</u> {{ this.idGame }}
-            </h2>
-            <button class="start-game-button" (click)="startGame()">Comenzar partida</button>
-        </div>
-    </section>
-}
-@if (!this.gameService.getCharacterSelection()){
-  <div class="game-characters-selection">
-      <app-character-selection></app-character-selection>
-  </div>
-}
-@if(isMyTurn() && this.gameService.started && !this.gameService.getCharacterSelection()){
-  <app-turno></app-turno>
-}

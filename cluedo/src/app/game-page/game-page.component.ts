@@ -33,7 +33,7 @@ const BACKEND_URL = environment.apiUrl;
     TurnoComponent,
     CharacterSelectionComponent],
   templateUrl: './game-page.component.html',
-  styleUrl: './../../../../../front-end-shared/css/Game/Game.css',
+  styleUrls:[ './../../../../../front-end-shared/css/Game/Game.css','./game-page.component.css']
 })
 export class GamePageComponent implements OnInit{
   idGame: string | undefined;
@@ -46,7 +46,7 @@ export class GamePageComponent implements OnInit{
       this.router.navigate(['/home-page']);
     }
     const haveISelected= this.gameService.getUsernames().includes(localStorage.getItem('username') ?? '');
-    console.log('Have I selected a character?', haveISelected);
+      console.log('Have I selected a character?', haveISelected);
     this.gameService.setCharacterSelection(haveISelected);
     this.checkGameExists();
     this.socketService.setUsername(this.gameService.getUsername() ?? 'anonymous');

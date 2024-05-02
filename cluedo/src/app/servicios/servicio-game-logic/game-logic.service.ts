@@ -80,6 +80,8 @@ export class GameLogicService implements OnDestroy {
 
     this.socket.on('turno-owner', (username: string) => {
       if (this.verbose) console.log('onTurnoOwner', username);
+      console.log('(turno-owner)es el turno de ',username);
+
       this.turnoService.setTurnoOwner(username);
       this.turnoService.setParteTurno('es-tu-turno');
     });
@@ -158,7 +160,9 @@ this.socket.on('close-connection', () => {
   if (this.verbose) console.log('onCloseConnection');
   // muestra un modal con el mensaje de que se ha cerrado la conexión
   alert('Conectado en otro dispositivo. Conexión cerrada.');
+  console.log('Cerrando conexión...');
   this.socket.disconnect();
+  this.socketio.disconnect();
   this.router.navigate(['/home-page']);
 });
 
@@ -172,7 +176,7 @@ this.socket.on('game-state', ( posiciones, cartas, sospechas, turnoOwner) => {
     console.log('Reiniciando turno...');
     this.turnoService.restartTurno();
   } else {
-    console.log('turnoOwner != a mí mismo', turnoOwner);
+    console.log('(game-state)turnoOwner != a mí mismo', turnoOwner);
     this.turnoService.setTurnoOwner(turnoOwner);
   }
 });
@@ -213,7 +217,8 @@ this.socket.on('game-state', ( posiciones, cartas, sospechas, turnoOwner) => {
       }
       this.celdasService.setPlayerPositions(newPositions);
     }
-
+    console.log('es el turno de ',data.turnoOwner);
+    
     if (data.turnoOwner) {
       if (data.turnoOwner === this.socketio.getUserName()) {
         console.log('Reiniciando turno...');
