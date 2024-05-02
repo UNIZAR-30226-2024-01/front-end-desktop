@@ -98,10 +98,16 @@ export class SocketService {
     }
   }
 
-  
+  public emit(text: string, list: any[]): void{
+    this.emitirEvento(() => this.socket.emit(text, ...list));
+  }
   // Método para indicar al servidor que el cliente se va a desconectar
   public disconnect(): void {
     this.emitirEvento(() => this.socket.emit('disconnect'));
+  }
+
+  public connect(): void {
+    this.emitirEvento(() => this.socket.connect());
   }
   
   // Método para indicar al servidor que empiece el juego

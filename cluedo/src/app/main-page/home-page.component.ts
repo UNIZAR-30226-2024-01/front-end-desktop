@@ -117,7 +117,9 @@ partida: string | undefined |null;
   async useJoinGameClick() {
     if (!this.partida) {
       let par = window.prompt('Introduzca el ID de la partida (6 dígitos):');
+      console.log('par:' + par)
       if (par) {
+        localStorage.setItem('partida_actual', par);
         this.router.navigate(['/game-page/' + par]);
       } else {
         alert('ID de partida no válido.');

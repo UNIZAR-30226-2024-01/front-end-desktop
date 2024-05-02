@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { GameService } from '../../servicios/servicio-game/game.service';
+import { SocketService } from '../../servicios/servicio-socket/socket.service';
 
 @Component({
   selector: 'app-character-selection',
@@ -9,7 +10,7 @@ import { GameService } from '../../servicios/servicio-game/game.service';
   styleUrl: '../../../../../../front-end-shared/css/Game/CharacterSelection.css'
 })
 export class CharacterSelectionComponent {
-  constructor(public gameService: GameService) { 
+  constructor(public gameService: GameService, public socketService:SocketService) { 
   }
 
   isCharacterSelected(i: number): boolean {
@@ -25,6 +26,7 @@ export class CharacterSelectionComponent {
     console.log("Characters used: " + this.gameService.charactersSelected)
 
     console.log("Usernames: " + this.gameService.usernames);
+    this.socketService.selectCharacter( this.gameService.personajes[i]);
   }
 
 }

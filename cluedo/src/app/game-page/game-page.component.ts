@@ -41,13 +41,14 @@ export class GamePageComponent implements OnInit{
   constructor(private router: Router, public gameService: GameService, private socketService: SocketService, private turnoService: TurnoService) { }
   ngOnInit() {
     this.idGame = localStorage.getItem('partida_actual') ?? undefined;
+    //console.log('idGame primero : ' + this.idGame);
     if (this.idGame === undefined) {
       this.router.navigate(['/home-page']);
     }
     this.checkGameExists();
-     this.socketService.setUsername(this.gameService.getUsername() ?? 'anonymous');
-     this.socketService.setGroup(this.idGame ?? '0');
-     //this.socketService.connect();
+    this.socketService.setUsername(this.gameService.getUsername() ?? 'anonymous');
+    this.socketService.setGroup(this.idGame ?? '0');
+    this.socketService.connect();
   }
   title = 'cluedo';
 
@@ -82,6 +83,7 @@ export class GamePageComponent implements OnInit{
   }
   checkGameExists() {
     console.log('Checking if game exists');
+   // console.log('gameId:', this.idGame);
     const url = BACKEND_URL + '/getGame?idGame=' + this.idGame;
     fetch(url, {
       method: 'GET',
