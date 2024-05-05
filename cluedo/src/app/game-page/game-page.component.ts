@@ -55,8 +55,6 @@ export class GamePageComponent implements OnInit{
   }
   title = 'cluedo';
 
-  personajes: string[] = ["mr SOPER", "mr REDES", "mr PROG", "mr FISICA", "mr DISCRETO", "mr IA"];
-
   //Funcion que devuelve si se esta produciendo un evento, por ahora solo esta el caso de selección de personaje
 
   startGame(): void { 

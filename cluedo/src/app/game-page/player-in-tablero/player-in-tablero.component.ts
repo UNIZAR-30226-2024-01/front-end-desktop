@@ -18,15 +18,15 @@ export class PlayerInTableroComponent {
     switch (this.personaje) {
       case "mr SOPER":
         return "#80b37e";
-      case "mr REDES":
+      case "miss REDES":
         return "#fcfd7f";
       case "mr PROG":
         return "#7fd2e7";
-      case "mr FISICA":
+      case "miss FISICA":
         return "#fdfdfd";
       case "mr DISCRETO":
         return "#dea9fb";
-      case "mr IA":
+      case "miss IA":
         return "#fc7e7e";
       default:
         return "#000";
@@ -37,15 +37,15 @@ export class PlayerInTableroComponent {
     switch (this.personaje) {
       case "mr SOPER":
         return "../../../assets/images/personajes_imagen/png/MrSoper.png";
-      case "mr REDES":
+      case "miss REDES":
         return "../../../assets/images/personajes_imagen/png/missRedes.png";
       case "mr PROG":
         return "../../../assets/images/personajes_imagen/png/MrProg.png";
-      case "mr FISICA":
+      case "miss FISICA":
         return "../../../assets/images/personajes_imagen/png/missFisica.png";
       case "mr DISCRETO":
         return "../../../assets/images/personajes_imagen/png/mrDiscreto.png";
-      case "mr IA":
+      case "miss IA":
         return "../../../assets/images/personajes_imagen/png/missIA.png";
       default:
         throw new Error("Personaje no encontrado");

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { DesplegableComponent } from '../desplegable/desplegable.component';
+import { GameService } from '../servicios/servicio-game/game.service';
 
 // Codificación para el estado de las celdas
 enum EstadoCelda {
@@ -29,7 +30,7 @@ interface Celda {
 })
 export class TarjetaComponent {
   // Se ejecuta al crearse el componente
-  constructor() {
+  constructor(public gameService: GameService) {
     this.inicializarTabla();
   }
 
@@ -45,9 +46,10 @@ export class TarjetaComponent {
   numEstados = Object.keys(EstadoCelda).length / 2; //Para saber cuantos estados hay
   numFilas: number = 21;
   numColumnas: number = 7;
-  personajes: string[] = ["mr SOPER", "mr REDES", "mr PROG", "mr FISICA", "mr DISCRETO", "mr IA"];
-  armas: string[] = ["teclado", "cable de red", "raton", "router", "troyano", "cd"];
-  lugares: string[] = ["cafeteria", "baños", "recepcion", "escaleras", "biblioteca", "laboratorio", "despacho", "aulas norte", "aulas sur"];  
+  
+  
+
+
   tabla: Celda[][] = [];
 
   lastState: Celda[][] = [];
@@ -109,9 +111,9 @@ export class TarjetaComponent {
       case "personajes":
         return index;
       case "armas":
-        return index + this.personajes.length;
+        return index + this.gameService.personajes.length;
       case "lugares":
-        return index + this.personajes.length + this.armas.length;
+        return index + this.gameService.personajes.length + this.gameService.armas.length;
       default:
         return -1;
     }

@@ -22,13 +22,22 @@ export class GameService {
   personajes: string[] = ["", "", "", "", "", ""];
   armas: string[] = ["", "", "", "", "", ""];
   lugares: string[] = ["", "", "", "", "", "", "", "", ""];
-
+  
   constructor() { }
-
+  
   public setPersonajes(personajes: string[]): void {
     this.personajes = personajes;
     console.log("Personajes: ", this.personajes);
   }
+  
+  public setArmas(armas: string[]): void {
+    this.armas = armas;
+  }
+  
+  public setLugares(lugares: string[]): void {
+    this.lugares = lugares;
+  }
+
   public setCharacterSelection(characterSelected: boolean): void {
     this.userSelectedACharacter = characterSelected;
   }
@@ -36,10 +45,6 @@ export class GameService {
     return this.userSelectedACharacter;
   }
 
-  public setArmas(armas: string[]): void {
-    this.armas = armas;
-    console.log("Armas: ", this.armas);
-  }
 
   setCards(newCards: string[]): void {
     this.cards = newCards;
@@ -57,10 +62,6 @@ export class GameService {
     this.sospechas = sospechas;
   }
 
-  public setLugares(lugares: string[]): void {
-    this.lugares = lugares;
-    console.log("Lugares: ", this.lugares);
-  }
   setPausedGame(value: boolean): void {
     this.pausedGame = value;
   }
@@ -104,4 +105,6 @@ public isRequestedPause(): boolean {
   getPersonaje(usuario: string): string {
     return this.personajes[this.usernames.indexOf(usuario)];
   }
+
+
 }

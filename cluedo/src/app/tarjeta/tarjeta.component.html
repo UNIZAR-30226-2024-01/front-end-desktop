@@ -17,7 +17,7 @@
 
         <tr class="titulos"> <th > ¿QUIÉN? </th> </tr>
 
-        @for (personaje of personajes; track personaje; let indexHeader = $index) {
+        @for (personaje of gameService.personajes; track personaje; let indexHeader = $index) {
           <tr>
             <td class="elemento" (click)="clickFila(obtenerIndexHeader(indexHeader, 'personajes'))"> {{personaje}} </td>
             @for (celda of tabla[0]; track celda; let index = $index) {
@@ -31,7 +31,7 @@
     
         <tr class="titulos"> <th > ¿CON QUÉ? </th> </tr>
 
-        @for (arma of armas; track arma; let indexHeader = $index) {
+        @for (arma of gameService.armas; track arma; let indexHeader = $index) {
           <tr>
             <td class="elemento" (click)="clickFila(obtenerIndexHeader(indexHeader, 'armas'))"> {{arma}} </td>
             @for (celda of tabla[0]; track celda; let index = $index) {
@@ -45,7 +45,7 @@
         
         <tr class="titulos"> <th > ¿DONDÉ? </th> </tr>
 
-        @for (lugar of lugares; track lugar; let indexHeader = $index) {
+        @for (lugar of gameService.lugares; track lugar; let indexHeader = $index) {
           <tr>
             <td class="elemento" (click)="clickFila(obtenerIndexHeader(indexHeader, 'lugares'))"> {{lugar}} </td>
             @for (celda of tabla[0]; track celda; let index = $index) {
