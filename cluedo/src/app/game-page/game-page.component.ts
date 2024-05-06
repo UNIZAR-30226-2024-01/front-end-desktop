@@ -71,6 +71,7 @@ export class GamePageComponent implements OnInit{
 
   isMyTurn(): boolean {
     // falta poner que sea mi turno
+    console.log('turno owner:', this.turnoService.getTurnoOwner());
     if (this.turnoService.getTurnoOwner() === localStorage.getItem('username')) {
       return true;
     } else {

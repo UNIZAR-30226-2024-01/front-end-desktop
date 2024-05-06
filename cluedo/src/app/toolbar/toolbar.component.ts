@@ -40,6 +40,7 @@ abandonarPartida() {
   localStorage.removeItem('partida_actual');
   this.gameService.setAbandonada(true);
   console.log('abandonada', this.gameService.abandonada);
+  this.socketService.disconnect();
   this.router.navigate(['/home-page']);
 }
   isOpen: boolean = false;

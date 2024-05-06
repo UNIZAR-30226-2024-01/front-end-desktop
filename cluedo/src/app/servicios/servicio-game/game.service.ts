@@ -66,6 +66,9 @@ export class GameService {
   setStarted(value: boolean): void {
     this.started = value;
   }
+  getStarted(): boolean {
+    return this.started;
+  }
 
   setSospechas(sospechas: string[]): void {
     this.sospechas = sospechas;
