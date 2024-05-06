@@ -12,7 +12,7 @@ import { environment } from "../../../environments/environment";
   providedIn: 'root'
 })
 export class SocketService {
-  private socket: Socket;
+  public socket: Socket;
   private eventMessage = new Subject<any>();   // Subject para emitir eventos a los componentes que lo necesiten
 
   constructor(private gameService: GameService) { 

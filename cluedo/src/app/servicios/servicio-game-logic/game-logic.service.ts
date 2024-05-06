@@ -53,7 +53,7 @@ export class GameLogicService implements OnDestroy {
       },
       transports: ['polling', 'websocket']
     };
-    this.socket = io(environment.apiUrl, options);
+    this.socket = this.socketio.socket;
     // this.showCardsService = showCardsService;
     this.router = router;
 
