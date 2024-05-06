@@ -40,6 +40,10 @@ export class GamePageComponent implements OnInit{
 
   constructor(private router: Router, public gameService: GameService, private socketService: SocketService, private turnoService: TurnoService) { }
   ngOnInit() {
+    if (localStorage.getItem('partida_actual') === null && this.gameService.abandonada === false) {
+      console.log('se actualiza partida actual a ', this.idGame);
+      localStorage.setItem('partida_actual', this.idGame ?? '');
+    }
     this.idGame = localStorage.getItem('partida_actual') ?? undefined;
     //console.log('idGame primero : ' + this.idGame);
     if (this.idGame === undefined) {

@@ -10,6 +10,7 @@ export class GameService {
   started: boolean = false;
   numPlayers: number = 6;
   turno: number = 0;
+  private idGame: string | null = null;
   cards: string[] = [];
   private sospechas: string[] = new Array(28).fill('');
   charactersSelected: boolean[] = [false, false, false, false, false, false];
@@ -22,6 +23,7 @@ export class GameService {
   personajes: string[] = ["", "", "", "", "", ""];
   armas: string[] = ["", "", "", "", "", ""];
   lugares: string[] = ["", "", "", "", "", "", "", "", ""];
+  abandonada: boolean= false;
 
   constructor() { }
 
@@ -35,6 +37,12 @@ export class GameService {
   public getCharacterSelection(): boolean {
     return this.userSelectedACharacter;
   }
+  public setAbandonada(abandonada: boolean): void {
+    this.abandonada = abandonada;
+  }
+  public getAbandonada(): boolean {
+    return this.abandonada;
+  }
 
   public setArmas(armas: string[]): void {
     this.armas = armas;
@@ -43,6 +51,12 @@ export class GameService {
 
   setCards(newCards: string[]): void {
     this.cards = newCards;
+  }
+  public getidGame(): string | null {
+    return this.idGame;
+  }
+  public setidGame(idGame: string): void {
+    this.idGame = idGame;
   }
   
 
