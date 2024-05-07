@@ -1,4 +1,8 @@
-import { infoTablero } from '../../../front-end-shared/infoTablero';
+import { infoTablero } from '../../front-end-shared/infoTablero.js';
+
+// declare module 'bfs.mjs' {
+//   export function cellsClose(casilla: any, dados: any, pjs_pos: any): any[];
+// }
 
 // Comprobación de que una casilla es válida
 function checkIndex(indexVecino, index, pjs_pos) {

@@ -22,8 +22,8 @@ export class CeldaComponent {
   clase : string = "";
   parteTurno: string | undefined;
   playerPositions: number[] | undefined; 
+  celdasOptions: boolean[] | undefined; 
   characters :  string[] | undefined;
-  celdasOptions: any;
   estiloCelda = {
     width: 26,
     height: 26,
@@ -125,6 +125,9 @@ export class CeldaComponent {
       if (this.getIsStartingCell()) {
         this.clase += " start start-" + this.getIsStartingCell();
       }
+    }
+    if (this.celdasOptions && this.celdasOptions[this.index]) {
+      this.clase += " selected";
     }
   }
 
