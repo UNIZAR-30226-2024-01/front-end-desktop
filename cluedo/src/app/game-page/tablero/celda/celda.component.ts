@@ -78,6 +78,7 @@ export class CeldaComponent {
     // if (!this.celdasOptions[this.index]){
     //  console.log("esta no vale");
     // return;}
+     console.log("elijo fila", this.index);
 
     if (updatedVector !== undefined && this.characters !== undefined) {
       const character = this.gameService.getPersonajeUsuario();
@@ -86,6 +87,7 @@ export class CeldaComponent {
       this.celdasService.setPlayerPositions(updatedVector);
       this.estiloCelda.fill = this.player2color(character)
       setTimeout(() => {
+        console.log("cambio la parte del tunro");
         this.turnoService.setParteTurno('elegir-pregunta');
       }, 2000);
       return;

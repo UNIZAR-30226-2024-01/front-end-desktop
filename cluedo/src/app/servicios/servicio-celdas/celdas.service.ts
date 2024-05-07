@@ -3,6 +3,9 @@ import { BehaviorSubject } from 'rxjs';
 import { TurnoService } from '../servicio-turno/turno.service';
 import { GameService } from '../servicio-game/game.service';
 //  import { cellsClose } from '../../../../bfs.mjs';
+import * as infoTablero from '../../../assets/infoTablero.json';
+import { Celda } from '../../game-page/tablero/celda/celda.interface'; 
+
 
 declare const require: any;
 const {
@@ -13,6 +16,7 @@ const {
   providedIn: 'root'
 })
 export class CeldasService {
+  tablero: any[] = infoTablero.infoTablero2;    // obtenemos la información del JSON infoTablero.json
   private celdasOptionsSubject = new BehaviorSubject<boolean[]>([]);
   celdasOptions$ = this.celdasOptionsSubject.asObservable();
   private dados: number | undefined;
@@ -52,20 +56,19 @@ export class CeldasService {
 
     const bfs = cellsClose(pp, this.dados, this.playerPositions);
     bfs.filter();
-    //   const newPrev = this.celdasOptions;
 
-    //   bfs.forEach((c) => (newPrev[c] = true));
-    //   this.playerPositions.forEach((c) => (newPrev[c] = false));
+       const newPrev = this.celdasOptions;
+      if (newPrev!=undefined){
 
-    //   const bfsDoors = bfs.filter((c) => this.infoTablero[c].isDoor);
-    //   const bfsRooms = bfsDoors.map((c) => this.infoTablero[c].roomName);
-    //   const bfsRoomsCells = this.infoTablero
-    //     .filter((c) => bfsRooms.includes(c.roomName))
-    //     .map((c) => c.idx);
-
-    //   bfsRoomsCells.forEach((c) => (newPrev[c] = true));
-
-    // this.setCeldasOptions(newPrev);
+        bfs.forEach((c:any) => (newPrev[c] = true)); 
+          this.playerPositions.forEach((c:any) => (newPrev[c] = false));
+          const bfsDoors = bfs.filter((c:any) => this.tablero[c].isDoor);
+          const bfsRooms = bfsDoors.map((c:any) => this.tablero[c].roomName);
+          const bfsRoomsCells = this.tablero.filter((c:any) => bfsRooms.includes(c.roomName))
+            .map((c:any) => c.idx);
+          bfsRoomsCells.forEach((c:any) => (newPrev[c] = true));
+        this.setCeldasOptions(newPrev);
+      }
     
 
   }
