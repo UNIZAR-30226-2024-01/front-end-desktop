@@ -1,9 +1,11 @@
 @if (!this.gameService.getCharacterSelection()&& (this.gameService.getStarted()==false)){
   <div class="game-characters-selection">
       <app-character-selection></app-character-selection>
+      <!-- <app-turno></app-turno> -->
+
   </div>
 }
-@if ((this.gameService.getCharacterSelection()) && (this.gameService.getStarted()==false)) {
+@if (this.gameService.getCharacterSelection() && (this.gameService.getStarted()==false)) {
     <section class="start-game-button-main-angular">
         <div class="start-game-button-container-angular">
             <h1>Esperando a que empiece la partida...</h1>

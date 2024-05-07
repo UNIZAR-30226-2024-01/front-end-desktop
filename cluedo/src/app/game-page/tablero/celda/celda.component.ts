@@ -37,6 +37,9 @@ export class CeldaComponent {
     this.celdasService.playerPositions$.subscribe(playerPositions => {
       this.playerPositions = playerPositions;
     });
+    this.celdasService.celdasOptions$.subscribe(celdasOptions => {
+      this.celdasOptions = celdasOptions;
+    });
     this.characters = this.gameService.personajes;
     this.celdasService.celdasOptions$.subscribe(options => {
       // Asigna el valor de celdasOptions
@@ -71,7 +74,7 @@ export class CeldaComponent {
     }
   }
   handleClick() {
-    // if (!this.celdasOptions[this.index]) return;
+    if (this.celdasOptions && !this.celdasOptions[this.index]) return;
     const updatedVector = this.playerPositions;
 
     //DE MOMENTO LO QUITO PARA PROBAR LO DEMAS(SIN BACKEND NO VA)
@@ -128,8 +131,12 @@ export class CeldaComponent {
         this.clase += " start start-" + this.getIsStartingCell();
       }
     }
-    if (this.celdasOptions && this.celdasOptions[this.index]) {
-      this.clase += " selected";
+      if (this.celdasOptions){
+        // console.log("celdasOptions", this.celdasOptions);
+        if( this.celdasOptions[this.index]) {
+        console.log("celda seleccionable", this.index);
+        this.clase += " selected";
+      }
     }
   }
 

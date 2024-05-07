@@ -24,9 +24,12 @@ export class CeldasService {
   playerPositions$ = this.playerPositionsSubject.asObservable();
   playerPositions : number[] |undefined;
   celdasOptions : boolean[] |undefined;
-
+  ngOnInit(): void {
+    this.updateCeldasOptions(this.dados?this.dados:0);
+  } 
   constructor(private turnoService: TurnoService, private gameService: GameService) {
     // Inicializar los BehaviorSubject con los valores predeterminados
+    console.log("Iinicializando todo");
     const celdasOptionsArray = Array(24 * 24).fill(false);
     this.celdasOptionsSubject.next(celdasOptionsArray);
 
@@ -44,22 +47,30 @@ export class CeldasService {
     this.celdasOptions$.subscribe(celdasOptions => {
       this.celdasOptions = celdasOptions;
     });
+    console.log("llenando celdasOptions");
     
   }
 
-  updateCeldasOptions(): void {
-    if (!this.turnoService.dados$ || !this.gameService.getUsernames() || !this.playerPositions) return;
+  updateCeldasOptions(dados:number): void {
+    if (!this.turnoService.dados$ || !this.gameService.getUsernames() || !this.playerPositions ) {
+      console.log("updateCeldasOptions: datos incompletos", this.turnoService.dados$, this.gameService.getUsernames(), this.playerPositions, this.dados);
+      return;}
     const usernames = this.gameService.getUsernames();
+    console.log("usernames",usernames);
     const playerIdx = usernames.indexOf(this.gameService.getUsername());
-    const pp = this.playerPositions?.[playerIdx];
+    console.log("playerIdx",playerIdx);
+    // const pp = this.playerPositions?.[playerIdx];
+    const pp = this.playerPositions?.[3];
+    console.log("pp",pp);
     if (!pp) return;
 
-    const bfs = cellsClose(pp, this.dados, this.playerPositions);
-    bfs.filter();
+    const bfs = cellsClose(pp, dados, this.playerPositions);
+    console.log("llega aqui", bfs);
+    // bfs.filter();
 
        const newPrev = this.celdasOptions;
       if (newPrev!=undefined){
-
+        
         bfs.forEach((c:any) => (newPrev[c] = true)); 
           this.playerPositions.forEach((c:any) => (newPrev[c] = false));
           const bfsDoors = bfs.filter((c:any) => this.tablero[c].isDoor);
@@ -72,6 +83,7 @@ export class CeldasService {
     
 
   }
+
   setCeldasOptions(celdasOptions: boolean[]): void {
     this.celdasOptionsSubject.next(celdasOptions);
   }

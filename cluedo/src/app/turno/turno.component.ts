@@ -5,6 +5,7 @@ import { CarruselComponent } from '../carrusel/carrusel.component';
 import { CommonModule } from '@angular/common';
 import { TurnoService } from '../servicios/servicio-turno/turno.service';
 import { GameService } from '../servicios/servicio-game/game.service';
+import { CeldasService } from '../servicios/servicio-celdas/celdas.service';
 
 
 @Component({
@@ -27,7 +28,7 @@ export class TurnoComponent implements OnInit {
   armas: string[] = ["TECLADO", "CABLE", "TAZA", "ROUTER", "TROYANO", "DISCO"];
   lugares: string[] = ["CAFETERIA", "BANIO", "RECEPCION", "ESCALERAS", "BIBLIOTECA", "LABORATORIO", "DESPACHO", "AULANORTE", "AULASUR"];
   
-  constructor(private turnoService: TurnoService, private gameService: GameService) {
+  constructor(private turnoService: TurnoService, private gameService: GameService, private celdasService: CeldasService) {
     this.turnoService.parteTurno$.subscribe(parteTurno => {
       this.parteTurno = parteTurno;
     });
@@ -89,6 +90,7 @@ export class TurnoComponent implements OnInit {
     this.dice = totalValue;
     console.log("Dados lanzados, valor: " + totalValue);
     this.turnoService.setDados(totalValue);
+    this.celdasService.updateCeldasOptions(totalValue);
     setTimeout(() => {
       // this.parteTurno = "elegir-casilla";
       this.turnoService.setParteTurno('elegir-casilla');
