@@ -86,9 +86,17 @@ export class CeldaComponent {
      console.log("elijo fila", this.index);
 
     if (updatedVector !== undefined && this.characters !== undefined) {
-      const character = this.gameService.getPersonajeUsuario();
-      const indexCharacter= this.characters.indexOf(character)
-      updatedVector[indexCharacter] = this.index;
+      // const character = this.gameService.getPersonajeUsuario();
+      // const indexCharacter= this.characters.indexOf(character);
+      
+      const usernames = this.gameService.getUsernames();
+      console.log("usernames",usernames);
+      const playerIdx = usernames.indexOf(this.gameService.getUsername());
+      const character = this.characters[playerIdx];
+      console.log("playerIdx",playerIdx);
+      console.log("character",character);
+      updatedVector[playerIdx] = this.index;
+      console.log("estan definidos, este es el nuevo vector", updatedVector);
       this.celdasService.setPlayerPositions(updatedVector);
       this.estiloCelda.fill = this.player2color(character)
       setTimeout(() => {

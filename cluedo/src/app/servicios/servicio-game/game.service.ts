@@ -115,6 +115,7 @@ public isRequestedPause(): boolean {
   }
   // Devuelve el nombre del personaje seleccionado por el usuario
   getPersonajeUsuario(): string {
+    console.log("Personaje seleccionado: ", this.personajes[this.userCharacter]);
     return this.personajes[this.userCharacter];
   }
 
