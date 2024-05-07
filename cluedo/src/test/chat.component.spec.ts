@@ -40,6 +40,12 @@ describe('ChatComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  
+  it('should send message', () => {
+    component.enviarMensaje('Hola');
+    expect(mockSocketService.chatMessage).toHaveBeenCalledWith('Hola');
+  });
+
 
   it('should toggle desplegado', () => {
     component.desplegado = false;

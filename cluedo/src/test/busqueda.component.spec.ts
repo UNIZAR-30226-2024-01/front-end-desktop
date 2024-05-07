@@ -32,9 +32,9 @@ describe('BusquedaComponent', () => {
 
   it('should call buscar method', () => {
     spyOn(gifsService, 'buscarGifs');
-    component.txtBuscar = { nativeElement: { value: 'test' } } as any;
+    component.txtBuscar = { nativeElement: { value: 'hola' } } as any;
     component.buscar();
-    expect(gifsService.buscarGifs).toHaveBeenCalledWith('test');
+    expect(gifsService.buscarGifs).toHaveBeenCalledWith('hola');
     expect(component.txtBuscar.nativeElement.value).toBe('');
   });
 

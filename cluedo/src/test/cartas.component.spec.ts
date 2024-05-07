@@ -28,9 +28,10 @@ describe('CartasComponent', () => {
   it('should set hover to true by default', () => {
     expect(component.hover).toBeTrue();
   });
+  
   it('should set player_name correctly', () => {
-    component.player_name = 'Test Player';
-    expect(component.player_name).toBe('Test Player');
+    component.player_name = 'mr SOPER';
+    expect(component.player_name).toBe('mr SOPER');
   });
 
 });

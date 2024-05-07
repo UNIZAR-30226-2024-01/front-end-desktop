@@ -27,9 +27,9 @@ describe('InputMessageComponent', () => {
 
   it('should emit mensajeEnviado event when enviarMensaje is called', () => {
     spyOn(component.mensajeEnviado, 'emit');
-    component.message = 'test message';
+    component.message = 'hola';
     component.enviarMensaje();
-    expect(component.mensajeEnviado.emit).toHaveBeenCalledWith('test message');
+    expect(component.mensajeEnviado.emit).toHaveBeenCalledWith('hola');
   });
 
   it('should not emit mensajeEnviado event when message is empty', () => {
