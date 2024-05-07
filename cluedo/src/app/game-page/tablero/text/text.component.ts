@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-interface roomStyle {
+export interface roomStyle {
   left: string;
   top: string;
 }

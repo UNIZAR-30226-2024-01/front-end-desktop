@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { DesplegableComponent } from '../desplegable/desplegable.component';
 
 // Codificación para el estado de las celdas
-enum EstadoCelda {
+export enum EstadoCelda {
   INDEFINIDO = 0,
   OK = 1,
   CRUZ = 2,

@@ -2,17 +2,21 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { TurnoService } from '../servicio-turno/turno.service';
 import { GameService } from '../servicio-game/game.service';
-// import { cellsClose } from '../../../../bfs.mjs';
+//  import { cellsClose } from '../../../../bfs.mjs';
+import * as infoTablero from '../../../assets/infoTablero.json';
+import { Celda } from '../../game-page/tablero/celda/celda.interface'; 
+
 
 declare const require: any;
 const {
-//falta hacer
+ cellsClose
 } = require('../../../../bfs.mjs');
 
 @Injectable({
   providedIn: 'root'
 })
 export class CeldasService {
+  tablero: any[] = infoTablero.infoTablero2;    // obtenemos la información del JSON infoTablero.json
   private celdasOptionsSubject = new BehaviorSubject<boolean[]>([]);
   celdasOptions$ = this.celdasOptionsSubject.asObservable();
   private dados: number = 0;
@@ -20,9 +24,12 @@ export class CeldasService {
   playerPositions$ = this.playerPositionsSubject.asObservable();
   playerPositions : number[] |undefined;
   celdasOptions : boolean[] |undefined;
-
+  ngOnInit(): void {
+    this.updateCeldasOptions(this.dados?this.dados:0);
+  } 
   constructor(private turnoService: TurnoService, private gameService: GameService) {
     // Inicializar los BehaviorSubject con los valores predeterminados
+    console.log("Iinicializando todo");
     const celdasOptionsArray = Array(24 * 24).fill(false);
     this.celdasOptionsSubject.next(celdasOptionsArray);
 
@@ -41,36 +48,43 @@ export class CeldasService {
     this.celdasOptions$.subscribe(celdasOptions => {
       this.celdasOptions = celdasOptions;
     });
+    console.log("llenando celdasOptions");
     
   }
 
-  updateCeldasOptions(): void {
-    if (!this.turnoService.dados$ || !this.gameService.getUsernames() || !this.playerPositions) return;
-    //if (!this.turnoService.getDados() || !this.gameService.getUsernames() || !this.playerPositions) return;
+  updateCeldasOptions(dados:number): void {
+    if (!this.turnoService.dados$ || !this.gameService.getUsernames() || !this.playerPositions ) {
+      console.log("updateCeldasOptions: datos incompletos", this.turnoService.dados$, this.gameService.getUsernames(), this.playerPositions, this.dados);
+      return;}
     const usernames = this.gameService.getUsernames();
+    console.log("usernames",usernames);
     const playerIdx = usernames.indexOf(this.gameService.getUsername());
-    const pp = this.playerPositions?.[playerIdx];
+    console.log("playerIdx",playerIdx);
+    // const pp = this.playerPositions?.[playerIdx];
+    const pp = this.playerPositions?.[3];
+    console.log("pp",pp);
     if (!pp) return;
 
-    // const bfs = this.cellsClose(pp, this.dados, this.playerPositions);
-      
-    //   const newPrev = this.celdasOptions;
+    const bfs = cellsClose(pp, dados, this.playerPositions);
+    console.log("llega aqui", bfs);
+    // bfs.filter();
 
-    //   bfs.forEach((c) => (newPrev[c] = true));
-    //   this.playerPositions.forEach((c) => (newPrev[c] = false));
-
-    //   const bfsDoors = bfs.filter((c) => this.infoTablero[c].isDoor);
-    //   const bfsRooms = bfsDoors.map((c) => this.infoTablero[c].roomName);
-    //   const bfsRoomsCells = this.infoTablero
-    //     .filter((c) => bfsRooms.includes(c.roomName))
-    //     .map((c) => c.idx);
-
-    //   bfsRoomsCells.forEach((c) => (newPrev[c] = true));
-
-    // this.setCeldasOptions(newPrev);
+       const newPrev = this.celdasOptions;
+      if (newPrev!=undefined){
+        
+        bfs.forEach((c:any) => (newPrev[c] = true)); 
+          this.playerPositions.forEach((c:any) => (newPrev[c] = false));
+          const bfsDoors = bfs.filter((c:any) => this.tablero[c].isDoor);
+          const bfsRooms = bfsDoors.map((c:any) => this.tablero[c].roomName);
+          const bfsRoomsCells = this.tablero.filter((c:any) => bfsRooms.includes(c.roomName))
+            .map((c:any) => c.idx);
+          bfsRoomsCells.forEach((c:any) => (newPrev[c] = true));
+        this.setCeldasOptions(newPrev);
+      }
     
 
   }
+
   setCeldasOptions(celdasOptions: boolean[]): void {
     this.celdasOptionsSubject.next(celdasOptions);
   }

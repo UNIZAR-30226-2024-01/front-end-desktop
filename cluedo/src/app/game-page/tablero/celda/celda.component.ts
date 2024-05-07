@@ -4,6 +4,7 @@ import { TurnoService } from '../../../servicios/servicio-turno/turno.service';
 import { GameService } from '../../../servicios/servicio-game/game.service';
 import { CeldasService } from '../../../servicios/servicio-celdas/celdas.service';
 import * as infoTablero from '../../../../assets/infoTablero.json';
+import { OnChanges, SimpleChanges } from '@angular/core';
 
 
 @Component({
@@ -37,12 +38,16 @@ export class CeldaComponent {
     this.celdasService.playerPositions$.subscribe(playerPositions => {
       this.playerPositions = playerPositions;
     });
+    this.celdasService.celdasOptions$.subscribe(celdasOptions => {
+      this.celdasOptions = celdasOptions;
+    });
     this.characters = this.gameService.personajes;
     this.celdasService.celdasOptions$.subscribe(options => {
       // Asigna el valor de celdasOptions
       this.celdasOptions = options;
     });
-  }
+  }  
+  
   getIsRoom() {return this.propiedadesCelda.isRoom;}
   getRoomName() {return this.propiedadesCelda.roomName;}
   getIsStartingCell() {return this.playerPositions?.includes(this.index);}
@@ -71,13 +76,14 @@ export class CeldaComponent {
     }
   }
   handleClick() {
-    // if (!this.celdasOptions[this.index]) return;
+    if (this.celdasOptions && !this.celdasOptions[this.index]) return;
     const updatedVector = this.playerPositions;
 
     //DE MOMENTO LO QUITO PARA PROBAR LO DEMAS(SIN BACKEND NO VA)
     // if (!this.celdasOptions[this.index]){
     //  console.log("esta no vale");
     // return;}
+     console.log("elijo fila", this.index);
 
     if (updatedVector !== undefined && this.characters !== undefined) {
       const character = this.gameService.getPersonajeUsuario();
@@ -86,6 +92,7 @@ export class CeldaComponent {
       this.celdasService.setPlayerPositions(updatedVector);
       this.estiloCelda.fill = this.player2color(character)
       setTimeout(() => {
+        console.log("cambio la parte del tunro");
         this.turnoService.setParteTurno('elegir-pregunta');
       }, 2000);
       return;
@@ -102,14 +109,13 @@ export class CeldaComponent {
     // }
     
     // if (this.playerPositions.includes(this.index)) return;
-  
     // this.handleClickOnCell(this.index, true);
     // setTimeout(() => {
     //   this.setParteTurno('espera-resto');
     // }, 2000);
   }
   
-  anadirClase() {
+  anadirClase():string {
     if (this?.getIsRoom()) {
       this.clase = "room room-" + this.getRoomName();
     } else if (!this?.getIsWalkable()) {
@@ -126,11 +132,30 @@ export class CeldaComponent {
         this.clase += " start start-" + this.getIsStartingCell();
       }
     }
-    if (this.celdasOptions && this.celdasOptions[this.index]) {
-      this.clase += " selected";
+      if (this.celdasOptions){
+        console.log("celdasOptions", this.celdasOptions);
+        if( this.celdasOptions[this.index]) {
+        console.log("celda seleccionable", this.index);
+        this.clase += " selected";
+      }
+    }
+
+    return this.clase;
+    // this.clase += " selected";
+  }
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['celdasOptions'] && this['celdasOptions']) {
+      if (this['celdasOptions'][this.index]) {
+        console.log("celda seleccionable", this.index);
+        this.clase += " selected";
+      } else {
+        // remove " selected" from this.clase if it's there
+        this.clase = this.clase.replace(" selected", "");
+      }
     }
   }
 
+  
   estilarCelda() {
     if (this?.getIsRoom() || !this?.getIsWalkable()) {
       this.estiloCelda.width += 2;

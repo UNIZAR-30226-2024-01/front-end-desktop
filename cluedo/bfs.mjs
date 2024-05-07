@@ -110,6 +110,7 @@ function bfs(casilla, dados, vecinos, pjs_pos) {
 
 export const cellsClose = (casilla, dados, pjs_pos) => {
   const n_cols = 24;
+  console.log("he llegado a cellsClose, esta es mi casilla y demas", casilla, dados, pjs_pos);
   const vecinos = [n_cols, 1, -n_cols, -1];
   let list = bfs(casilla, dados, vecinos, pjs_pos);
   // verificar qué habitación es la casilla actual, y quitar de list las casillas que tengan isDoor a true

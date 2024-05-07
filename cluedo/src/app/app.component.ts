@@ -6,7 +6,6 @@ import { AudioComponent } from './audio/audio.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 
-
 @Component({
   selector: 'app-root',
   standalone: true,
