@@ -230,7 +230,6 @@ export class GameLogicService implements OnDestroy {
     
   // this.socketService.socket.on('start-game-response', (info_partida) => {
   //   console.log('Game info received from server:', info_partida);
-  //   console.log('Cacho de puta');
   //   this.gameService.setPersonajes(info_partida.names);
   //   this.gameService.setArmas(info_partida.guns);
   //   this.gameService.setLugares(info_partida.rooms);

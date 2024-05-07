@@ -34,6 +34,7 @@ export class CeldaComponent {
   constructor(public gameService: GameService,private turnoService: TurnoService, private celdasService: CeldasService) {
    this.turnoService.parteTurno$.subscribe(parteTurno => {
      // this.parteTurno = this.turnoService.getParteTurno();
+     this.parteTurno = parteTurno;
     });
     this.celdasService.playerPositions$.subscribe(playerPositions => {
       this.playerPositions = playerPositions;
@@ -70,7 +71,6 @@ export class CeldaComponent {
         console.log('soy',this.characters[this.playerPositions?.indexOf(this.index)] );
         this.estiloCelda.fill = this.player2color(this.characters[this.playerPositions?.indexOf(this.index)])
         console.log('con color', this.estiloCelda.fill);
-
       }
       
     }

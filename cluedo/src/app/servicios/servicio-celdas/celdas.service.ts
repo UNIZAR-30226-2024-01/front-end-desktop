@@ -61,7 +61,7 @@ export class CeldasService {
     const playerIdx = usernames.indexOf(this.gameService.getUsername());
     console.log("playerIdx",playerIdx);
     // const pp = this.playerPositions?.[playerIdx];
-    const pp = this.playerPositions?.[3];
+    const pp = this.playerPositions?.[playerIdx];
     console.log("pp",pp);
     if (!pp) return;
 

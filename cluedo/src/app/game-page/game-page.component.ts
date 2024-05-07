@@ -73,7 +73,6 @@ export class GamePageComponent implements OnInit{
   }
 
   isMyTurn(turnoOwner: string): void {
-    console.log('turno owner: desde el puto game a ver si sale co', turnoOwner);
     this.metoca = turnoOwner === localStorage.getItem('username');
     }
 
