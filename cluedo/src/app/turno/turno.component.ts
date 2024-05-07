@@ -88,6 +88,7 @@ export class TurnoComponent implements OnInit {
   handleDiceRoll(totalValue: number): void {
     this.dice = totalValue;
     console.log("Dados lanzados, valor: " + totalValue);
+    this.turnoService.setDados(totalValue);
     setTimeout(() => {
       // this.parteTurno = "elegir-casilla";
       this.turnoService.setParteTurno('elegir-casilla');

@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { TurnoService } from '../servicio-turno/turno.service';
 import { GameService } from '../servicio-game/game.service';
-// import { cellsClose } from '../../../../bfs.mjs';
+//  import { cellsClose } from '../../../../bfs.mjs';
 
 declare const require: any;
 const {
-//falta hacer
+ cellsClose
 } = require('../../../../bfs.mjs');
 
 @Injectable({
@@ -50,8 +50,8 @@ export class CeldasService {
     const pp = this.playerPositions?.[playerIdx];
     if (!pp) return;
 
-    // const bfs = this.cellsClose(pp, this.dados, this.playerPositions);
-      
+    const bfs = cellsClose(pp, this.dados, this.playerPositions);
+    bfs.filter();
     //   const newPrev = this.celdasOptions;
 
     //   bfs.forEach((c) => (newPrev[c] = true));
