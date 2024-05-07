@@ -1,4 +1,4 @@
-<div [style.width.px] = "estiloCelda.width" [style.height.px] = "estiloCelda.height" [class]="clase" (click)="handleClick()">
+<div [style.width.px] = "estiloCelda.width" [style.height.px] = "estiloCelda.height" [class]="anadirClase()" (click)="handleClick()">
     @if (getIsDoor() != false) {
         <svg [style.rotate.deg] = "getRotation()"
             fill="none"
