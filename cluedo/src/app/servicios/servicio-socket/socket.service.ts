@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 import { ShowCardsService } from '../servicio-cartas/cartas.service';
 // import { GameLogicService } from '../servicio-game-logic/game-logic.service';
 import { environment } from "../../../environments/environment";
+import { publishFacade } from '@angular/compiler';
+import { DefaultEventsMap } from '@socket.io/component-emitter';
 const { infoTablero, casillasPorHabitacion } = require('../../../../../../front-end-shared/infoTablero.js');
 
 // const {
@@ -350,6 +352,11 @@ this.socket.on('request-sospechas', () => {
 
   public connect(): void {
     this.emitirEvento(() => this.socket.connect());
+  }
+ 
+  public gameLogicTurnoAsksFor(socket:any, username_asking: string, character: string, gun: string, room: string, is_final: boolean) :void{
+    console.log('GameLogicTurnoAsksFor', username_asking, character, gun, room, is_final);
+    this.emitirEvento(() => this.socket.emit('turno-asks-for', username_asking, character, gun, room, is_final));
   }
   
   // Método para indicar al servidor que empiece el juego
