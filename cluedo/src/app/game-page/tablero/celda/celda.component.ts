@@ -133,9 +133,9 @@ export class CeldaComponent {
       }
     }
       if (this.celdasOptions){
-        console.log("celdasOptions", this.celdasOptions);
+        // console.log("celdasOptions", this.celdasOptions);
         if( this.celdasOptions[this.index]) {
-        console.log("celda seleccionable", this.index);
+        // console.log("celda seleccionable", this.index);
         this.clase += " selected";
       }
     }
@@ -146,7 +146,7 @@ export class CeldaComponent {
   ngOnChanges(changes: SimpleChanges) {
     if (changes['celdasOptions'] && this['celdasOptions']) {
       if (this['celdasOptions'][this.index]) {
-        console.log("celda seleccionable", this.index);
+        // console.log("celda seleccionable", this.index);
         this.clase += " selected";
       } else {
         // remove " selected" from this.clase if it's there

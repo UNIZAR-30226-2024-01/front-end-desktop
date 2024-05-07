@@ -42,7 +42,7 @@ abandonarPartida() {
   this.gameService.setidGame('');
   console.log('abandonada', this.gameService.abandonada);
   this.router.navigate(['/home-page']);
- //  this.socketService.disconnect();
+  this.socketService.disconnected();
 }
   isOpen: boolean = false;
   user: string | undefined;

@@ -23,7 +23,7 @@ export class TableroComponent {
 
   constructor(private turnoService: TurnoService) {
     this.turnoService.parteTurno$.subscribe(parteTurno => {
-      //this.parteTurno = this.turnoService.getParteTurno();
+      this.parteTurno = parteTurno;
      });
   }
   

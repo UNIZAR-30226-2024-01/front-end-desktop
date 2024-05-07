@@ -346,7 +346,7 @@ this.socket.on('request-sospechas', () => {
     this.emitirEvento(() => this.socket.emit(text, ...list));
   }
   // Método para indicar al servidor que el cliente se va a desconectar
-  public disconnect(): void {
+  public disconnected(): void {
     this.emitirEvento(() => this.socket.emit('disconnect'));
   }
 
