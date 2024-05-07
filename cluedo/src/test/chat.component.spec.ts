@@ -3,17 +3,18 @@ import { of } from 'rxjs';
 import { ChatComponent } from '../app/chat/chat.component';
 import { GameService } from '../app/servicios/servicio-game/game.service';
 import { SocketService } from '../app/servicios/servicio-socket/socket.service';
+import { CommonModule } from '@angular/common';
 
 describe('ChatComponent', () => {
   let component: ChatComponent;
   let fixture: ComponentFixture<ChatComponent>;
 
   const mockGameService = {
-    getPersonaje: jasmine.createSpy('getPersonaje')
+    getPersonaje: jasmine.createSpy('getPersonaje').and.returnValue({ name: 'test' })
   };
 
   const mockSocketService = {
-    getMessageObservable: jasmine.createSpy('getMessageObservable').and.returnValue(of({})),
+    getMessageObservable: jasmine.createSpy('getMessageObservable').and.returnValue(of({ msg: 'test', emisor: 'test', currentTimestamp: 'test' })),
     chatMessage: jasmine.createSpy('chatMessage')
   };
 
@@ -22,7 +23,10 @@ describe('ChatComponent', () => {
       providers: [
         { provide: GameService, useValue: mockGameService },
         { provide: SocketService, useValue: mockSocketService }
-      ]
+      ],
+      imports: [CommonModule],
+      declarations: [] 
+
     })
     .compileComponents();
   });
