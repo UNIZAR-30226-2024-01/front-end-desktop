@@ -15,7 +15,7 @@ const {
 export class CeldasService {
   private celdasOptionsSubject = new BehaviorSubject<boolean[]>([]);
   celdasOptions$ = this.celdasOptionsSubject.asObservable();
-  private dados: number | undefined;
+  private dados: number = 0;
   private playerPositionsSubject = new BehaviorSubject<number[]>([]);
   playerPositions$ = this.playerPositionsSubject.asObservable();
   playerPositions : number[] |undefined;
@@ -30,7 +30,8 @@ export class CeldasService {
     this.playerPositionsSubject.next(playerPositionsArray);
 
     this.turnoService.dados$.subscribe(dados => {
-      this.dados = dados;
+    //this.dados = this.turnoService.getDados();
+    this.dados = dados;
     });
 
     this.playerPositions$.subscribe(playerPositions => {
@@ -45,6 +46,7 @@ export class CeldasService {
 
   updateCeldasOptions(): void {
     if (!this.turnoService.dados$ || !this.gameService.getUsernames() || !this.playerPositions) return;
+    //if (!this.turnoService.getDados() || !this.gameService.getUsernames() || !this.playerPositions) return;
     const usernames = this.gameService.getUsernames();
     const playerIdx = usernames.indexOf(this.gameService.getUsername());
     const pp = this.playerPositions?.[playerIdx];

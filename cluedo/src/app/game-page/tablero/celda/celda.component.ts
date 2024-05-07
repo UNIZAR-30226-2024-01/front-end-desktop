@@ -31,8 +31,8 @@ export class CeldaComponent {
   };
   
   constructor(public gameService: GameService,private turnoService: TurnoService, private celdasService: CeldasService) {
-    this.turnoService.parteTurno$.subscribe(parteTurno => {
-      this.parteTurno = parteTurno;
+   this.turnoService.parteTurno$.subscribe(parteTurno => {
+     // this.parteTurno = this.turnoService.getParteTurno();
     });
     this.celdasService.playerPositions$.subscribe(playerPositions => {
       this.playerPositions = playerPositions;

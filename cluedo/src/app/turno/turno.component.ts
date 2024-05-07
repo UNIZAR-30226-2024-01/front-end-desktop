@@ -29,7 +29,7 @@ export class TurnoComponent implements OnInit {
   
   constructor(private turnoService: TurnoService, private gameService: GameService) {
     this.turnoService.parteTurno$.subscribe(parteTurno => {
-      this.parteTurno = parteTurno;
+      this.parteTurno = this.turnoService.getParteTurno();
     });
     // this.personajes=gameService.personajes
     // this.armas=gameService.armas
@@ -99,6 +99,7 @@ export class TurnoComponent implements OnInit {
   iniciarTemporizador(): void {
     setTimeout(() => {
       // this.parteTurno = 'dados';
+      console.log("Daditos weon")
       this.turnoService.setParteTurno('dados');
 
     }, 2000);

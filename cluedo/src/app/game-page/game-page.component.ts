@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { TarjetaComponent } from '../tarjeta/tarjeta.component';
 import { ChatComponent } from '../chat/chat.component';
 import { DadosComponent } from '../dados/dados.component';
@@ -15,15 +14,13 @@ import { Router } from '@angular/router';
 import { GameService } from '../servicios/servicio-game/game.service';
 import { TurnoService } from '../servicios/servicio-turno/turno.service';
 import { environment } from "../../environments/environment"; 
-import { io, Socket } from 'socket.io-client';
 
 const BACKEND_URL = environment.apiUrl;
 
 @Component({
   selector: 'app-game-page',
   standalone: true,
-  imports: [RouterOutlet,
-    LoginPageComponent,
+  imports: [LoginPageComponent,
     GamePageComponent,
     DadosComponent,
     ChatComponent,
@@ -34,11 +31,13 @@ const BACKEND_URL = environment.apiUrl;
     CharacterSelectionComponent],
   templateUrl: './game-page.component.html',
   styleUrls:[ './../../../../../front-end-shared/css/Game/Game.css','./game-page.component.css']
+  
 })
 export class GamePageComponent implements OnInit{
   idGame: string | undefined;
-
-  constructor(private router: Router, public gameService: GameService, private socketService: SocketService, private turnoService: TurnoService) { }
+  metoca: boolean = false;
+  constructor(private router: Router, public gameService: GameService, private socketService: SocketService, private turnoService: TurnoService) { 
+   }
   ngOnInit() {
     if (localStorage.getItem('partida_actual') === null && this.gameService.abandonada === false) {
       console.log('se actualiza partida actual a ', this.idGame);
@@ -56,6 +55,10 @@ export class GamePageComponent implements OnInit{
     this.socketService.setUsername(this.gameService.getUsername() ?? 'anonymous');
     this.socketService.setGroup(this.idGame ?? '0');
     this.socketService.connect();
+    this.turnoService.turnoOwner$.subscribe(turnoOwner => {
+      console.log('turno owner: desde el subscirber', turnoOwner);
+      this.isMyTurn(turnoOwner);
+    })
   }
   title = 'cluedo';
 
@@ -69,17 +72,14 @@ export class GamePageComponent implements OnInit{
     this.socketService.startGame();
   }
 
-  isMyTurn(): boolean {
-    // falta poner que sea mi turno
-    console.log('turno owner:', this.turnoService.getTurnoOwner());
-    if (this.turnoService.getTurnoOwner() === localStorage.getItem('username')) {
-      return true;
-    } else {
-      return false;
+  isMyTurn(turnoOwner: string): void {
+    console.log('turno owner: desde el puto game a ver si sale co', turnoOwner);
+    this.metoca = turnoOwner === localStorage.getItem('username');
     }
-  }
+
+
   // Funcion que maneja el evento de ok de los dados
-  finDados(event: number): void {
+  finDados(): void {
     this.gameService.siguienteTurno();
   }
 /*
@@ -110,6 +110,7 @@ export class GamePageComponent implements OnInit{
         localStorage.setItem('partida_actual', this.idGame ?? '');
         this.gameService.setPausedGame(data.estado === 'p');
         this.gameService.setRequestedPause(false);
+        this.gameService.setStarted(false);
         console.log('Game exists');
       } else {
         alert('No se ha podido unirse a la partida. Inténtalo de nuevo.');
@@ -117,6 +118,5 @@ export class GamePageComponent implements OnInit{
       }
     });
   }
-
   
 }

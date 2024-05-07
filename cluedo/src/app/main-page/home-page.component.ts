@@ -41,7 +41,10 @@ partida: string | undefined |null;
     } else {
       this.username = localStorage.getItem('username') as string;
      this.playerInfo();
+     if (this.gameService.getAbandonada() === false ){
      this.partida = this.partida === "undefined" ? null :localStorage.getItem('partida_actual');
+  }
+  this.partida = this.partida === "undefined" ? null :localStorage.getItem('partida_actual');
     }
     this.obtainXP().then(xp => {
       const lvl = this.calculateLevel(xp);
@@ -77,8 +80,10 @@ partida: string | undefined |null;
     if (data.exito === true && data.partida_actual &&  this.gameService.getAbandonada() === false) {
       console.log('abandonada:', this.gameService.getAbandonada());
       localStorage.setItem('partida_actual', data.partida_actual);
+      console.log('partida_actual:', data.partida_actual);
     } else {
       localStorage.setItem('partida_actual', '');
+      console.log('partida_actual:', '');
     }
   }
 

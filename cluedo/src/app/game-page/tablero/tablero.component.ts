@@ -24,8 +24,8 @@ export class TableroComponent {
 
   constructor(private turnoService: TurnoService) {
     this.turnoService.parteTurno$.subscribe(parteTurno => {
-      this.parteTurno = parteTurno;
-    });
+      //this.parteTurno = this.turnoService.getParteTurno();
+     });
   }
   
   handleClickOnCell() {

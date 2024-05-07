@@ -1,35 +1,64 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-
 @Injectable({
-  providedIn: 'root'
-})
+    providedIn: 'root'
+    })
 export class TurnoService {
-  private turnoOwnerSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
-  private parteTurnoSubject: BehaviorSubject<string> = new BehaviorSubject<string>('espera-resto');
-  private dadosSubject: BehaviorSubject<number | undefined> = new BehaviorSubject<number | undefined>(undefined);
+    private turnoOwnerSubject = new BehaviorSubject<string>('');
+    turnoOwner$ = this.turnoOwnerSubject.asObservable();
+    private turnoOwner: string = '';
+    private parteTurnoSubject = new BehaviorSubject<string>('espera-resto');
+    parteTurno$ = this.parteTurnoSubject.asObservable();
+    private parteTurno: string = 'espera-resto';
+    private dadosSubject = new BehaviorSubject<number>(0);
+    dados$ = this.dadosSubject.asObservable();
+    private dados: number = 0;
 
-  turnoOwner$: Observable<string> = this.turnoOwnerSubject.asObservable();
-  parteTurno$: Observable<string> = this.parteTurnoSubject.asObservable();
-  dados$: Observable<number | undefined> = this.dadosSubject.asObservable();
+    constructor() {
+        this.parteTurno$.subscribe(parteTurno => {
+            this.parteTurno = parteTurno;
+        });
+        this.dados$.subscribe(dados => {
+            this.dados = dados;
+        });
+        this.turnoOwner$.subscribe(turnoOwner => {
+            this.turnoOwner = turnoOwner;
+        });
+    }
 
-   restartTurno = (): void => {
-    this.setTurnoOwner('');
-    this.setParteTurno('espera-resto');
-    this.setDados(undefined);
-  }
+    restartTurno = (): void => {
+        this.setTurnoOwner('');
+        this.setParteTurno('espera-resto');
+        this.setDados(0);
+      }
+    getTurnoOwner(): string {
+        return this.turnoOwner;
+    }
+    getParteTurno(): string {
+        return this.parteTurno;
+    }
 
-  setTurnoOwner(turnoOwner: string): void {
-    this.turnoOwnerSubject.next(turnoOwner);
-  }
-  getTurnoOwner(): string {
-    return this.turnoOwnerSubject.getValue();
-  }
-  setParteTurno(parteTurno: string): void {
-    this.parteTurnoSubject.next(parteTurno);
-  }
+    getDados(): number {
+        return this.dados;
+    }
 
-  setDados(dados: number | undefined): void {
-    this.dadosSubject.next(dados);
-  }
+
+    setTurnoOwner(turnoOwner: string): void {
+        console.log("Setenado el Turno owner: ", turnoOwner);
+        this.turnoOwner = turnoOwner;
+        this.turnoOwnerSubject.next(turnoOwner);
+    }
+    
+    setParteTurno(parteTurno: string): void {
+        console.log("Setenado la parte del turno: ", parteTurno);
+        this.parteTurno = parteTurno;
+        this.parteTurnoSubject.next(parteTurno);
+    }
+
+    setDados(dados: number): void {
+        console.log("Setenado los dados: ", dados);
+        this.dados = dados;
+        this.dadosSubject.next(dados);
+    }
 }
+  

@@ -30,10 +30,10 @@
 		<section class="home-body">
 		  <img src="assets/images/boardGame.png" alt="Tablero del juego" width="400" height="400">
 		  <aside class="gameModes">
-			<ng-container *ngIf="!partida">
+			@if (this.partida==null || this.partida==undefined || this.partida=='') {
 				<button class="gamemode-button" (click)="newGameClick('l')">Crear partida solitario</button>
 				<button class="gamemode-button" (click)="newGameClick('o')">Crear partida multijugador</button>
-			</ng-container>
+			}
 			<button class="gamemode-button" (click)="useJoinGameClick()">
 			  {{partida ? 'Continuar partida: ' + partida : 'Unirse a partida'}}
 			</button>
