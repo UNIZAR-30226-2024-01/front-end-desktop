@@ -6,7 +6,6 @@ import { TextComponent } from './text/text.component';
 import { Celda } from './celda/celda.interface'; 
 import { TurnoService } from '../../servicios/servicio-turno/turno.service';
 import * as infoTablero from '../../../assets/infoTablero.json';
-
 @Component({
   selector: 'app-tablero',
   standalone: true,
@@ -25,7 +24,7 @@ export class TableroComponent {
   constructor(private turnoService: TurnoService) {
     this.turnoService.parteTurno$.subscribe(parteTurno => {
       this.parteTurno = parteTurno;
-    });
+     });
   }
   
   handleClickOnCell() {

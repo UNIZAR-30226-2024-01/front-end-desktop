@@ -17,6 +17,7 @@ import { GameService } from '../servicios/servicio-game/game.service';
   styleUrl: '../../../../../front-end-shared/css/Game/NavbarGame.css'
 })
 export class ToolbarComponent {
+  public abandonada: boolean = false;
 pausarPartida(): void  {
   if (this.gameService.pausedGame) {
     this.socketService.continuar_partida();
@@ -37,7 +38,11 @@ constructor(private router: Router, private socketService: SocketService, public
 abandonarPartida() {
   this.socketService.abandonar();
   localStorage.removeItem('partida_actual');
+  this.gameService.setAbandonada(true);
+  this.gameService.setidGame('');
+  console.log('abandonada', this.gameService.abandonada);
   this.router.navigate(['/home-page']);
+  this.socketService.disconnected();
 }
   isOpen: boolean = false;
   user: string | undefined;

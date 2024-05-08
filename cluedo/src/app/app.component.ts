@@ -5,9 +5,6 @@ import { ChatComponent } from './chat/chat.component';
 import { AudioComponent } from './audio/audio.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import { TurnoService } from './servicios/servicio-turno/turno.service';
-
-
 
 @Component({
   selector: 'app-root',
@@ -16,7 +13,6 @@ import { TurnoService } from './servicios/servicio-turno/turno.service';
     ChatComponent,
     TarjetaComponent, ToolbarComponent,MatToolbarModule,
     AudioComponent],
-  providers: [TurnoService],
   templateUrl: './app.component.html',
   styleUrl: '../app.component.css'
 })

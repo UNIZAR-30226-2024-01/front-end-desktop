@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { environment } from "../../environments/environment"; 
+import { GameService } from '../servicios/servicio-game/game.service';
 
 const BACKEND_URL = environment.apiUrl;
 
@@ -32,7 +33,7 @@ height: string = "70px";
 color :string | undefined;
 partida: string | undefined |null;
 
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(private router: Router, private http: HttpClient,public gameService: GameService) {}
 
   ngOnInit(): void {
     if (!localStorage.getItem('username')) {
@@ -40,8 +41,10 @@ partida: string | undefined |null;
     } else {
       this.username = localStorage.getItem('username') as string;
      this.playerInfo();
-     this.partida = localStorage.getItem('partida_actual');
-     this.partida = this.partida === "undefined" ? null : this.partida;
+     if (this.gameService.getAbandonada() === false ){
+     this.partida = this.partida === "undefined" ? null :localStorage.getItem('partida_actual');
+  }
+  this.partida = this.partida === "undefined" ? null :localStorage.getItem('partida_actual');
     }
     this.obtainXP().then(xp => {
       const lvl = this.calculateLevel(xp);
@@ -74,10 +77,13 @@ partida: string | undefined |null;
   const url = BACKEND_URL + '/playerInformation?username=' + this.username;
   const response = await fetch(url);
     const data = await response.json();
-    if (data.exito === true && data.partida_actual) {
+    if (data.exito === true && data.partida_actual &&  this.gameService.getAbandonada() === false) {
+      console.log('abandonada:', this.gameService.getAbandonada());
       localStorage.setItem('partida_actual', data.partida_actual);
+      console.log('partida_actual:', data.partida_actual);
     } else {
       localStorage.setItem('partida_actual', '');
+      console.log('partida_actual:', '');
     }
   }
 
@@ -104,6 +110,7 @@ partida: string | undefined |null;
       if (data && data.exito === true) {
         const idGame = data.id_partida;
         localStorage.setItem('partida_actual', idGame);
+        this.gameService.setAbandonada(false);
         this.router.navigate(['/game-page/' + idGame]);
         alert('Partida creada con éxito.');
       } else {

@@ -1,70 +1,69 @@
 <div class="turno">
-    <ng-container *ngIf="parteTurno == 'espera-resto'">
-      <button (click)="vaAserTuTurno()">Iniciar partida</button>
-    </ng-container>
-  
-    <ng-container *ngIf="parteTurno == 'es-tu-turno'">
-      <div>
-        <h1 class="tu-turno-texto">Es tu turno</h1>
-        <script>
-          setTimeout(() => {
-            parteTurno = 'dados';
-          }, 2000);
-        </script>
-      </div>
-    </ng-container>
-  
-    <!-- <ng-container *ngIf="parteTurno == 'dados' || parteTurno == 'elegir-casilla' || parteTurno == 'elegir-pregunta'">
-      <app-temporizador tiempo="30"></app-temporizador>
-    </ng-container> -->
-  
-    <ng-container *ngIf="parteTurno == 'dados'">
-      <div id="turno-dados">
-         <!-- <app-dados [buttonText]="'Tirar los dados'" (finRoll)="handleDiceRoll($event)"></app-dados>  -->
-        <app-dados (finRoll)="handleDiceRoll($event)"></app-dados> 
-        <h1 *ngIf="dice != 0">Has sacado un {{ dice }}</h1>
-      </div>
-    </ng-container>
-  
-    <ng-container *ngIf="parteTurno == 'elegir-casilla'">
-      <div class="turno-tablero" style="pointer-events: none;">
-        <h1 style="background: none; border: none;">¡Elige una casilla!</h1>
-      </div>
-    </ng-container>
-  
-    <ng-container *ngIf="parteTurno == 'elegir-pregunta'">
-      <div id="turno-cartas">
-        <h1>Elige una pregunta</h1>
-        <div class="container-cartas">
-          <div class="carta-quien">
-            <h2>¿Quién lo hizo?</h2>
-            <p>Elige un sospechoso</p>
-            <!-- <Carta /> -->
-            <div class="slider">
-              <app-carrusel [products]="personajes" (cartaElegida)="setCharacterSelected($event)"></app-carrusel>
-            </div>
-            
+  <ng-container *ngIf="parteTurno == 'espera-resto'">
+    <button (click)="vaAserTuTurno()">Iniciar partida</button>
+  </ng-container>
+
+  <ng-container *ngIf="parteTurno == 'es-tu-turno'">
+    <div>
+      <h1 class="tu-turno-texto">Es tu turno</h1>
+      <script>
+        setTimeout(() => {
+          parteTurno = 'dados';
+        }, 2000);
+      </script>
+    </div>
+  </ng-container>
+
+  <!-- <ng-container *ngIf="parteTurno == 'dados' || parteTurno == 'elegir-casilla' || parteTurno == 'elegir-pregunta'">
+    <app-temporizador tiempo="30"></app-temporizador>
+  </ng-container> -->
+
+  <ng-container *ngIf="parteTurno == 'dados'">
+    <div id="turno-dados">
+       <!-- <app-dados [buttonText]="'Tirar los dados'" (finRoll)="handleDiceRoll($event)"></app-dados>  -->
+      <app-dados (finRoll)="handleDiceRoll($event)"></app-dados> 
+      <h1 *ngIf="dice != 0">Has sacado un {{ dice }}</h1>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="parteTurno == 'elegir-casilla'">
+    <div class="turno-tablero" style="pointer-events: none;">
+      <h1 style="background: none; border: none;">¡Elige una casilla!</h1>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="parteTurno == 'elegir-pregunta'">
+    <div id="turno-cartas">
+      <h1>Elige una pregunta</h1>
+      <div class="container-cartas">
+        <div class="carta-quien">
+          <h2>¿Quién lo hizo?</h2>
+          <p>Elige un sospechoso</p>
+          <!-- <Carta /> -->
+          <div class="slider">
+            <app-carrusel [products]="personajes" (cartaElegida)="setCharacterSelected($event)"></app-carrusel>
           </div>
-          <div class="carta-arma">
-            <h2>¿Con qué lo hizo?</h2>
-            <p>Elige un arma</p>
-            <!-- <app-carrusel ></app-carrusel> -->
-            <div class="slider">
-              <app-carrusel [products]="armas" (cartaElegida)="setGunSelected($event)"></app-carrusel>
-            </div>
-          </div>
-          <div class="carta-donde">
-            <h2>¿Dónde lo hizo?</h2>
-            <p>Elige una habitación</p>
-            <!-- <app-carrusel [options]="gameInfoContext.rooms"></app-carrusel> -->
-            <!-- <app-carrusel ></app-carrusel> -->
-            <div class="slider">
-              <app-carrusel [products]="lugares" (cartaElegida)="setRoomSelected($event)" ></app-carrusel>
-            </div>
+
+        </div>
+        <div class="carta-arma">
+          <h2>¿Con qué lo hizo?</h2>
+          <p>Elige un arma</p>
+          <!-- <app-carrusel ></app-carrusel> -->
+          <div class="slider">
+            <app-carrusel [products]="armas" (cartaElegida)="setGunSelected($event)"></app-carrusel>
           </div>
         </div>
-        <button style="margin-top: 15px" (click)="handleClick()">Realizar sospecha🧐  </button>
+        <div class="carta-donde">
+          <h2>¿Dónde lo hizo?</h2>
+          <p>Elige una habitación</p>
+          <!-- <app-carrusel [options]="gameInfoContext.rooms"></app-carrusel> -->
+          <!-- <app-carrusel ></app-carrusel> -->
+          <div class="slider">
+            <app-carrusel [products]="lugares" (cartaElegida)="setRoomSelected($event)" ></app-carrusel>
+          </div>
+        </div>
       </div>
-    </ng-container>
-  </div>
-  
+      <button style="margin-top: 15px" (click)="handleClick()">Realizar sospecha🧐  </button>
+    </div>
+  </ng-container>
+</div>

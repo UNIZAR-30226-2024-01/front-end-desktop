@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TemporizadorComponent } from './temporizador.component';
+import { CartasShowComponent } from './cartas-show.component';
 
-describe('TemporizadorComponent', () => {
-  let component: TemporizadorComponent;
-  let fixture: ComponentFixture<TemporizadorComponent>;
+describe('CartasShowComponent', () => {
+  let component: CartasShowComponent;
+  let fixture: ComponentFixture<CartasShowComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TemporizadorComponent]
+      imports: [CartasShowComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(TemporizadorComponent);
+    fixture = TestBed.createComponent(CartasShowComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

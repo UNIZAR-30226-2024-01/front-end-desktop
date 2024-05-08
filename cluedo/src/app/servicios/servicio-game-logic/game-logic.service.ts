@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy, numberAttribute } from '@angular/core';
+/*import { Injectable, OnDestroy, numberAttribute } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
 import { SocketService } from '../servicio-socket/socket.service';
 import { TurnoService } from '../servicio-turno/turno.service';
@@ -16,69 +16,64 @@ const { infoTablero, casillasPorHabitacion } = require('../../../../front-end-sh
 })
 export class GameLogicService implements OnDestroy {
   private verbose = true;
-  // private socket: SocketService;
-  private socketio: SocketService
-  private socket: Socket;
+  //private socket: Socket;
   private turnoService: TurnoService;
   private celdasService: CeldasService;
   private gameService: GameService;
   private cartasService: ShowCardsService;
-  // private showCardsService: ShowCardsService;
   private router: Router;
   infoTablero: any;
   casillasPorHabitacion: any;
 
   constructor(
-    socketio: SocketService,
+    private socketService: SocketService,
     turnoService: TurnoService,
     celdasService: CeldasService,
     gameService: GameService,
     cartasService: ShowCardsService,
-    // private socketService: SocketService,
-    // showCardsService: ShowCardsService,
     router: Router
   ) {
-    this.socketio = socketio;
     this.turnoService = turnoService;
     this.celdasService = celdasService;
-    this.cartasService=cartasService;
-    this.infoTablero = infoTablero;
-    this.casillasPorHabitacion = casillasPorHabitacion;
     this.gameService = gameService;
-    const options: { auth: { username: string, group: string, offset: string }, transports: string[] } = {
-      auth: {
-        username: gameService.username,
-        group: '0',
-        offset: this.socketio.obtenerFechaActual()
-      },
-      transports: ['polling', 'websocket']
-    };
-    this.socket = io(environment.apiUrl, options);
-    // this.showCardsService = showCardsService;
+    this.cartasService = cartasService;
     this.router = router;
-
+    //this.socket = this.socketService.socket;
     this.initializeSocketListeners();
+    // const options: { auth: { username: string, group: string, offset: string }, transports: string[] } = {
+    //   auth: {
+    //     username: gameService.username,
+    //     group: '0',
+    //     offset: this.socketService.obtenerFechaActual()
+    //   },
+    //   transports: ['polling', 'websocket']
+    // };
+    // this.socket = this.socketService.socket;
+    // // this.showCardsService = showCardsService;
+    // this.router = router;
+
+    // this.initializeSocketListeners();
   }
 
   ngOnDestroy(): void {
-    // this.socket.onDestroy();
-    this.socket.removeListener('turno-owner');
-    this.socket.removeListener('turno-moves-to-response');
-    this.socket.removeListener('turno-show-cards');
-    this.socket.removeListener('turno-select-to-show');
-    this.socket.removeListener('turno-asks-for-response');
-    this.socket.removeListener('game-over');
-    this.socket.removeListener('close-connection');
-    this.socket.removeListener('game-state');
-    this.socket.removeListener('cards');
-    this.socket.removeListener('game-info');
-    this.socket.removeListener('start-game');
+    this.socketService.onDestroy();
+    this.socketService.socket.removeListener('turno-owner');
+    this.socketService.socket.removeListener('turno-moves-to-response');
+    this.socketService.socket.removeListener('turno-show-cards');
+    this.socketService.socket.removeListener('turno-select-to-show');
+    this.socketService.socket.removeListener('turno-asks-for-response');
+    this.socketService.socket.removeListener('game-over');
+    this.socketService.socket.removeListener('close-connection');
+    this.socketService.socket.removeListener('game-state');
+    this.socketService.socket.removeListener('cards');
+    this.socketService.socket.removeListener('game-info');
+    this.socketService.socket.removeListener('start-game');
   }
 
   private initializeSocketListeners(): void {
-    if (!this.socket) return;
+    if (!this.socketService.socket) return;
 
-    this.socket.on('turno-owner', (username: string) => {
+    this.socketService.socket.on('turno-owner', (username: string) => {
       if (this.verbose) console.log('onTurnoOwner', username);
       console.log('(turno-owner)es el turno de ',username);
 
@@ -86,7 +81,7 @@ export class GameLogicService implements OnDestroy {
       this.turnoService.setParteTurno('es-tu-turno');
     });
 
-    this.socket.on('turno-moves-to-response', (username: string, position: number) => {
+    this.socketService.socket.on('turno-moves-to-response', (username: string, position: number) => {
       if (this.verbose) console.log('onTurnoMovesToResponse', username, position);
 
       if (this.infoTablero[position].isRoom) {
@@ -102,18 +97,18 @@ export class GameLogicService implements OnDestroy {
       this.celdasService.setPlayerPositions(newPlayerPositions); 
     });
 
-    this.socket.on('turno-select-to-show', (usernameAsking: string, usernameShower: string, character: string, gun: string, room: string) => {
+    this.socketService.socket.on('turno-select-to-show', (usernameAsking: string, usernameShower: string, character: string, gun: string, room: string) => {
       if (this.verbose) console.log('onTurnoSelectToShow', usernameAsking, usernameShower, character, gun, room);
 
       const onClick = (card: string) => {
         console.log('card selected', card);
-        this.socketio.turnoCardSelected(usernameAsking, usernameShower, card);
+        this.socketService.turnoCardSelected(usernameAsking, usernameShower, card);
       };
       
       this.cartasService.showCardElection(usernameAsking, this.gameService.cards,[character, gun, room], onClick);
     });
 
-    this.socket.on('turno-show-cards',(usernameAsking: string, usernameShower: string, card: string[], characterAsked: string, gunAsked: string, roomAsked: string)=>{
+    this.socketService.socket.on('turno-show-cards',(usernameAsking: string, usernameShower: string, card: string[], characterAsked: string, gunAsked: string, roomAsked: string)=>{
       if (this.verbose) console.log('onTurnoShowCards', usernameAsking, usernameShower, card);
       // muestra la carta que ha enseñado el jugador
       // si te enseña a ti: muestra la carta
@@ -127,7 +122,7 @@ export class GameLogicService implements OnDestroy {
       this.cartasService.showCardShowed(usernameAsking, usernameShower, cardToShow, [characterAsked, gunAsked, roomAsked]);
     } );
 
-    this.socket.on('turno-asks-for-response',(usernameAsking: string, character: string, gun: string, room: string, win: boolean)=>{
+    this.socketService.socket.on('turno-asks-for-response',(usernameAsking: string, character: string, gun: string, room: string, win: boolean)=>{
       if (this.verbose) console.log('onTurnoAsksForResponse', usernameAsking, character, gun, room, win);
       // mustra un modal enseñando que pregunta ha hecho el jugador
       // const text = `${username_asking} ha preguntado: ¿ha sido ${character} con ${gun} en ${room}?`;
@@ -139,55 +134,55 @@ export class GameLogicService implements OnDestroy {
     
 
 
-//game-over
-this.socket.on('game-over', (username: string, win: boolean) => {
-  if (this.verbose) console.log('onGameOver', username, win);
-  if (win) {
-    localStorage.setItem('partida_actual','' );
-  // muestra un modal con el ganador
-  //this.onGameOver(username, win);
-  }
-  alert('El usuario ' + username + (win ? ' ha ganado' : ' ha perdido') + ' la partida.');
-  // muestra un modal diciendo que ha ganado el jugador
-  if (win) this.router.navigate(['/home-page']);
-  // else --> te puedes quedar en la partida visualizándola pero no podrás hacer nada (turnoOwner ya no puede asociarse a tu usuario)
+  //game-over
+  this.socketService.socket.on('game-over', (username: string, win: boolean) => {
+    if (this.verbose) console.log('onGameOver', username, win);
+    if (win) {
+      localStorage.setItem('partida_actual','' );
+    // muestra un modal con el ganador
+    //this.onGameOver(username, win);
+    }
+    alert('El usuario ' + username + (win ? ' ha ganado' : ' ha perdido') + ' la partida.');
+    // muestra un modal diciendo que ha ganado el jugador
+    if (win) this.router.navigate(['/home-page']);
+    // else --> te puedes quedar en la partida visualizándola pero no podrás hacer nada (turnoOwner ya no puede asociarse a tu usuario)
 
-});
-
-
-
-this.socket.on('close-connection', () => {
-  if (this.verbose) console.log('onCloseConnection');
-  // muestra un modal con el mensaje de que se ha cerrado la conexión
-  alert('Conectado en otro dispositivo. Conexión cerrada.');
-  console.log('Cerrando conexión...');
-  this.socket.disconnect();
-  this.socketio.disconnect();
-  this.router.navigate(['/home-page']);
-});
+  });
 
 
-this.socket.on('game-state', ( posiciones, cartas, sospechas, turnoOwner) => {
-  if (this.verbose) console.log('onGameState',posiciones, cartas, sospechas, turnoOwner);
-  this.celdasService.setPlayerPositions(posiciones);
-  this.gameService.setCards(cartas);
-  // this.gameService.setSospechas(sospechas);
-  if (turnoOwner === this.socketio.getUserName()) {
-    console.log('Reiniciando turno...');
-    this.turnoService.restartTurno();
-  } else {
-    console.log('(game-state)turnoOwner != a mí mismo', turnoOwner);
-    this.turnoService.setTurnoOwner(turnoOwner);
-  }
-});
 
-  this.socket.on('cards', (cards: any) => {
+  this.socketService.socket.on('close-connection', () => {
+    if (this.verbose) console.log('onCloseConnection');
+    // muestra un modal con el mensaje de que se ha cerrado la conexión
+    alert('Conectado en otro dispositivo. Conexión cerrada.');
+    console.log('Cerrando conexión...');
+    this.socketService.socket.disconnect();
+    this.socketService.disconnect();
+    this.router.navigate(['/home-page']);
+  });
+
+
+  this.socketService.socket.on('game-state', ( posiciones, cartas, sospechas, turnoOwner) => {
+    if (this.verbose) console.log('onGameState',posiciones, cartas, sospechas, turnoOwner);
+    this.celdasService.setPlayerPositions(posiciones);
+    this.gameService.setCards(cartas);
+    // this.gameService.setSospechas(sospechas);
+    if (turnoOwner === this.socketService.getUserName()) {
+      console.log('Reiniciando turno...');
+      this.turnoService.restartTurno();
+    } else {
+      console.log('(game-state)turnoOwner != a mí mismo', turnoOwner);
+      this.turnoService.setTurnoOwner(turnoOwner);
+    }
+  });
+
+  this.socketService.socket.on('cards', (cards: any) => {
     if (this.verbose) console.log('onCards', cards);
     // actualiza las cartas del jugador
     this.gameService.setCards(cards);
   });
 
-  this.socket.on('game-info', (data: any) => {
+  this.socketService.socket.on('game-info', (data: any) => {
     console.log('Game info:', data);
 
     if (data.cards) {
@@ -220,7 +215,7 @@ this.socket.on('game-state', ( posiciones, cartas, sospechas, turnoOwner) => {
     console.log('es el turno de ',data.turnoOwner);
     
     if (data.turnoOwner) {
-      if (data.turnoOwner === this.socketio.getUserName()) {
+      if (data.turnoOwner === this.socketService.getUserName()) {
         console.log('Reiniciando turno...');
         this.turnoService.restartTurno();
       } else {
@@ -233,18 +228,19 @@ this.socket.on('game-state', ( posiciones, cartas, sospechas, turnoOwner) => {
   });
 
     
-    this.socket.on('start-game', (info_partida) => {
-      console.log('Game info received from server:', info_partida);
-      this.gameService.setPersonajes(info_partida.names);
-      this.gameService.setArmas(info_partida.guns);
-      this.gameService.setLugares(info_partida.rooms);
-      this.gameService.setUsuarios(info_partida.available);
-      this.celdasService.setPlayerPositions(info_partida.posiciones);
-    });
+  // this.socketService.socket.on('start-game-response', (info_partida) => {
+  //   console.log('Game info received from server:', info_partida);
+  //   this.gameService.setPersonajes(info_partida.names);
+  //   this.gameService.setArmas(info_partida.guns);
+  //   this.gameService.setLugares(info_partida.rooms);
+  //   this.gameService.setUsuarios(info_partida.available);
+  //   this.celdasService.setPlayerPositions(info_partida.posiciones);
+  // });
+      
   
 
     //game-paused-response
-    this.socket.on('game-paused-response', () => {
+    this.socketService.socket.on('game-paused-response', () => {
       console.log('Game paused');
       alert('La partida ha sido pausada');
       this.gameService.setRequestedPause(false);
@@ -253,7 +249,7 @@ this.socket.on('game-state', ( posiciones, cartas, sospechas, turnoOwner) => {
 
 
     // game-resumed-response
-    this.socket.on('game-resumed-response', () => {
+    this.socketService.socket.on('game-resumed-response', () => {
       console.log('Game resumed');
       alert('La partida ha sido reanudada');
       this.gameService.setRequestedPause(false);
@@ -264,13 +260,13 @@ this.socket.on('game-state', ( posiciones, cartas, sospechas, turnoOwner) => {
 
     // request-sospechas
 
-    this.socket.on('request-sospechas', () => {
+    this.socketService.socket.on('request-sospechas', () => {
       console.log('Request sospechas');
-      this.socketio.sendSospechas(this.gameService.getSospechas());
+      this.socketService.sendSospechas(this.gameService.getSospechas());
     });
   }
 
 
 }
 
-    
+    */

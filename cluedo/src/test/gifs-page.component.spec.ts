@@ -1,21 +1,21 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { GifsPageComponent } from '../app/chat/gifs/gifs-page/gifs-page.component';
 import { CommonModule } from '@angular/common';
-import { TextComponent } from '../app/game-page/tablero/text/text.component';
-
-describe('TextComponent', () => {
-  let component: TextComponent;
-  let fixture: ComponentFixture<TextComponent>;
+describe('GifsPageComponent', () => {
+  let component: GifsPageComponent;
+  let fixture: ComponentFixture<GifsPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CommonModule],
-      declarations: [] 
+      imports: [ CommonModule],
+      declarations: []
     })
     .compileComponents();
-    
-    fixture = TestBed.createComponent(TextComponent);
+  });
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(GifsPageComponent);
     component = fixture.componentInstance;
-    component.estilo = { left: '0px', top: '0px' }; 
     fixture.detectChanges();
   });
 

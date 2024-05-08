@@ -4,7 +4,7 @@ import { DesplegableComponent } from '../desplegable/desplegable.component';
 import { GameService } from '../servicios/servicio-game/game.service';
 
 // Codificación para el estado de las celdas
-enum EstadoCelda {
+export enum EstadoCelda {
   INDEFINIDO = 0,
   OK = 1,
   CRUZ = 2,
