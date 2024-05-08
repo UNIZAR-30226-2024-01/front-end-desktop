@@ -340,6 +340,12 @@ this.socket.on('request-sospechas', () => {
     }
   }
 
+  public gameLogicTurnoAsksFor(socket:any, username_asking: string, character: string, gun: string, room: string, is_final: boolean) :void{
+    console.log('GameLogicTurnoAsksFor', username_asking, character, gun, room, is_final);
+    this.emitirEvento(() => this.socket.emit('turno-asks-for', username_asking, character, gun, room, is_final));
+  }
+
+  
   public emit(text: string, list: any[]): void{
     this.emitirEvento(() => this.socket.emit(text, ...list));
   }
@@ -352,10 +358,7 @@ this.socket.on('request-sospechas', () => {
     this.emitirEvento(() => this.socket.connect());
   }
  
-  public gameLogicTurnoAsksFor(socket:any, username_asking: string, character: string, gun: string, room: string, is_final: boolean) :void{
-    console.log('GameLogicTurnoAsksFor', username_asking, character, gun, room, is_final);
-    this.emitirEvento(() => this.socket.emit('turno-asks-for', username_asking, character, gun, room, is_final));
-  }
+  
   
   // Método para indicar al servidor que empiece el juego
   public startGame(): void {
