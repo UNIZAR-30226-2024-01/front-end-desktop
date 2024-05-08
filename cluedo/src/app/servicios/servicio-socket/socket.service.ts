@@ -10,7 +10,9 @@ import { ShowCardsService } from '../servicio-cartas/cartas.service';
 import { environment } from "../../../environments/environment";
 import { publishFacade } from '@angular/compiler';
 import { DefaultEventsMap } from '@socket.io/component-emitter';
-const { infoTablero, casillasPorHabitacion } = require('../../../../../../front-end-shared/infoTablero.js');
+const { casillasPorHabitacion } = require('../../../../../../front-end-shared/infoTablero.js');
+import * as infoTablero from '../../../assets/infoTablero.json';
+
 
 // const {
 //   socket
@@ -20,6 +22,7 @@ const { infoTablero, casillasPorHabitacion } = require('../../../../../../front-
   providedIn: 'root'
 })
 export class SocketService {
+
   public socket: Socket;
   private eventMessage = new Subject<any>();   // Subject para emitir eventos a los componentes que lo necesiten
   private verbose = true;
@@ -28,7 +31,7 @@ export class SocketService {
   private gameService: GameService;
   private cartasService: ShowCardsService;
   private router: Router;
-  infoTablero: any;
+  infoTablero: any[] = infoTablero.infoTablero2;
   casillasPorHabitacion: any;
 
   constructor( turnoService: TurnoService,
@@ -152,6 +155,7 @@ this.socket.on('turno-moves-to-response', (username: string, position: number) =
   const playerIdx = this.gameService.usernames.indexOf(username);
   const newPlayerPositions = [...this.celdasService.getPlayerPositions()];
   newPlayerPositions[playerIdx] = position;
+  console.log('newPlayerPositions', newPlayerPositions);
   this.celdasService.setPlayerPositions(newPlayerPositions); 
 });
 
@@ -256,9 +260,9 @@ if (data.sospechas) {
 if (data.posiciones) {
   const newPositions: number[]=[];
   for (const pos of data.posiciones) {
-    const inRoom = infoTablero[pos].isRoom;
+    const inRoom = this.infoTablero[pos].isRoom;
     if (inRoom) {
-      const roomName = infoTablero[pos].roomName;
+      const roomName = this.infoTablero[pos].roomName;
       let { cells } = casillasPorHabitacion[parseInt(roomName) - 1];
       cells = cells.filter((c:number) => !newPositions.includes(c));
       const randomCell = cells[Math.floor(Math.random() * cells.length)];
@@ -345,7 +349,7 @@ this.socket.on('request-sospechas', () => {
     this.emitirEvento(() => this.socket.emit('turno-asks-for', username_asking, character, gun, room, is_final));
   }
 
-  
+
   public emit(text: string, list: any[]): void{
     this.emitirEvento(() => this.socket.emit(text, ...list));
   }

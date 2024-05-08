@@ -37,7 +37,7 @@ const BACKEND_URL = environment.apiUrl;
 export class GamePageComponent implements OnInit{
   idGame: string | undefined;
   metoca: boolean = false;
-  constructor(private router: Router, public gameService: GameService, private socketService: SocketService, private turnoService: TurnoService) { 
+  constructor(private router: Router, public gameService: GameService, private socketService: SocketService, public turnoService: TurnoService) { 
    }
   ngOnInit() {
     if (localStorage.getItem('partida_actual') === null && this.gameService.abandonada === false) {

@@ -28,7 +28,7 @@ export class CeldaComponent {
   estiloCelda = {
     width: 26,
     height: 26,
-    fill: "red"
+    fill: "black"
   };
   
   constructor(public gameService: GameService,private turnoService: TurnoService, private celdasService: CeldasService) {
@@ -51,7 +51,10 @@ export class CeldaComponent {
   
   getIsRoom() {return this.propiedadesCelda.isRoom;}
   getRoomName() {return this.propiedadesCelda.roomName;}
-  getIsStartingCell() {return this.playerPositions?.includes(this.index);}
+  getIsStartingCell() {
+    // console.log("playerPositions", this.playerPositions, "y soy", this.index);
+    return this.playerPositions?.includes(this.index);
+  }
   getIsWalkable() {return this.propiedadesCelda.isWalkable;}
   getIsDoor() {return this.propiedadesCelda.isDoor;}
   getIdx() {return this.propiedadesCelda.idx;}
