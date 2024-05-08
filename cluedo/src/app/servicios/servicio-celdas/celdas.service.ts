@@ -51,7 +51,10 @@ export class CeldasService {
     console.log("llenando celdasOptions");
     
   }
-
+  restartCeldas(): void {
+    this.celdasOptions = Array(24 * 24).fill(false);
+    this.playerPositions = [];
+  }
   updateCeldasOptions(dados:number): void {
     if (!this.turnoService.dados$ || !this.gameService.getUsernames() || !this.playerPositions ) {
       console.log("updateCeldasOptions: datos incompletos", this.turnoService.dados$, this.gameService.getUsernames(), this.playerPositions, this.dados);

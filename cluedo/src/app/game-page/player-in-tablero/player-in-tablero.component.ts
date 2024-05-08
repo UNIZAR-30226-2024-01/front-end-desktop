@@ -48,6 +48,7 @@ export class PlayerInTableroComponent {
       case "miss IA":
         return "../../../assets/images/personajes_imagen/png/missIA.png";
       default:
+        console.log("Personaje no encontrado", this.personaje);
         throw new Error("Personaje no encontrado");
     }
   }

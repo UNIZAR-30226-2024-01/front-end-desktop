@@ -1,6 +1,6 @@
-<div class="turno">
+<div *ngIf="parteTurno!='espera-resto'" class="turno">
   <ng-container *ngIf="parteTurno == 'espera-resto'">
-    <button (click)="vaAserTuTurno()">Iniciar partida</button>
+    <!-- <button (click)="vaAserTuTurno()">Iniciar partida</button> -->
   </ng-container>
 
   <ng-container *ngIf="parteTurno == 'es-tu-turno'">

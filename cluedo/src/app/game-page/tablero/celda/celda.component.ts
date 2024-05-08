@@ -78,6 +78,15 @@ export class CeldaComponent {
       
     }
   }
+
+  getFillStyle() {
+    // Your logic here...
+    if (this.playerPositions !== undefined && this.characters !== undefined) {
+      console.log('soy',this.characters[this.playerPositions?.indexOf(this.index)] );
+      return this.player2color(this.characters[this.playerPositions?.indexOf(this.index)])
+    }
+    return 'black';
+  }
   handleClick() {
     if (this.celdasOptions && !this.celdasOptions[this.index]) return;
     const updatedVector = this.playerPositions;
@@ -102,11 +111,13 @@ export class CeldaComponent {
       console.log("estan definidos, este es el nuevo vector", updatedVector);
       this.celdasService.setPlayerPositions(updatedVector);
       this.estiloCelda.fill = this.player2color(character)
+      this.celdasService.restartCeldas();
       setTimeout(() => {
         console.log("cambio la parte del tunro");
         this.turnoService.setParteTurno('elegir-pregunta');
       }, 2000);
       return;
+      
     }
     // if ( this.getIsDoor() || this.getIsRoom()) {
     //   let cells = this.casillasPorHabitacion[this.infoCell.roomName - 1].cells;
