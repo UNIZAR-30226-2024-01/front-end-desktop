@@ -52,7 +52,7 @@ export class TurnoComponent implements OnInit {
     console.log("Se ha elegido el arma", this.gunSelected);
     console.log("Se ha elegido la habitacion", this.roomSelected);
     this.turnoService.setParteTurno('espera-resto');
-    //mandar a la BD
+    this.socketService.gameLogicTurnoAsksFor(this.socketService.socket, this.socketService.getUserName(), this.characterSelected, this.gunSelected, this.roomSelected, false);
     this.dice=0;  
   }
 

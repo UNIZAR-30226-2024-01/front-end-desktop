@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 import { GameService } from '../servicios/servicio-game/game.service';
 import { TurnoService } from '../servicios/servicio-turno/turno.service';
 import { environment } from "../../environments/environment"; 
+import { CartasShowComponent } from '../cartas-show/cartas-show.component';
 
 const BACKEND_URL = environment.apiUrl;
 
@@ -28,7 +29,7 @@ const BACKEND_URL = environment.apiUrl;
     TarjetaComponent, ToolbarComponent,
     CartasDesplegableComponent,
     TurnoComponent,
-    CharacterSelectionComponent],
+    CharacterSelectionComponent,CartasShowComponent],
   templateUrl: './game-page.component.html',
   styleUrls:[ './../../../../../front-end-shared/css/Game/Game.css','./game-page.component.css']
   
