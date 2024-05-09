@@ -17,4 +17,21 @@ export class MainTableroComponent {
   @Input() personajes: string[] = []; 
 
   constructor(private socketService: SocketService, public gameservice: GameService) {    }
+
+
+  // Función que devuelve el nombre de usuario de un jugador, si es un bot devuelve el nombre por defecto
+  // Esperamos que los nombres de los usuarios no empiecen por "bot"
+  getUsername(index: number): string {
+    const userName = this.gameservice.usernames[index];
+
+    if (userName.startsWith('bot')) {
+      return this.gameservice.defaultBotNames[index];
+    }
+
+    if (userName === '') {
+      return '...';
+    }
+
+    return userName;
+  }
 }
