@@ -40,7 +40,7 @@ export class TableroComponent {
       // });
 
 
-      // gameLogicTurnoMovesTo(socket, cookies.username, idx, fin);
+       //this.socketService.gameLogicTurnoMovesTo(socket, cookies.username, idx, fin);
     }
   }
   

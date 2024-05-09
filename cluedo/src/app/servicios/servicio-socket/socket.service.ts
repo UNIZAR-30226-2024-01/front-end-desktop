@@ -369,7 +369,10 @@ this.socket.on('request-sospechas', () => {
   public connect(): void {
     this.emitirEvento(() => this.socket.connect());
   }
- 
+  public gameLogicTurnoMovesTo(socket:any, username:any, position:any, fin:any) {
+    console.log('GameLogicTurnoMovesTo', username, position, fin);
+    this.emitirEvento(() => socket.emit('turno-moves-to', username, position, fin));
+  }
   
   
   // Método para indicar al servidor que empiece el juego

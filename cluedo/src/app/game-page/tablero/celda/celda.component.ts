@@ -3,6 +3,7 @@ import { Celda } from './celda.interface';
 import { TurnoService } from '../../../servicios/servicio-turno/turno.service';
 import { GameService } from '../../../servicios/servicio-game/game.service';
 import { CeldasService } from '../../../servicios/servicio-celdas/celdas.service';
+import { SocketService } from '../../../servicios/servicio-socket/socket.service';
 import * as infoTablero from '../../../../assets/infoTablero.json';
 import { OnChanges, SimpleChanges } from '@angular/core';
 import { consumerMarkDirty } from '@angular/core/primitives/signals';
@@ -32,7 +33,7 @@ export class CeldaComponent {
     fill: "black"
   };
   
-  constructor(public gameService: GameService,private turnoService: TurnoService, private celdasService: CeldasService) {
+  constructor(public gameService: GameService,private turnoService: TurnoService, private celdasService: CeldasService, private socketService: SocketService) {
    this.turnoService.parteTurno$.subscribe(parteTurno => {
      // this.parteTurno = this.turnoService.getParteTurno();
      this.parteTurno = parteTurno;
@@ -119,7 +120,7 @@ export class CeldaComponent {
       this.estiloCelda.fill = this.player2color(character)
       this.celdasService.restartCeldas();
 
-      this.gestionarTurno();
+      this.gestionarTurno(this.index,true);
       
       return;
       
@@ -142,7 +143,7 @@ export class CeldaComponent {
     // }, 2000);
   }
 
-  private gestionarTurno(): void {
+  private gestionarTurno(idx:number , fin:boolean): void {
     if(this.esUnaHabitacion()) {
       console.log("El jugador ha entrado en una habitación");
 
@@ -155,6 +156,8 @@ export class CeldaComponent {
 
       setTimeout(() => {
         console.log("cambio la parte del tunro");
+        this.celdasService.restartCeldas();
+        this.socketService.gameLogicTurnoMovesTo(this.socketService.socket, this.gameService.getUsername(), idx, fin);
         this.turnoService.setParteTurno('espera-resto');
       }, 2000);
     }
