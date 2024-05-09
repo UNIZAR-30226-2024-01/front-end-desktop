@@ -55,7 +55,7 @@ export class CeldasService {
   }
   restartCeldas(): void {
     this.celdasOptions = Array(24 * 24).fill(false);
-    this.playerPositions = [];
+    // this.playerPositions = [];
   }
   updateCeldasOptions(dados:number): void {
     if (!this.turnoService.dados$ || !this.gameService.getUsernames() || !this.playerPositions ) {

@@ -356,7 +356,7 @@ this.socket.on('request-sospechas', () => {
   }
   // Método para indicar al servidor que el cliente se va a desconectar
   public disconnected(): void {
-    this.emitirEvento(() => this.socket.emit('disconnect'));
+    this.emitirEvento(() => this.socket.emit('leave-game'));
   }
 
   public connect(): void {
