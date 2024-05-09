@@ -3,7 +3,9 @@ import { BehaviorSubject } from 'rxjs';
 import { TurnoService } from '../servicio-turno/turno.service';
 import { GameService } from '../servicio-game/game.service';
 //  import { cellsClose } from '../../../../bfs.mjs';
-import * as infoTablero from '../../../assets/infoTablero.json';
+//import * as infoTablero from '../../../assets/infoTablero.json';
+import infoTablero from '../../../assets/infoTablero.json';
+
 import { Celda } from '../../game-page/tablero/celda/celda.interface'; 
 
 
