@@ -58,21 +58,4 @@ export class PlayerInTableroComponent {
   getSyle(): string {
     return "player " + this.lado;
   }
-
-  mostrarUsername(): string {
-    let user: string;
-    if (this.username.startsWith('bot')) {
-      console.log("Pre-asignacion", this.index, "de", defaultBotNames.length, "nombres de bot, el nombre de bot es: ", defaultBotNames[this.index], "y el index es: ", this.index);
-      user= defaultBotNames[this.index];
-      this.index++;
-      if (this.index >= defaultBotNames.length) {
-        this.index = 0;
-      }
-      console.log("Bot name", user, this.index);
-    }else{
-      user=  this.username === "" ? "..." : this.username;
-    }
-     return user
-  }
-
 }

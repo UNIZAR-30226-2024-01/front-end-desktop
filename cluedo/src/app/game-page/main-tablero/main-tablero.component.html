@@ -1,13 +1,13 @@
 <div class="main-board">
     <div class="users-info left">
-        <app-player-in-tablero [username]="this.gameservice.usernames[0]" [personaje]="personajes[0]" [lado]="'left'"></app-player-in-tablero>
-        <app-player-in-tablero [username]="this.gameservice.usernames[1]" [personaje]="personajes[1]" [lado]="'left'"></app-player-in-tablero>
-        <app-player-in-tablero [username]="this.gameservice.usernames[2]" [personaje]="personajes[2]" [lado]="'left'"></app-player-in-tablero>
+        <app-player-in-tablero [username]="getUsername(0)" [personaje]="personajes[0]" [lado]="'left'"></app-player-in-tablero>
+        <app-player-in-tablero [username]="getUsername(1)" [personaje]="personajes[1]" [lado]="'left'"></app-player-in-tablero>
+        <app-player-in-tablero [username]="getUsername(2)" [personaje]="personajes[2]" [lado]="'left'"></app-player-in-tablero>
     </div>
     <app-tablero></app-tablero>
     <div class="users-info right">
-        <app-player-in-tablero [username]="this.gameservice.usernames[3]" [personaje]="personajes[3]" [lado]="'right'"></app-player-in-tablero>
-        <app-player-in-tablero [username]="this.gameservice.usernames[4]" [personaje]="personajes[4]" [lado]="'right'"></app-player-in-tablero>
-        <app-player-in-tablero [username]="this.gameservice.usernames[5]" [personaje]="personajes[5]" [lado]="'right'"></app-player-in-tablero>        
+        <app-player-in-tablero [username]="getUsername(3)" [personaje]="personajes[3]" [lado]="'right'"></app-player-in-tablero>
+        <app-player-in-tablero [username]="getUsername(4)" [personaje]="personajes[4]" [lado]="'right'"></app-player-in-tablero>
+        <app-player-in-tablero [username]="getUsername(5)" [personaje]="personajes[5]" [lado]="'right'"></app-player-in-tablero>        
     </div>
 </div>

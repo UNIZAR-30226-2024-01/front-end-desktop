@@ -15,6 +15,7 @@ export class GameService {
   private sospechas: string[] = new Array(28).fill('');
   charactersSelected: boolean[] = [false, false, false, false, false, false];
   usernames: string[] = ["" , "", "", "", "", ""];
+  defaultBotNames: string[] = ["Intel", "WiFi", "Python", "Newton", "Grafo", "GPT"];
 
   userSelectedACharacter: boolean = false;
   userCharacter: number = -1;
