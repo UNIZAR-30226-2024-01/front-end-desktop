@@ -11,7 +11,8 @@ import { environment } from "../../../environments/environment";
 import { publishFacade } from '@angular/compiler';
 import { DefaultEventsMap } from '@socket.io/component-emitter';
 const { casillasPorHabitacion } = require('../../../../../../front-end-shared/infoTablero.js');
-import * as infoTablero from '../../../assets/infoTablero.json';
+//import * as infoTablero from '../../../assets/infoTablero.json';
+import infoTablero from '../../../assets/infoTablero.json';
 
 
 // const {
