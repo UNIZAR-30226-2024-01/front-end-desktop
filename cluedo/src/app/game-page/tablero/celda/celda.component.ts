@@ -158,6 +158,7 @@ export class CeldaComponent {
         console.log("cambio la parte del tunro");
         this.celdasService.restartCeldas();
         this.socketService.gameLogicTurnoMovesTo(this.socketService.socket, this.gameService.getUsername(), idx, fin);
+        this.turnoService.setDados(0);
         this.turnoService.setParteTurno('espera-resto');
       }, 2000);
     }

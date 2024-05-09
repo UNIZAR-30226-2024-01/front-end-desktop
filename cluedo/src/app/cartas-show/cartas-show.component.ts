@@ -12,9 +12,9 @@ import { CartasComponent } from '../cartas/cartas.component';
 export class CartasShowComponent {
   // hasToShow : boolean= false;
   constructor(public showCardsService: ShowCardsService) {
-  //   this.showCardsService.hasToShow.subscribe(hasToShow => {
-  //     this.hasToShow = hasToShow;
-  //   });
+    // this.showCardsService.hasToShow.subscribe(hasToShow => {
+    //   this.showCardsService.hasToShow = hasToShow;
+    // });
    }
   // hasToShow = false;
   ngOnInit(): void {
