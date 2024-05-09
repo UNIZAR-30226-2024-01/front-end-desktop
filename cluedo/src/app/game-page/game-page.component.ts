@@ -15,6 +15,7 @@ import { GameService } from '../servicios/servicio-game/game.service';
 import { TurnoService } from '../servicios/servicio-turno/turno.service';
 import { environment } from "../../environments/environment"; 
 import { CartasShowComponent } from '../cartas-show/cartas-show.component';
+import { ShowCardsService } from '../servicios/servicio-cartas/cartas.service';
 
 const BACKEND_URL = environment.apiUrl;
 
@@ -37,7 +38,11 @@ const BACKEND_URL = environment.apiUrl;
 export class GamePageComponent implements OnInit{
   idGame: string | undefined;
   metoca: boolean = false;
-  constructor(private router: Router, public gameService: GameService, private socketService: SocketService, public turnoService: TurnoService) { 
+  hasToShow:boolean = false;
+  constructor(private router: Router, public gameService: GameService, private socketService: SocketService, public turnoService: TurnoService, public showCardsService: ShowCardsService) { 
+    this.showCardsService.hasToShow.subscribe(hasToShow => {
+      this.hasToShow = hasToShow;
+    });
    }
   ngOnInit() {
     if (localStorage.getItem('partida_actual') === null && this.gameService.abandonada === false) {

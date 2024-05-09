@@ -18,12 +18,15 @@
 }
 
 
-@if(this.metoca){
+@if(this.metoca || this.turnoService.getParteTurno()=='espera-resto'){
   <app-turno></app-turno>
  } 
-<!-- <app-cartas-show></app-cartas-show> -->
-<app-tarjeta></app-tarjeta>
-<app-main-tablero [personajes]="gameService.personajes"></app-main-tablero>
-<app-chat></app-chat>
-<app-toolbar></app-toolbar>
-<app-carta-desplegable></app-carta-desplegable>
+ <app-tarjeta></app-tarjeta>
+ <app-main-tablero [personajes]="gameService.personajes"></app-main-tablero>
+ <app-chat></app-chat>
+ <app-toolbar></app-toolbar>
+ <app-carta-desplegable></app-carta-desplegable>
+ @if(this.showCardsService.hasToShow){
+   <p>cartas-show works!</p> 
+  <app-cartas-show></app-cartas-show>
+ }

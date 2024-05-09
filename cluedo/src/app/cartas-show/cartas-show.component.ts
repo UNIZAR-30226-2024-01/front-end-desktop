@@ -1,18 +1,17 @@
 import { Component } from '@angular/core';
 import { ShowCardsService } from '../servicios/servicio-show-cards/show-cards.service';
 import { CommonModule } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
 import { CartasComponent } from '../cartas/cartas.component';
 @Component({
   selector: 'app-cartas-show',
   standalone: true,
-  imports: [CartasComponent, CommonModule, BrowserModule],
+  imports: [CartasComponent, CommonModule],
   templateUrl: './cartas-show.component.html',
   styleUrl: './cartas-show.component.css'
 })
 export class CartasShowComponent {
   constructor(public showCardsService: ShowCardsService) { }
-
+  hasToShow = false;
   ngOnInit(): void {
   }
 

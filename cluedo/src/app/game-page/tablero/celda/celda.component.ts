@@ -90,7 +90,7 @@ export class CeldaComponent {
         return this.player2color(this.characters[this.playerPositions?.indexOf(this.index)]);
       }
     }
-    return 'red';
+    return 'black';
   }
 
   handleClick() {
