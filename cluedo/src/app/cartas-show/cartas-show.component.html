@@ -1,5 +1,6 @@
 <!-- <p>cartas-show works!</p> -->
-<div *ngIf="this.hasToShow" class="carta-shower" [style.padding]="showCardsService.isCardElection ? '20px' : ''">
+<!-- <div *ngIf="this.showCardsService.hasToShow" class="carta-shower" [style.padding]="showCardsService.isCardElection ? '20px' : ''"> -->
+<div class="carta-shower" [style.padding]="showCardsService.isCardElection ? '20px' : ''">
     <h1>{{ showCardsService.text }}</h1>
     <h3><em>{{ showCardsService.subtext }}</em></h3>
     <div class="carta-shower-container">
