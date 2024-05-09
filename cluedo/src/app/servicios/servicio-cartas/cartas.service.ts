@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class ShowCardsService {
-  private hasToShow = new BehaviorSubject<boolean>(false);
+  public hasToShow = new BehaviorSubject<boolean>(false);
   private text = new BehaviorSubject<string>('');
   private subtext = new BehaviorSubject<string>('');
   private isCardElection = new BehaviorSubject<boolean>(false);

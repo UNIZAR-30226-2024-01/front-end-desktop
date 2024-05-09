@@ -46,7 +46,7 @@ describe('TurnoService', () => {
       expect(value).toBe('espera-resto');
     });
     service.dados$.subscribe(value => {
-      expect(value).toBeUndefined();
+      expect(value).toBe(0);
       done();
     });
   });

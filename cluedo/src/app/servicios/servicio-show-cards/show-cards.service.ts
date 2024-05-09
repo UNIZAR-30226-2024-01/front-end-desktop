@@ -8,7 +8,7 @@ export class ShowCardsService {
   text: string = '';
   subtext: string = '';
   isCardElection: boolean = false;
-  selectCardsToShow: any[] = [];
+  selectCardsToShow: any[] = ["SOPER","REDES", "FISICA"];
   blockCards: any[] = [];
   onClickedCard: any = () => {};
 

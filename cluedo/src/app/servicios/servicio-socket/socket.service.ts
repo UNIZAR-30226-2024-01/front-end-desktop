@@ -11,7 +11,8 @@ import { environment } from "../../../environments/environment";
 import { publishFacade } from '@angular/compiler';
 import { DefaultEventsMap } from '@socket.io/component-emitter';
 const { casillasPorHabitacion } = require('../../../../../../front-end-shared/infoTablero.js');
-import * as infoTablero from '../../../assets/infoTablero.json';
+//import * as infoTablero from '../../../assets/infoTablero.json';
+import infoTablero from '../../../assets/infoTablero.json';
 
 
 // const {
@@ -362,7 +363,7 @@ this.socket.on('request-sospechas', () => {
   }
   // Método para indicar al servidor que el cliente se va a desconectar
   public disconnected(): void {
-    this.emitirEvento(() => this.socket.emit('disconnect'));
+    this.emitirEvento(() => this.socket.emit('leave-game'));
   }
 
   public connect(): void {
