@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Input } from '@angular/core';
+const defaultBotNames = require('../../../../../../front-end-shared/infoTablero.js');
 
 @Component({
   selector: 'app-player-in-tablero',
@@ -13,6 +14,7 @@ export class PlayerInTableroComponent {
   @Input() lado!: string;
   @Input() username!: string;
   colorPlayer: string = "red";
+  index: number = 0;
 
   getColor(): string {
     switch (this.personaje) {
@@ -58,7 +60,19 @@ export class PlayerInTableroComponent {
   }
 
   mostrarUsername(): string {
-    return this.username === "" ? "..." : this.username;
+    let user: string;
+    if (this.username.startsWith('bot')) {
+      console.log("Pre-asignacion", this.index, "de", defaultBotNames.length, "nombres de bot, el nombre de bot es: ", defaultBotNames[this.index], "y el index es: ", this.index);
+      user= defaultBotNames[this.index];
+      this.index++;
+      if (this.index >= defaultBotNames.length) {
+        this.index = 0;
+      }
+      console.log("Bot name", user, this.index);
+    }else{
+      user=  this.username === "" ? "..." : this.username;
+    }
+     return user
   }
 
 }

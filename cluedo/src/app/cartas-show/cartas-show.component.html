@@ -4,12 +4,18 @@
     <h1>{{ showCardsService.text }}</h1>
     <h3><em>{{ showCardsService.subtext }}</em></h3>
     <div class="carta-shower-container">
-      <div *ngFor="let carta of showCardsService.selectCardsToShow; let i = index"
-           class="getCardClass(i)"
-           (click)="onClickedCardLocal(carta)">
-        <app-carta [player_name]="carta" ></app-carta>
-      </div>
-    </div>
+      <div *ngFor="let carta of showCardsService.selectCardsToShow; let i = index">
+        <ng-container *ngIf="!showCardsService.isCardElection">          
+          <div [style.opacity]="carta === '' ? 0 : 1" [style.transition]="'none'" class="carta">
+          <app-carta [player_name]="carta"></app-carta>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="showCardsService.isCardElection">
+          <div class= getCardClass(i)
+              (click)="onClickedCardLocal(carta)">
+              <app-carta [player_name]="carta" ></app-carta>
+             </div>
+        </ng-container>>
     <button *ngIf="!showCardsService.isCardElection" class="carta-shower-button" (click)="showCardsService.hasToShow = false">
       Cerrar
     </button>
