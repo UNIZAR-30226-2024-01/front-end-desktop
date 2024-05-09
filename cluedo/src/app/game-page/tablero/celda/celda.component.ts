@@ -112,10 +112,9 @@ export class CeldaComponent {
       this.celdasService.setPlayerPositions(updatedVector);
       this.estiloCelda.fill = this.player2color(character)
       this.celdasService.restartCeldas();
-      setTimeout(() => {
-        console.log("cambio la parte del tunro");
-        this.turnoService.setParteTurno('elegir-pregunta');
-      }, 2000);
+
+      this.gestionarTurno();
+      
       return;
       
     }
@@ -135,6 +134,28 @@ export class CeldaComponent {
     // setTimeout(() => {
     //   this.setParteTurno('espera-resto');
     // }, 2000);
+  }
+
+  private gestionarTurno(): void {
+    if(this.esUnaHabitacion()) {
+      console.log("El jugador ha entrado en una habitación");
+
+      setTimeout(() => {
+        console.log("cambio la parte del tunro");
+        this.turnoService.setParteTurno('elegir-pregunta');
+      }, 2000);
+    } else {
+      console.log("El jugador ha entrado en una casilla normal");
+
+      setTimeout(() => {
+        console.log("cambio la parte del tunro");
+        this.turnoService.setParteTurno('espera-resto');
+      }, 2000);
+    }
+  }
+
+  private esUnaHabitacion(): boolean {
+    return infoTablero.infoTablero2[this.index].isRoom;
   }
   
   anadirClase():string {

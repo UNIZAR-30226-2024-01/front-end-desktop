@@ -122,6 +122,10 @@ export class SocketService {
       //Llamamos a alguna funcion del servicio game-logic
       // this.gameLogicService.onTurnoOwner(username_owner)
     });
+
+    this.socket.on('connect', () => {
+      console.log('Conectado al servidor!');
+    });
         
   
     this.socket.on('start-game-response', (info_partida) => {
@@ -133,7 +137,10 @@ export class SocketService {
       this.celdasService.setPlayerPositions(info_partida.posiciones);
     });
 ////////////////////////////////////////////////////////////
-    
+const infoTablero = require('../../../assets/infoTablero.json');
+const casillasPorHabitacion = require('../../../../../../front-end-shared/infoTablero.js');
+this.infoTablero = infoTablero.infoTablero2;
+this.casillasPorHabitacion = casillasPorHabitacion.casillasPorHabitacion;
 this.socket.on('turno-owner', (username: string) => {
   if (this.verbose) console.log('onTurnoOwner', username);
   console.log('(turno-owner)es el turno de ',username);
