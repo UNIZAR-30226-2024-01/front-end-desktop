@@ -106,6 +106,14 @@ export class TurnoComponent implements OnInit {
     const is_final = this.tipoPregunta; // false = sospecha, true = acusacion final
     this.socketService.gameLogicTurnoAsksFor(this.socketService.socket, username_asking, this.characterSelected, this.gunSelected, this.roomSelected, is_final);
   }
+
+  //Muestra el valor de los dados y lo resetea después de 2 segundos
+  showDice(): number {
+    setTimeout(() => {
+      this.dice = 0;
+    }, 2000);
+    return this.dice;
+  }
   
 
   toggleTipoPregunta(): void {

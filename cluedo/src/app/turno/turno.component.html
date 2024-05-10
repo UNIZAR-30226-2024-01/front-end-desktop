@@ -22,7 +22,7 @@
     <div id="turno-dados">
        <!-- <app-dados [buttonText]="'Tirar los dados'" (finRoll)="handleDiceRoll($event)"></app-dados>  -->
       <app-dados (finRoll)="handleDiceRoll($event)"></app-dados> 
-      <h1 *ngIf="dice != 0">Has sacado un {{ dice }}</h1>
+      <h1 *ngIf="dice != 0">Has sacado un {{ showDice() }}</h1>
     </div>
   </ng-container>
 
