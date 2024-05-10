@@ -62,6 +62,9 @@ export class CeldaComponent {
   getIdx() {return this.propiedadesCelda.idx;}
   getFila() {return this.fila;}
   getColumna() {return this.columna;}
+  private isMyTurn() : boolean {
+    return this.gameService.getUsername() === this.turnoService.getTurnoOwner();
+  } 
 
   ngOnInit() {
     this.estilarCelda();
@@ -121,7 +124,7 @@ export class CeldaComponent {
       this.celdasService.restartCeldas();
 
       this.gestionarTurno(this.index,true);
-      
+
       return;
       
     }
@@ -185,17 +188,20 @@ export class CeldaComponent {
         this.clase += " start start-" + this.getIsStartingCell();
       }
     }
-      if (this.celdasOptions){
-        // console.log("celdasOptions", this.celdasOptions);
-        if( this.celdasOptions[this.index]) {
+      if (this.celdasOptions){this.index
+        if( this.celdasOptions[this.index] && this.isMyTurn()) {
         // console.log("celda seleccionable", this.index);
-        this.clase += " selected";
+          this.clase += " selected";
+        } else { 
+          // remove " selected" from this.clase if it's there
+          this.clase = this.clase.replace(" selected", "");
+        }
       }
-    }
 
     return this.clase;
     // this.clase += " selected";
   }
+  
   ngOnChanges(changes: SimpleChanges) {
     if (changes['celdasOptions'] && this['celdasOptions']) {
       if (this['celdasOptions'][this.index]) {
