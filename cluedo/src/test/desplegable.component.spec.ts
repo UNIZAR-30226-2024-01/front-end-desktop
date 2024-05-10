@@ -16,6 +16,7 @@ describe('DesplegableComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DesplegableComponent);
     component = fixture.componentInstance;
+    component.componentePadre = 'chat'; 
     fixture.detectChanges();
   });
 
@@ -26,9 +27,9 @@ describe('DesplegableComponent', () => {
   });
   
   it('should bind @Input property componentePadre', () => {
-    component.componentePadre = 'chat';
+    component.componentePadre = 'tarjeta';
     fixture.detectChanges();
-    expect(component.componentePadre).toBe('chat');
+    expect(component.componentePadre).toBe('tarjeta');
   });
   
   it('should handle click', () => {

@@ -4,7 +4,8 @@ import { TurnoService } from '../../../servicios/servicio-turno/turno.service';
 import { GameService } from '../../../servicios/servicio-game/game.service';
 import { CeldasService } from '../../../servicios/servicio-celdas/celdas.service';
 import { SocketService } from '../../../servicios/servicio-socket/socket.service';
-import * as infoTablero from '../../../../assets/infoTablero.json';
+//import * as infoTablero from '../../../../assets/infoTablero.json';
+import infoTablero from '../../../../assets/infoTablero.json';
 import { OnChanges, SimpleChanges } from '@angular/core';
 import { consumerMarkDirty } from '@angular/core/primitives/signals';
 

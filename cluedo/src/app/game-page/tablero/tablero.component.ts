@@ -5,7 +5,8 @@ import { CeldaComponent } from './celda/celda.component';
 import { TextComponent } from './text/text.component';
 import { Celda } from './celda/celda.interface'; 
 import { TurnoService } from '../../servicios/servicio-turno/turno.service';
-import * as infoTablero from '../../../assets/infoTablero.json';
+//import * as infoTablero from '../../../assets/infoTablero.json';
+import infoTablero from '../../../assets/infoTablero.json';
 @Component({
   selector: 'app-tablero',
   standalone: true,

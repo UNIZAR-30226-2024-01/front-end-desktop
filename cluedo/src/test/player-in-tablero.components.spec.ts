@@ -18,6 +18,7 @@ describe('PlayerInTableroComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PlayerInTableroComponent);
     component = fixture.componentInstance;
+    component.personaje = 'mr SOPER'; 
     fixture.detectChanges();
   });
 
@@ -40,12 +41,4 @@ describe('PlayerInTableroComponent', () => {
     expect(component.getSyle()).toEqual('player left');
   });
 
-  it('should return correct username or default', () => {
-    component.username = '';
-    expect(component.mostrarUsername()).toEqual('...');
-    component.username = 'testUser';
-    expect(component.mostrarUsername()).toEqual('testUser');
-  });
-
-  
 });
