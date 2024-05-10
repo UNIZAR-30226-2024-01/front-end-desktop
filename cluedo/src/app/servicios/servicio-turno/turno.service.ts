@@ -13,6 +13,8 @@ export class TurnoService {
     private dadosSubject = new BehaviorSubject<number>(0);
     dados$ = this.dadosSubject.asObservable();
     private dados: number = 0;
+    private habitacion$= new BehaviorSubject<string>('');
+    private habitacion: string = '';
 
     constructor() {
         this.parteTurno$.subscribe(parteTurno => {
@@ -24,7 +26,12 @@ export class TurnoService {
         this.turnoOwner$.subscribe(turnoOwner => {
             this.turnoOwner = turnoOwner;
         });
+        this.habitacion$.subscribe(habitacion => {
+            this.habitacion = habitacion;
+        });
     }
+
+    
 
     restartTurno = (): void => {
         this.setTurnoOwner('');

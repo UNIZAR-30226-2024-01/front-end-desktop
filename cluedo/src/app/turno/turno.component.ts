@@ -40,6 +40,7 @@ export class TurnoComponent implements OnInit {
     this.turnoService.dados$.subscribe(dados => {
       this.dice = dados;
     });
+    // esto denberia ser asi, de momento no lo pongo porque no me va
     // this.personajes=gameService.personajes
     // this.armas=gameService.armas
     // this.lugares=gameService.lugares
