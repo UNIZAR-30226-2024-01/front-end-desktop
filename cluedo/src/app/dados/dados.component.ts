@@ -25,7 +25,7 @@ export class DadosComponent {
 
   diceState1: string = 'start';
   diceState2: string = 'start';
-  buttonText: string = 'Roll Dice';
+  buttonText: string = '¡Tirar dados!';
   diceImage1: string = 'assets/images/dado/dice1.png'; // Asegúrate de que esta ruta apunte a la imagen correcta
   diceImage2: string = 'assets/images/dado/dice1.png'; // Asegúrate de que esta ruta apunte a la imagen correcta
   // @Input() finRoll: any;
