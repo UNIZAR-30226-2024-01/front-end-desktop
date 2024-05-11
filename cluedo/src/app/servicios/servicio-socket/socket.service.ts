@@ -272,7 +272,7 @@ if (data.posiciones) {
     const inRoom = this.infoTablero[pos].isRoom;
     if (inRoom) {
       const roomName = this.infoTablero[pos].roomName;
-      let { cells } = casillasPorHabitacion[parseInt(roomName) - 1];
+      let { cells } = casillasPorHabitacion[infoTablero[pos].roomName - 1];
       cells = cells.filter((c:number) => !newPositions.includes(c));
       const randomCell = cells[Math.floor(Math.random() * cells.length)];
       newPositions.push(randomCell);

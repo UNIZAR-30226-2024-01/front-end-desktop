@@ -33,7 +33,10 @@
   </ng-container>
 
   <ng-container *ngIf="parteTurno == 'elegir-pregunta'">
-    <div id="turno-cartas">
+    <div id="turno-cartas" [ngClass]="claseTipoPregunta">
+      <button class="turno-boton-acusacion-final" [ngClass]="claseTipoPregunta" (click)="toggleTipoPregunta()">
+        {{ tipoPregunta ? 'Cambiar a sospecha' : 'Cambiar a acusación final' }}
+      </button>
       <h1>Elige una pregunta</h1>
       <div class="container-cartas">
         <div class="carta-quien">
@@ -63,7 +66,9 @@
           </div>
         </div>
       </div>
-      <button style="margin-top: 15px" (click)="handleClick()">Realizar sospecha🧐  </button>
+      <button class="turno-boton-sospecha" [ngClass]="claseTipoPregunta" (click)="finTurnoPregunta()">
+        {{ tipoPregunta ? 'Realizar acusación final' : 'Realizar sospecha' }}
+      </button>
     </div>
   </ng-container>
 </div>
