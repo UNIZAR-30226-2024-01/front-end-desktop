@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CartasComponent } from '../cartas/cartas.component';
 import { DesplegableComponent } from '../desplegable/desplegable.component';
 import { CommonModule } from '@angular/common';
+import { GameService } from '../servicios/servicio-game/game.service';
 
 @Component({
   selector: 'app-carta-desplegable',
@@ -14,7 +15,7 @@ export class CartasDesplegableComponent {
   desplegado: boolean = false;
   nombreComponente: string = 'cartas';
   style = { bottom: `${this.desplegado ? "0px" : "-335px"}` };
-  constructor() {
+  constructor(private gameService : GameService) {
     // Inicializar propiedades aquí si es necesario
   }
 
@@ -22,11 +23,24 @@ export class CartasDesplegableComponent {
     this.desplegado = !this.desplegado;
   }
 
-  getRandomObject(): string {
-    const itemsPlayers = ['SOPER', 'FISICA', 'IA', 'PROG', 'REDES', 'DISCRETO'];
-    const itemsObjects = ['teclado', 'cable de red', 'cafe envenenado', 'router afilado', 'troyano', 'cd'];
-    const itemsPlaces = ['cafeteria', 'baños', 'recepcion', 'escaleras', 'biblioteca', 'laboratorio', 'despacho', 'aulas norte', 'aulas sur'];
-    const items = [...itemsPlayers, ...itemsObjects, ...itemsPlaces];
-    return items[Math.floor(Math.random() * items.length)];
+  // Devuelve un elemento aleatorio de un array
+  obtenerElementoAleatorio(arr: string[]): string {
+    const indiceAleatorio = Math.floor(Math.random() * arr.length);
+    return arr[indiceAleatorio];
+  }
+
+  // Devuelve un personaje aleatorio
+  getRandomPlayer(): string {
+    return this.obtenerElementoAleatorio(this.gameService.getPersonajes());
+  }
+
+  // Devuelve un arma aleatoria
+  getRandomWeapon(): string {
+    return this.obtenerElementoAleatorio(this.gameService.getArmas());
+  }
+
+  // Devuelve un lugar aleatorio
+  getRandomPlace(): string {
+    return this.obtenerElementoAleatorio(this.gameService.getLugares());
   }
 }
