@@ -193,6 +193,7 @@ this.socket.on('turno-show-cards',(usernameAsking: string, usernameShower: strin
   this.showCardsService.showCardShowed(usernameAsking, usernameShower, cardToShow, [characterAsked, gunAsked, roomAsked]);
 } );
 
+
 this.socket.on('turno-asks-for-response',(usernameAsking: string, character: string, gun: string, room: string, win: boolean)=>{
   if (this.verbose) console.log('onTurnoAsksForResponse', usernameAsking, character, gun, room, win);
   // mustra un modal enseñando que pregunta ha hecho el jugador
@@ -251,6 +252,9 @@ this.socket.on('cards', (cards: any) => {
 if (this.verbose) console.log('onCards', cards);
 // actualiza las cartas del jugador
 this.gameService.setCards(cards);
+localStorage.setItem('cartas1', cards[0]);
+localStorage.setItem('cartas2', cards[1]);
+localStorage.setItem('cartas3', cards[2]);
 });
 
 this.socket.on('game-info', (data: any) => {

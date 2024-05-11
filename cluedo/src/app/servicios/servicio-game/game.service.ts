@@ -80,6 +80,7 @@ export class GameService {
 
 
   setCards(newCards: string[]): void {
+    console.log("Cartas en el set: ", newCards);
     this.cards = newCards;
   }
   public getidGame(): string | null {

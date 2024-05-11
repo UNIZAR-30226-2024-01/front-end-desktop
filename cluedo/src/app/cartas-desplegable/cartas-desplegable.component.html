@@ -1,8 +1,8 @@
 <div class="cartadesplegable-body" [ngStyle]="{ 'bottom': desplegado ? '0px' : '-335px' }" >
   <app-desplegable class="desplegable" [componentePadre]="nombreComponente" (desplegableClicked)="toggleDesplegado()"></app-desplegable>
     <div class="cartadesplegable-cart-container">
-      <app-carta [player_name] = 'getRandomWeapon()'  ></app-carta>
-      <app-carta [player_name] = 'getRandomPlayer()'></app-carta>
-      <app-carta [player_name] = 'getRandomPlace()'></app-carta>
+      <app-carta [player_name] = 'getcarta1()'  ></app-carta>
+      <app-carta [player_name] = 'getcarta2()'></app-carta>
+      <app-carta [player_name] = 'getcarta3()'></app-carta>
     </div>
 </div>
