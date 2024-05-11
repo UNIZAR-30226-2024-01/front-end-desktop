@@ -92,6 +92,21 @@ export class TurnoComponent implements OnInit {
       this.roomSelected = room_name_clean?.toLowerCase() || 'sin habitacion';
     }
 
+    getRoomSelected():string{ 
+      let room_idx = this.celdasService.playerPositions?.[this.gameService.usernames.indexOf(this.socketService.getUserName())] ?? 0;
+      room_idx = infoTablero[room_idx].roomName - 1;
+      const room_name = infoHabitaciones[room_idx]?.roomName;
+  
+      // quitar tildes a los nombres de las habitaciones
+      const room_name_clean = room_name?.replace(/[áéíóú]/g, (char: string | number) => {
+        return { á: 'a', é: 'e', í: 'i', ó: 'o', ú: 'u' }[char];
+      });
+  
+      console.log('room_idx: ' + room_idx);
+      this.roomSelected = room_name_clean?.toLowerCase() || 'sin habitacion';
+      return this.roomSelected;
+    }
+
   checkParteTurno(): void {
     console.log('Nueva parte del turno: ' + this.parteTurno);
     if (this.parteTurno == 'espera-resto') {
