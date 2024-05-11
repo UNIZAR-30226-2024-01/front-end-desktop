@@ -24,12 +24,15 @@ const { infoTablero, casillasPorHabitacion,infoHabitaciones } = require('../../.
 export class TurnoComponent implements OnInit {
   parteTurno: string = '';
   dice: number = 0;
-  characterSelected:string="SOPER";
-  gunSelected:string="TECLADO";
-  roomSelected:string="CAFETERIA";
-  personajes: string[] = ["SOPER", "REDES", "PROG", "FISICA", "DISCRETO", "IA"];
-  armas: string[] = ["TECLADO", "CABLE", "TAZA", "ROUTER", "TROYANO", "DISCO"];
-  lugares: string[] = ["CAFETERIA", "BANIO", "RECEPCION", "ESCALERAS", "BIBLIOTECA", "LABORATORIO", "DESPACHO", "AULANORTE", "AULASUR"];
+  // characterSelected:string="SOPER";
+  characterSelected:string=this.gameService.getPersonajePorIndice(0);
+  gunSelected:string=this.gameService.getArmaPorIndice(0);
+  roomSelected:string=this.gameService.getLugarPorIndice(0);
+  // gunSelected:string="TECLADO";
+  // roomSelected:string="CAFETERIA";
+  personajes: string[] = this.gameService.getPersonajes();
+  armas: string[] = this.gameService.getArmas();
+  lugares: string[] = this.gameService.getLugares();
   tipoPregunta: boolean = false;  // false = sospecha, true = acusacion
 
 
