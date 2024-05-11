@@ -51,19 +51,19 @@ export class TurnoService {
 
 
     setTurnoOwner(turnoOwner: string): void {
-        console.log("Setenado el Turno owner: ", turnoOwner);
+      //  console.log("Setenado el Turno owner: ", turnoOwner);
         this.turnoOwner = turnoOwner;
         this.turnoOwnerSubject.next(turnoOwner);
     }
     
     setParteTurno(parteTurno: string): void {
-        console.log("Setenado la parte del turno: ", parteTurno);
+      //  console.log("Setenado la parte del turno: ", parteTurno);
         this.parteTurno = parteTurno;
         this.parteTurnoSubject.next(parteTurno);
     }
 
     setDados(dados: number): void {
-        console.log("Setenado los dados: ", dados);
+      //  console.log("Setenado los dados: ", dados);
         this.dados = dados;
         this.dadosSubject.next(dados);
     }

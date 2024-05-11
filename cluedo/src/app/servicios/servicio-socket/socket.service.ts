@@ -196,6 +196,7 @@ this.socket.on('turno-asks-for-response',(usernameAsking: string, character: str
   if (this.verbose) console.log('onTurnoAsksForResponse', usernameAsking, character, gun, room, win);
   // mustra un modal enseñando que pregunta ha hecho el jugador
   // const text = `${username_asking} ha preguntado: ¿ha sido ${character} con ${gun} en ${room}?`;
+  console.log("Estoy dentro del response de la sospecha")
   const cards = [character, gun, room];
   console.log('Cards GameLogic', cards);
   this.cartasService.showQuestion(usernameAsking, cards);
