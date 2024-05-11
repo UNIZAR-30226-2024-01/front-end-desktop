@@ -67,6 +67,7 @@ export class CeldaComponent {
     return this.gameService.getUsername() === this.turnoService.getTurnoOwner();
   } 
 
+
   ngOnInit() {
     this.estilarCelda();
     this.anadirClase();
@@ -85,6 +86,18 @@ export class CeldaComponent {
     }
   }
 
+  getcellDisplay():string{
+    let cellDisplay = '';
+    if ( this.playerPositions && this.playerPositions.includes(this.index)) {
+      const player_idx = this.playerPositions.indexOf(this.index);
+      if (!this.characters || !this.characters[player_idx]) return '';
+      cellDisplay = this.characters[player_idx].split(' ')[1].charAt(0).toUpperCase();
+    }
+    console.log("El nombre de cellDisplay es :", cellDisplay);
+    return cellDisplay;
+  }
+
+ 
   getFillStyle():string{
     // Your logic here...
     //console.log("por lo menos entra", this.playerPositions);
