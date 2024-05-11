@@ -1,5 +1,5 @@
 <div class="main-player-in-tablero">
-    <div [style.color]="getColor()" [class]="'player ' + lado" >
+    <div [style.color]="getColor()" [className]= "getClassName()" >
         <h1>{{username}}</h1>
         {{personaje}} 
         <img [src]="getRutaImagen()" alt="Descripción de la imagen">

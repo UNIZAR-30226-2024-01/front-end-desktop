@@ -15,6 +15,7 @@ import { GameService } from '../../servicios/servicio-game/game.service';
 })
 export class MainTableroComponent {
   @Input() personajes: string[] = []; 
+userReal: any;
 
   constructor(private socketService: SocketService, public gameservice: GameService) {    }
 

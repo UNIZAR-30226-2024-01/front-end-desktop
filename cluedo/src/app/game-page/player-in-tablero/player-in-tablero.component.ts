@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Input } from '@angular/core';
+import { TurnoService } from '../../servicios/servicio-turno/turno.service';
 const defaultBotNames = require('../../../../../../front-end-shared/infoTablero.js');
 
 @Component({
@@ -13,8 +14,11 @@ export class PlayerInTableroComponent {
   @Input() personaje!: string;
   @Input() lado!: string;
   @Input() username!: string;
+  @Input() userReal!: string;
   colorPlayer: string = "red";
   index: number = 0;
+  className: string = "";
+  constructor(public turnoService: TurnoService) {  }
 
   getColor(): string {
     switch (this.personaje) {
@@ -54,8 +58,14 @@ export class PlayerInTableroComponent {
         throw new Error("Personaje no encontrado");
     }
   }
+  getClassName(): string {
+    this.className = this.turnoService.getTurnoOwner() === this.userReal ? `player ${this.lado} turn` : `player ${this.lado}`;
+    // console.log("EL user es :",this.userReal)
+    // console.log("El turno es de:",this.turnoService.getTurnoOwner())
+    return this.className;
+  }
 
-  getSyle(): string {
+  getStyle(): string {
     return "player " + this.lado;
   }
 }
