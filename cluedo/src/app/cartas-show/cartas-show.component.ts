@@ -14,6 +14,8 @@ export class CartasShowComponent {
   isCardElection : boolean = false;
   blockedCards: any[] = [];
   selectCardsToShow: any[] = [];
+  text: string = '';
+  subtext: string = '';
   constructor(public showCardsService: ShowCardsService) {
     this.showCardsService.hasToShow.subscribe(hasToShow => {
       this.hasToShow = hasToShow;
@@ -27,6 +29,13 @@ export class CartasShowComponent {
     this.showCardsService.selectCardsToShow.subscribe(selectCardsToShow => {
       this.selectCardsToShow = selectCardsToShow;
     });
+    this.showCardsService.text.subscribe(text => {
+      this.text = text;
+    }); 
+    this.showCardsService.subtext.subscribe(subtext => {
+      this.subtext = subtext;
+    });
+      
    }
   // hasToShow = false;
   ngOnInit(): void {

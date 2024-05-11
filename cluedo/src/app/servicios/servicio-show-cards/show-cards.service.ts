@@ -32,6 +32,7 @@ export class ShowCardsService {
       this.selectCardsToShow.next(cards || []);
       this.isCardElection.next(false);
       this.hasToShow.next(true);
+      console.log("cards: ", cards);
     }
 
   showQuestion(username_asking: string, cards: any[]): void {
@@ -44,8 +45,13 @@ export class ShowCardsService {
   setHasToShow(hasToShow: boolean): void {
     this.hasToShow.next(hasToShow);
   }
+
+  setIsCardElection(isCardElection: boolean): void {
+    this.isCardElection.next(isCardElection);
+  }
+
   showCardShowed(username_showed: string, username_shower: string, card: any[], cards_asked: any[]): void {
-    this.selectCardsToShow.next(['back']);
+    // this.selectCardsToShow.next(['back']);
     const text = card[0] != '' ?
       `${this.getBotName(username_shower)} ha enseñado a ${this.getBotName(username_showed)}:` :
       `Nadie ha enseñado a ${this.getBotName(username_showed)}`;
