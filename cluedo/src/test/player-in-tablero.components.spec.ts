@@ -38,7 +38,7 @@ describe('PlayerInTableroComponent', () => {
 
   it('should return correct style for lado "left"', () => {
     component.lado = 'left';
-    expect(component.getSyle()).toEqual('player left');
+    expect(component.getStyle()).toEqual('player left');
   });
 
 });
