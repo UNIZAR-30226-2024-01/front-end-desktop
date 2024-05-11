@@ -93,7 +93,7 @@ export class CeldaComponent {
       if (!this.characters || !this.characters[player_idx]) return '';
       cellDisplay = this.characters[player_idx].split(' ')[1].charAt(0).toUpperCase();
     }
-    console.log("El nombre de cellDisplay es :", cellDisplay);
+   // console.log("El nombre de cellDisplay es :", cellDisplay);
     return cellDisplay;
   }
 
