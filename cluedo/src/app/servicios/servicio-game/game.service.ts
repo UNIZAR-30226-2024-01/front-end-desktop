@@ -32,13 +32,37 @@ export class GameService {
     this.personajes = personajes;
     console.log("Personajes: ", this.personajes);
   }
+
+  public getPersonajes(): string[] {
+    return this.personajes;
+  }
+
+  public getPersonajePorIndice(index: number): string {
+    return this.personajes[index];
+  }
   
   public setArmas(armas: string[]): void {
     this.armas = armas;
   }
+
+  public getArmaPorIndice(index: number): string {
+    return this.armas[index];
+  }
+
+  public getArmas(): string[] {
+    return this.armas;
+  }
   
   public setLugares(lugares: string[]): void {
     this.lugares = lugares;
+  }
+
+  public getLugares(): string[] {
+    return this.lugares;
+  }
+
+  public getLugarPorIndice(index: number): string {
+    return this.lugares[index];
   }
 
   public setCharacterSelection(characterSelected: boolean): void {

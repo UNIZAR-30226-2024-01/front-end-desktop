@@ -24,8 +24,8 @@ export class CartasDesplegableComponent {
 
   getRandomObject(): string {
     const itemsPlayers = ['SOPER', 'FISICA', 'IA', 'PROG', 'REDES', 'DISCRETO'];
-    const itemsObjects = ['CABLE', 'DISCO', 'ROUTER', 'SUSPENSO', 'TAZA', 'TECLADO', 'TROYANO'];
-    const itemsPlaces = ['CAFETERIA', 'BAÑOS', 'RECEPCION', 'ESCALERAS', 'BIBLIOTECA', 'LABORATORIO', 'DESPACHO', 'AULANORTE', 'AULASUR'];
+    const itemsObjects = ['teclado', 'cable de red', 'cafe envenenado', 'router afilado', 'troyano', 'cd'];
+    const itemsPlaces = ['cafeteria', 'baños', 'recepcion', 'escaleras', 'biblioteca', 'laboratorio', 'despacho', 'aulas norte', 'aulas sur'];
     const items = [...itemsPlayers, ...itemsObjects, ...itemsPlaces];
     return items[Math.floor(Math.random() * items.length)];
   }
