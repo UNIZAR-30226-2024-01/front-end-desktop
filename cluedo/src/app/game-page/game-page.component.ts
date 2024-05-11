@@ -23,7 +23,6 @@ const BACKEND_URL = environment.apiUrl;
   selector: 'app-game-page',
   standalone: true,
   imports: [LoginPageComponent,
-    GamePageComponent,
     DadosComponent,
     ChatComponent,
     TableroComponent, MainTableroComponent,

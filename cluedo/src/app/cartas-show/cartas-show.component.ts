@@ -10,23 +10,38 @@ import { CartasComponent } from '../cartas/cartas.component';
   styleUrl: './cartas-show.component.css'
 })
 export class CartasShowComponent {
-  // hasToShow : boolean= false;
+  hasToShow : boolean= false;
+  isCardElection : boolean = false;
+  blockedCards: any[] = [];
+  selectCardsToShow: any[] = [];
   constructor(public showCardsService: ShowCardsService) {
-    // this.showCardsService.hasToShow.subscribe(hasToShow => {
-    //   this.showCardsService.hasToShow = hasToShow;
-    // });
+    this.showCardsService.hasToShow.subscribe(hasToShow => {
+      this.hasToShow = hasToShow;
+    });
+    this.showCardsService.isCardElection.subscribe(isCardElection => {
+      this.isCardElection = isCardElection;
+    });
+    this.showCardsService.blockCards.subscribe(blockCards => {
+      this.blockedCards = blockCards;
+    });
+    this.showCardsService.selectCardsToShow.subscribe(selectCardsToShow => {
+      this.selectCardsToShow = selectCardsToShow;
+    });
    }
   // hasToShow = false;
   ngOnInit(): void {
   }
 
   onClickedCardLocal(carta: any): void {
-    this.showCardsService.onClickedCard(carta);
-    this.showCardsService.hasToShow = false;
+    //esto falta
+    // this.showCardsService.onClickedCard(carta);
+    // this.showCardsService.hasToShow = false;
+    this.showCardsService.onClickedCard.next(carta);
+    this.showCardsService.setHasToShow(false);
   }
 
   getCardClass(carta: any): string {
-    if (this.showCardsService.isCardElection && this.showCardsService.blockCards.includes(carta)) {
+    if (this.isCardElection && this.blockedCards.includes(carta)) {
       return 'carta blocked';
     } else {
       return 'carta not-blocked';
