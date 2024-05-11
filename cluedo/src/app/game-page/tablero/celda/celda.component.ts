@@ -5,9 +5,9 @@ import { GameService } from '../../../servicios/servicio-game/game.service';
 import { CeldasService } from '../../../servicios/servicio-celdas/celdas.service';
 import { SocketService } from '../../../servicios/servicio-socket/socket.service';
 //import * as infoTablero from '../../../../assets/infoTablero.json';
-import infoTablero from '../../../../assets/infoTablero.json';
 import { OnChanges, SimpleChanges } from '@angular/core';
 import { consumerMarkDirty } from '@angular/core/primitives/signals';
+const { infoTablero, casillasPorHabitacion } = require('../../../../../../../front-end-shared/infoTablero.js');
 
 
 @Component({
@@ -87,11 +87,11 @@ export class CeldaComponent {
 
   getFillStyle():string{
     // Your logic here...
-    console.log("por lo menos entra", this.playerPositions);
+    //console.log("por lo menos entra", this.playerPositions);
     if (this.playerPositions !== undefined) {
-      console.log('Vector playerPositions:', this.playerPositions);
+     // console.log('Vector playerPositions:', this.playerPositions);
       if( this.characters !== undefined) {
-        console.log('soy',this.characters[this.playerPositions?.indexOf(this.index)] );
+       // console.log('soy',this.characters[this.playerPositions?.indexOf(this.index)] );
         return this.player2color(this.characters[this.playerPositions?.indexOf(this.index)]);
       }
     }
@@ -148,11 +148,16 @@ export class CeldaComponent {
   }
 
   private gestionarTurno(idx:number , fin:boolean): void {
-    if(this.esUnaHabitacion()) {
+    if(infoTablero[idx].isRoom || infoTablero[idx].isDoor) {
       console.log("El jugador ha entrado en una habitación");
-
+      let { cells } = casillasPorHabitacion[infoTablero[idx].roomName - 1];
+      cells = cells.filter((c: any) => !(this.playerPositions ?? []).includes(c));
+      // cells.remove((c) => playerPositions.includes(c)); // eliminar las casillas ya ocupadas
+      const randomCell = cells[Math.floor(Math.random() * cells.length)];
       setTimeout(() => {
         console.log("cambio la parte del tunro");
+        this.socketService.gameLogicTurnoMovesTo(this.socketService.socket, this.gameService.getUsername(), randomCell, false);
+        this.turnoService.setDados(0);
         this.turnoService.setParteTurno('elegir-pregunta');
       }, 2000);
     } else {
@@ -169,7 +174,7 @@ export class CeldaComponent {
   }
 
   private esUnaHabitacion(): boolean {
-    return infoTablero.infoTablero2[this.index].isRoom;
+    return infoTablero[this.index].isRoom;
   }
   
   anadirClase():string {
