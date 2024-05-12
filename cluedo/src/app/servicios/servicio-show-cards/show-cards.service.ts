@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { GameService } from '../servicio-game/game.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,14 +14,13 @@ export class ShowCardsService {
   public blockCards = new BehaviorSubject<any[]>([]);
   public onClickedCard = new BehaviorSubject<Function>(() => {});
 
-  constructor() { }
+  constructor(private gameService:GameService) { }
 
   getBotName(username: string): string {
     if (username.includes('bot')) {
       // last digit of the bot name
       const index = parseInt(username[username.length - 1]);
-      // return defaultBotNames[index];
-      return username;
+      return this.gameService.defaultBotNames[index];
     } else {
       return username;
     }

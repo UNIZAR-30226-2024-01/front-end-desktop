@@ -21,6 +21,7 @@ export class GameItemsComponent {
   }
 
   getSrc(): string {
+    console.log("Nombre del jugador: ", this.player_name);
     switch (this.player_name) {
       case 'mr SOPER':
         return this.imageSrc = '../../assets/images/personajes_imagen/svg/MrSoper.svg';
@@ -66,6 +67,8 @@ export class GameItemsComponent {
         return this.imageSrc = '../../assets/images/lugares_imagen/svg/AULANORTE.svg';
       case 'aulas sur':
         return this.imageSrc = '../../assets/images/lugares_imagen/svg/AULASUR.svg';
+      case 'back':
+        return this.imageSrc = '../../assets/images/logo-no-back.svg';
       default:
         return this.imageSrc = '../../assets/images/logo-no-back.svg';
     }
