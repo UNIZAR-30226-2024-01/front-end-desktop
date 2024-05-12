@@ -22,7 +22,7 @@ export class GameItemsComponent {
 
   getSrc(): string {
     console.log("Nombre del jugador: ", this.player_name);
-    this.player_name = "mr SOPER"
+    // this.player_name = "mr SOPER"
     switch (this.player_name) {
       case 'mr SOPER':
         return this.imageSrc = 'assets/images/personajes_imagen/svg/MrSoper.svg';

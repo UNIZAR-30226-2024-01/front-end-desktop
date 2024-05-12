@@ -43,7 +43,8 @@ export class CartasShowComponent {
 
   getSelectCards(): string {
     console.log("selectCardsToShow: ", this.selectCardsToShow);
-    return this.selectCardsToShow.join(', ');
+    // return this.selectCardsToShow.join(', ');
+    return this.selectCardsToShow[0]?.toString() || '';
   }
 
   getIsCardElection(): boolean {
