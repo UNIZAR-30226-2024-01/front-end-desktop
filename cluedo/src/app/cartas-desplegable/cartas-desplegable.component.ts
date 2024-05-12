@@ -19,30 +19,6 @@ export class CartasDesplegableComponent {
     console.log("cards: ", this.gameService.cards);
     // Inicializar propiedades aquí si es necesario
   }
-carta1: string = this.getcarta1();
-carta2: string = this.getcarta2();
-carta3: string = this.getcarta3();
-
-  updateCartas(): void {
-    this.carta1 = this.getcarta1();
-    this.carta2 = this.getcarta2();
-    this.carta3 = this.getcarta3();
-  }
-  getcarta1(): string {
-    console.log("cards: ", this.gameService.cards);
-    return this.gameService.cards[0];
-    return localStorage.getItem('carta1') ?? this.getRandomPlayer();
-  }
-
-  getcarta2(): string {
-    return this.gameService.cards[1];
-    return localStorage.getItem('carta2') ?? this.getRandomWeapon();
-  }
-
-  getcarta3(): string {
-    return this.gameService.cards[2];
-    return localStorage.getItem('carta3') ?? this.getRandomPlace();
-  }
 
   toggleDesplegado() {
     this.desplegado = !this.desplegado;
