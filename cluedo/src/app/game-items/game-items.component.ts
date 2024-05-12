@@ -24,53 +24,53 @@ export class GameItemsComponent {
     console.log("Nombre del jugador: ", this.player_name);
     switch (this.player_name) {
       case 'mr SOPER':
-        return this.imageSrc = '../../assets/images/personajes_imagen/svg/MrSoper.svg';
+        return this.imageSrc = 'assets/images/personajes_imagen/svg/MrSoper.svg';
       case 'miss FISICA':
-        return this.imageSrc = '../../assets/images/personajes_imagen/svg/missFisica.svg';
+        return this.imageSrc = 'assets/images/personajes_imagen/svg/missFisica.svg';
       case 'miss IA':
-        return this.imageSrc = '../../assets/images/personajes_imagen/svg/missIA.svg';
+        return this.imageSrc = 'assets/images/personajes_imagen/svg/missIA.svg';
       case 'mr PROG':
-        return this.imageSrc = '../../assets/images/personajes_imagen/svg/MrProg.svg';
+        return this.imageSrc = 'assets/images/personajes_imagen/svg/MrProg.svg';
       case 'miss REDES':
-        return this.imageSrc = '../../assets/images/personajes_imagen/svg/missRedes.svg';
+        return this.imageSrc = 'assets/images/personajes_imagen/svg/missRedes.svg';
       case 'mr DISCRETO':
-        return this.imageSrc = '../../assets/images/personajes_imagen/svg/mrDiscreto.svg';
+        return this.imageSrc = 'assets/images/personajes_imagen/svg/mrDiscreto.svg';
       case 'cable de red':
-        return this.imageSrc = '../../assets/images/objetos_imagen/svg/CABLE.svg';
+        return this.imageSrc = 'assets/images/objetos_imagen/svg/CABLE.svg';
       case 'cd':
-        return this.imageSrc = '../../assets/images/objetos_imagen/svg/DISCO.svg';
+        return this.imageSrc = 'assets/images/objetos_imagen/svg/DISCO.svg';
       case 'router afilado':
-        return this.imageSrc = '../../assets/images/objetos_imagen/svg/ROUTER.svg';
+        return this.imageSrc = 'assets/images/objetos_imagen/svg/ROUTER.svg';
       case 'SUSPENSO':
-        return this.imageSrc = '../../assets/images/objetos_imagen/svg/SUSPENSO.svg';
+        return this.imageSrc = 'assets/images/objetos_imagen/svg/SUSPENSO.svg';
       case 'cafe envenenado':
-        return this.imageSrc = '../../assets/images/objetos_imagen/svg/TAZA.svg';
+        return this.imageSrc = 'assets/images/objetos_imagen/svg/TAZA.svg';
       case 'teclado':
-        return this.imageSrc = '../../assets/images/objetos_imagen/svg/TECLADO.svg';
+        return this.imageSrc = 'assets/images/objetos_imagen/svg/TECLADO.svg';
       case 'troyano':
-        return this.imageSrc = '../../assets/images/objetos_imagen/svg/TROYANO.svg';
+        return this.imageSrc = 'assets/images/objetos_imagen/svg/TROYANO.svg';
       case 'cafeteria':
-        return this.imageSrc = '../../assets/images/lugares_imagen/svg/CAFETERIA.svg';
+        return this.imageSrc = 'assets/images/lugares_imagen/svg/CAFETERIA.svg';
       case 'baños':
-        return this.imageSrc = '../../assets/images/lugares_imagen/svg/BANIO.svg';
+        return this.imageSrc = 'assets/images/lugares_imagen/svg/BANIO.svg';
       case 'recepcion':
-        return this.imageSrc = '../../assets/images/lugares_imagen/svg/RECEPCION.svg';
+        return this.imageSrc = 'assets/images/lugares_imagen/svg/RECEPCION.svg';
       case 'escaleras':
-        return this.imageSrc = '../../assets/images/lugares_imagen/svg/ESCALERAS.svg';
+        return this.imageSrc = 'assets/images/lugares_imagen/svg/ESCALERAS.svg';
       case 'biblioteca':
-        return this.imageSrc = '../../assets/images/lugares_imagen/svg/BIBLIOTECA.svg';
+        return this.imageSrc = 'assets/images/lugares_imagen/svg/BIBLIOTECA.svg';
       case 'laboratorio':
-        return this.imageSrc = '../../assets/images/lugares_imagen/svg/LABORATORIO.svg';
+        return this.imageSrc = 'assets/images/lugares_imagen/svg/LABORATORIO.svg';
       case 'despacho':
-        return this.imageSrc = '../../assets/images/lugares_imagen/svg/DESPACHO.svg';
+        return this.imageSrc = 'assets/images/lugares_imagen/svg/DESPACHO.svg';
       case 'aulas norte':
-        return this.imageSrc = '../../assets/images/lugares_imagen/svg/AULANORTE.svg';
+        return this.imageSrc = 'assets/images/lugares_imagen/svg/AULANORTE.svg';
       case 'aulas sur':
-        return this.imageSrc = '../../assets/images/lugares_imagen/svg/AULASUR.svg';
+        return this.imageSrc = 'assets/images/lugares_imagen/svg/AULASUR.svg';
       case 'back':
-        return this.imageSrc = '../../assets/images/logo-no-back.svg';
+        return this.imageSrc = 'assets/images/logo-no-back.svg';
       default:
-        return this.imageSrc = '../../assets/images/logo-no-back.svg';
+        return this.imageSrc = 'assets/images/logo-no-back.svg';
     }
   }
 

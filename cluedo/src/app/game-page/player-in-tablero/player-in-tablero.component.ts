@@ -42,17 +42,17 @@ export class PlayerInTableroComponent {
   getRutaImagen(): string {
     switch (this.personaje) {
       case "mr SOPER":
-        return "../../../assets/images/personajes_imagen/png/MrSoper.png";
+        return "assets/images/personajes_imagen/png/MrSoper.png";
       case "miss REDES":
-        return "../../../assets/images/personajes_imagen/png/missRedes.png";
+        return "assets/images/personajes_imagen/png/missRedes.png";
       case "mr PROG":
-        return "../../../assets/images/personajes_imagen/png/MrProg.png";
+        return "assets/images/personajes_imagen/png/MrProg.png";
       case "miss FISICA":
-        return "../../../assets/images/personajes_imagen/png/missFisica.png";
+        return "assets/images/personajes_imagen/png/missFisica.png";
       case "mr DISCRETO":
-        return "../../../assets/images/personajes_imagen/png/mrDiscreto.png";
+        return "assets/images/personajes_imagen/png/mrDiscreto.png";
       case "miss IA":
-        return "../../../assets/images/personajes_imagen/png/missIA.png";
+        return "assets/images/personajes_imagen/png/missIA.png";
       default:
         console.log("Personaje no encontrado", this.personaje);
         throw new Error("Personaje no encontrado");
