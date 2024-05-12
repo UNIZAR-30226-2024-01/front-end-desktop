@@ -42,9 +42,9 @@ partida: string | undefined |null;
       this.username = localStorage.getItem('username') as string;
      this.playerInfo();
      if (this.gameService.getAbandonada() === false ){
-     this.partida = this.partida === "undefined" ? null :localStorage.getItem('partida_actual');
+     this.partida = this.partida == undefined ? null :localStorage.getItem('partida_actual');
   }
-  this.partida = this.partida === "undefined" ? null :localStorage.getItem('partida_actual');
+  this.partida = this.partida == undefined ? null :localStorage.getItem('partida_actual');
     }
     this.obtainXP().then(xp => {
       const lvl = this.calculateLevel(xp);
