@@ -9,111 +9,118 @@ import { Component,Input } from '@angular/core';
   // template: `<img [src]="imageSrc" [alt]="altText" />`,  
 })
 export class GameItemsComponent {
-  imageSrc: string = '';
-  altText: string = '';
+  imageSrc: string = this.getSrc();
+  altText: string = this.getAltText();
   @Input() player_name: string = '';
   
   constructor() {}
 
   ngOnInit(): void {
-    // Asigna la ruta de la imagen y el texto alternativo según el nombre del jugador
-    if(this.player_name==undefined){
-      this.player_name = 'despacho'; // Por ejemplo, asumiendo que tienes un nombre de jugador aquí
-    }
     console.log("Nombre del jugador: ", this.player_name);
+    
+  }
+
+  getSrc(): string {
     switch (this.player_name) {
       case 'mr SOPER':
-        this.imageSrc = '../../assets/images/personajes_imagen/svg/MrSoper.svg';
-        this.altText = 'Imagen del logo del personaje Mr Soper';
-        break;
+        return this.imageSrc = '../../assets/images/personajes_imagen/svg/MrSoper.svg';
       case 'miss FISICA':
-        this.imageSrc = '../../assets/images/personajes_imagen/svg/missFisica.svg';
-        this.altText = 'Imagen del logo del personaje Miss Fisica';
-        break;  
+        return this.imageSrc = '../../assets/images/personajes_imagen/svg/missFisica.svg';
       case 'miss IA':
-        this.imageSrc = '../../assets/images/personajes_imagen/svg/missIA.svg';
-        this.altText = 'Imagen del logo del personaje Miss IA';
-        break;
+        return this.imageSrc = '../../assets/images/personajes_imagen/svg/missIA.svg';
       case 'mr PROG':
-        this.imageSrc = '../../assets/images/personajes_imagen/svg/MrProg.svg';
-        this.altText = 'Imagen del logo del personaje Mr Prog';
-        break;
+        return this.imageSrc = '../../assets/images/personajes_imagen/svg/MrProg.svg';
       case 'miss REDES':
-        this.imageSrc = '../../assets/images/personajes_imagen/svg/missRedes.svg';
-        this.altText = 'Imagen del logo del personaje Miss Redes';
-        break;
+        return this.imageSrc = '../../assets/images/personajes_imagen/svg/missRedes.svg';
       case 'mr DISCRETO':
-        this.imageSrc = '../../assets/images/personajes_imagen/svg/mrDiscreto.svg';
-        this.altText = 'Imagen del logo del personaje Mr Discreto';
-        break;
+        return this.imageSrc = '../../assets/images/personajes_imagen/svg/mrDiscreto.svg';
       case 'cable de red':
-        this.imageSrc = '../../assets/images/objetos_imagen/svg/CABLE.svg';
-        this.altText = 'Imagen del logo del objeto cable';
-        break;
+        return this.imageSrc = '../../assets/images/objetos_imagen/svg/CABLE.svg';
       case 'cd':
-        this.imageSrc = '../../assets/images/objetos_imagen/svg/DISCO.svg';
-        this.altText = 'Imagen del logo del objeto disco';
-        break;
+        return this.imageSrc = '../../assets/images/objetos_imagen/svg/DISCO.svg';
       case 'router afilado':
-        this.imageSrc = '../../assets/images/objetos_imagen/svg/ROUTER.svg';
-        this.altText = 'Imagen del logo del objeto router';
-        break;
+        return this.imageSrc = '../../assets/images/objetos_imagen/svg/ROUTER.svg';
       case 'SUSPENSO':
-        this.imageSrc = '../../assets/images/objetos_imagen/svg/SUSPENSO.svg';
-        this.altText = 'Imagen del logo del objeto suspenso';
-        break;
+        return this.imageSrc = '../../assets/images/objetos_imagen/svg/SUSPENSO.svg';
       case 'cafe envenenado':
-        this.imageSrc = '../../assets/images/objetos_imagen/svg/TAZA.svg';
-        this.altText = 'Imagen del logo del objeto taza';
-        break;
+        return this.imageSrc = '../../assets/images/objetos_imagen/svg/TAZA.svg';
       case 'teclado':
-        this.imageSrc = '../../assets/images/objetos_imagen/svg/TECLADO.svg';
-        this.altText = 'Imagen del logo del objeto teclado';
-        break;
+        return this.imageSrc = '../../assets/images/objetos_imagen/svg/TECLADO.svg';
       case 'troyano':
-        this.imageSrc = '../../assets/images/objetos_imagen/svg/TROYANO.svg';
-        this.altText = 'Imagen del logo del objeto troyano';
-        break;
+        return this.imageSrc = '../../assets/images/objetos_imagen/svg/TROYANO.svg';
       case 'cafeteria':
-        this.imageSrc = '../../assets/images/lugares_imagen/svg/CAFETERIA.svg';
-        this.altText = 'Imagen del logo del lugar cafetería';
-        break;
+        return this.imageSrc = '../../assets/images/lugares_imagen/svg/CAFETERIA.svg';
       case 'baños':
-        this.imageSrc = '../../assets/images/lugares_imagen/svg/BANIO.svg';
-        this.altText = 'Imagen del logo del lugar baños';
-        break;
+        return this.imageSrc = '../../assets/images/lugares_imagen/svg/BANIO.svg';
       case 'recepcion':
-        this.imageSrc = '../../assets/images/lugares_imagen/svg/RECEPCION.svg';
-        this.altText = 'Imagen del logo del lugar recepción';
-        break;
+        return this.imageSrc = '../../assets/images/lugares_imagen/svg/RECEPCION.svg';
       case 'escaleras':
-        this.imageSrc = '../../assets/images/lugares_imagen/svg/ESCALERAS.svg';
-        this.altText = 'Imagen del logo del lugar escaleras';
-        break;
+        return this.imageSrc = '../../assets/images/lugares_imagen/svg/ESCALERAS.svg';
       case 'biblioteca':
-        this.imageSrc = '../../assets/images/lugares_imagen/svg/BIBLIOTECA.svg';
-        this.altText = 'Imagen del logo del lugar biblioteca';
-        break;
+        return this.imageSrc = '../../assets/images/lugares_imagen/svg/BIBLIOTECA.svg';
       case 'laboratorio':
-        this.imageSrc = '../../assets/images/lugares_imagen/svg/LABORATORIO.svg';
-        this.altText = 'Imagen del logo del lugar laboratorio';
-        break;
+        return this.imageSrc = '../../assets/images/lugares_imagen/svg/LABORATORIO.svg';
       case 'despacho':
-        this.imageSrc = '../../assets/images/lugares_imagen/svg/DESPACHO.svg';
-        this.altText = 'Imagen del logo del lugar despacho';
-        break;
+        return this.imageSrc = '../../assets/images/lugares_imagen/svg/DESPACHO.svg';
       case 'aulas norte':
-        this.imageSrc = '../../assets/images/lugares_imagen/svg/AULANORTE.svg';
-        this.altText = 'Imagen del logo del lugar aulanorte';
-        break;
+        return this.imageSrc = '../../assets/images/lugares_imagen/svg/AULANORTE.svg';
       case 'aulas sur':
-        this.imageSrc = '../../assets/images/lugares_imagen/svg/AULASUR.svg';
-        this.altText = 'Imagen del logo del lugar aulasur';
-        break;
+        return this.imageSrc = '../../assets/images/lugares_imagen/svg/AULASUR.svg';
       default:
-        this.imageSrc = '../../assets/images/logo-no-back.svg';
-        this.altText = 'Imagen del logo la app';
-        break;
+        return this.imageSrc = '../../assets/images/logo-no-back.svg';
     }
   }
+
+  getAltText(): string {
+    switch (this.player_name) {
+      case 'mr SOPER':
+        return this.altText = 'Imagen del logo del personaje Mr Soper';
+      case 'miss FISICA':
+        return this.altText = 'Imagen del logo del personaje Miss Fisica';
+      case 'miss IA':
+        return this.altText = 'Imagen del logo del personaje Miss IA';
+      case 'mr PROG':
+        return this.altText = 'Imagen del logo del personaje Mr Prog';
+      case 'miss REDES':
+        return this.altText = 'Imagen del logo del personaje Miss Redes';
+      case 'mr DISCRETO':
+        return this.altText = 'Imagen del logo del personaje Mr Discreto';
+      case 'cable de red':
+        return this.altText = 'Imagen del logo del objeto cable';
+      case 'cd':
+        return this.altText = 'Imagen del logo del objeto disco';
+      case 'router afilado':
+        return this.altText = 'Imagen del logo del objeto router';
+      case 'SUSPENSO':
+        return this.altText = 'Imagen del logo del objeto suspenso';
+      case 'cafe envenenado':
+        return this.altText = 'Imagen del logo del objeto taza';
+      case 'teclado':
+        return this.altText = 'Imagen del logo del objeto teclado';
+      case 'troyano':
+        return this.altText = 'Imagen del logo del objeto troyano';
+      case 'cafeteria':
+        return this.altText = 'Imagen del logo del lugar cafetería';
+      case 'baños':
+        return this.altText = 'Imagen del logo del lugar baños';
+      case 'recepcion':
+        return this.altText = 'Imagen del logo del lugar recepción';
+      case 'escaleras':
+        return this.altText = 'Imagen del logo del lugar escaleras';
+      case 'biblioteca':
+        return this.altText = 'Imagen del logo del lugar biblioteca';
+      case 'laboratorio':
+        return this.altText = 'Imagen del logo del lugar laboratorio';
+      case 'despacho':
+        return this.altText = 'Imagen del logo del lugar despacho';
+      case 'aulas norte':
+        return this.altText = 'Imagen del logo del lugar aulanorte';
+      case 'aulas sur':
+        return this.altText = 'Imagen del logo del lugar aulasur';
+      default:
+        return this.altText = 'Imagen del logo la app';
+    }
+  }
+
+
 }

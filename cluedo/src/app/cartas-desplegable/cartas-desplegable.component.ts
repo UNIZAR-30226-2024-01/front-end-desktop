@@ -23,24 +23,19 @@ export class CartasDesplegableComponent {
     this.desplegado = !this.desplegado;
   }
 
-  // Devuelve un elemento aleatorio de un array
-  obtenerElementoAleatorio(arr: string[]): string {
-    const indiceAleatorio = Math.floor(Math.random() * arr.length);
-    return arr[indiceAleatorio];
+  //Devuelve la carta de personaje del usuario
+  getCardWeapon(): string {
+    console.log("Carta de arma (desde cartas-desplegable): ", this.gameService.getCard(0));
+    return this.gameService.getCard(0);
   }
 
-  // Devuelve un personaje aleatorio
-  getRandomPlayer(): string {
-    return this.obtenerElementoAleatorio(this.gameService.getPersonajes());
+  //Devuelve la carta de arma del usuario
+  getCardPlayer(): string {
+    return this.gameService.getCard(1);
   }
 
-  // Devuelve un arma aleatoria
-  getRandomWeapon(): string {
-    return this.obtenerElementoAleatorio(this.gameService.getArmas());
-  }
-
-  // Devuelve un lugar aleatorio
-  getRandomPlace(): string {
-    return this.obtenerElementoAleatorio(this.gameService.getLugares());
+  //Devuelve la carta de habitación del usuario
+  getCardRoom(): string {
+    return this.gameService.getCard(2);
   }
 }

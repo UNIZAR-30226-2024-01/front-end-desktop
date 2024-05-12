@@ -80,8 +80,19 @@ export class GameService {
 
 
   setCards(newCards: string[]): void {
-    this.cards = newCards;
+    this.cards = newCards;    
   }
+  // Devuelve las cartas del usuario
+  getCards(): string[] {
+    return this.cards;
+  }
+
+  // Devuelve la carta del usuario en la posición index
+  getCard(index: number): string {
+    console.log("Carta (desde getCard): ", this.cards[index]);
+    return this.cards[index];
+  }
+
   public getidGame(): string | null {
     return this.idGame;
   }
