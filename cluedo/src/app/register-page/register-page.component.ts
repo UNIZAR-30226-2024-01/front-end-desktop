@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { RouterLink, ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { environment } from "../../environments/environment";
+const BACKEND_URL = environment.apiUrl;
 
 @Component({
   selector: 'app-register-page',
@@ -25,7 +27,7 @@ export class RegisterPageComponent {
       return;
     }
 
-    const response = await fetch('http://localhost:3000/createAccount', {
+    const response = await fetch( BACKEND_URL+ '/createAccount', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

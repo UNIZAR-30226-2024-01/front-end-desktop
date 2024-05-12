@@ -3,7 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-//import {BACKEND_URL} from  '../../../consts.js';
+import { environment } from "../../environments/environment";
+const BACKEND_URL = environment.apiUrl;
+
+
 @Component({
   selector: 'app-login-page',
   standalone: true,
@@ -27,7 +30,7 @@ export class LoginPageComponent {
   // }
 
   async handleLogin(): Promise<void>{
-    const response = await fetch('http://localhost:3000/login', {
+    const response = await fetch(BACKEND_URL + '/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
