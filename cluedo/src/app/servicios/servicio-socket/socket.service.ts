@@ -217,7 +217,10 @@ if (win) {
 }
 alert('El usuario ' + username + (win ? ' ha ganado' : ' ha perdido') + ' la partida.');
 // muestra un modal diciendo que ha ganado el jugador
-if (win) this.router.navigate(['/home-page']);
+if (win){
+  localStorage.setItem('partida_actual','' );
+  this.router.navigate(['/home-page']);
+}
 // else --> te puedes quedar en la partida visualizándola pero no podrás hacer nada (turnoOwner ya no puede asociarse a tu usuario)
 
 });

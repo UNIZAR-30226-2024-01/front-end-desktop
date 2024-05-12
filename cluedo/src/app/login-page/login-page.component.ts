@@ -22,6 +22,10 @@ export class LoginPageComponent {
   password: string = '';
   username: string = '';
 
+  // ngOnInit(): void {
+  //   localStorage.setItem('partida_actual', '');
+  // }
+
   async handleLogin(): Promise<void>{
     const response = await fetch('http://localhost:3000/login', {
       method: 'POST',
