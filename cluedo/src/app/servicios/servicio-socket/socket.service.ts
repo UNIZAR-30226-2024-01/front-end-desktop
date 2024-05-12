@@ -5,7 +5,7 @@ import { TurnoService } from '../servicio-turno/turno.service';
 import { CeldasService } from '../servicio-celdas/celdas.service';
 import { GameService } from '../servicio-game/game.service';
 import { Router } from '@angular/router';
-import { ShowCardsService } from '../servicio-cartas/cartas.service';
+import { ShowCardsService } from '../servicio-show-cards/show-cards.service';
 // import { GameLogicService } from '../servicio-game-logic/game-logic.service';
 import { environment } from "../../../environments/environment";
 import { publishFacade } from '@angular/compiler';
@@ -30,7 +30,7 @@ export class SocketService {
   private turnoService: TurnoService;
   private celdasService: CeldasService;
   private gameService: GameService;
-  private cartasService: ShowCardsService;
+  private showCardsService: ShowCardsService;
   private router: Router;
   infoTablero: any[] = infoTablero.infoTablero2;
   casillasPorHabitacion: any;
@@ -38,7 +38,7 @@ export class SocketService {
   constructor( turnoService: TurnoService,
     celdasService: CeldasService,
     gameService: GameService,
-    cartasService: ShowCardsService,
+    showCardsService: ShowCardsService,
     router: Router) { 
     const options: { auth: { username: string, group: string, offset: string }, transports: string[] } = {
       auth: {
@@ -51,7 +51,7 @@ export class SocketService {
     this.turnoService = turnoService;
     this.celdasService = celdasService;
     this.gameService = gameService;
-    this.cartasService = cartasService;
+    this.showCardsService = showCardsService;
     this.router = router;
     this.socket = io(environment.apiUrl, options);
     this.serverListener();
@@ -169,17 +169,18 @@ this.socket.on('turno-moves-to-response', (username: string, position: number) =
 
 this.socket.on('turno-select-to-show', (usernameAsking: string, usernameShower: string, character: string, gun: string, room: string) => {
   if (this.verbose) console.log('onTurnoSelectToShow', usernameAsking, usernameShower, character, gun, room);
-
+  console.log('onTurnoSelectToShow', usernameAsking, usernameShower, character, gun, room);
   const onClick = (card: string) => {
     console.log('card selected', card);
     this.turnoCardSelected(usernameAsking, usernameShower, card);
   };
   
-  this.cartasService.showCardElection(usernameAsking, this.gameService.cards,[character, gun, room], onClick);
+  this.showCardsService.showCardElection(usernameAsking, this.gameService.cards,[character, gun, room], onClick);
 });
 
 this.socket.on('turno-show-cards',(usernameAsking: string, usernameShower: string, card: string[], characterAsked: string, gunAsked: string, roomAsked: string)=>{
   if (this.verbose) console.log('onTurnoShowCards', usernameAsking, usernameShower, card);
+  console.log('onTurnoShowCards', usernameAsking, usernameShower, card);
   // muestra la carta que ha enseñado el jugador
   // si te enseña a ti: muestra la carta
   // si te enseña a otro: muestra el dorso de la carta
@@ -189,8 +190,9 @@ this.socket.on('turno-show-cards',(usernameAsking: string, usernameShower: strin
 
   console.log('cardToShow', cardToShow);
 
-  this.cartasService.showCardShowed(usernameAsking, usernameShower, cardToShow, [characterAsked, gunAsked, roomAsked]);
+  this.showCardsService.showCardShowed(usernameAsking, usernameShower, cardToShow, [characterAsked, gunAsked, roomAsked]);
 } );
+
 
 this.socket.on('turno-asks-for-response',(usernameAsking: string, character: string, gun: string, room: string, win: boolean)=>{
   if (this.verbose) console.log('onTurnoAsksForResponse', usernameAsking, character, gun, room, win);
@@ -199,7 +201,7 @@ this.socket.on('turno-asks-for-response',(usernameAsking: string, character: str
   console.log("Estoy dentro del response de la sospecha")
   const cards = [character, gun, room];
   console.log('Cards GameLogic', cards);
-  this.cartasService.showQuestion(usernameAsking, cards);
+  this.showCardsService.showQuestion(usernameAsking, cards);
 } );
 
 
@@ -250,6 +252,9 @@ this.socket.on('cards', (cards: any) => {
 if (this.verbose) console.log('onCards', cards);
 // actualiza las cartas del jugador
 this.gameService.setCards(cards);
+localStorage.setItem('cartas1', cards[0]);
+localStorage.setItem('cartas2', cards[1]);
+localStorage.setItem('cartas3', cards[2]);
 });
 
 this.socket.on('game-info', (data: any) => {

@@ -1,23 +1,23 @@
-<ng-container *ngIf="showCardsService.hasToShow">
+<ng-container *ngIf="hasToShow">
   <div class="carta-shower" [style.padding]="showCardsService.isCardElection ? '20px' : ''">
-    <h1>{{ showCardsService.text }}</h1>
-    <h3><em>{{ showCardsService.subtext }}</em></h3>
+    <h1>{{ text }}</h1>
+    <h3><em>{{ subtext }}</em></h3>
     <div class="carta-shower-container">
-      <ng-container *ngFor="let carta of showCardsService.selectCardsToShow; let i = index">
-        <div *ngIf="!showCardsService.isCardElection" 
+      <ng-container *ngFor="let carta of selectCardsToShow; let i = index">
+        <div *ngIf="isCardElection" 
              [style.opacity]="carta === '' ? 0 : 1" 
              [style.transition]="carta === '' ? 'none' : ''" 
              class="carta">
           <app-carta [player_name]="carta"></app-carta>
         </div>
-        <div *ngIf="showCardsService.isCardElection" 
+        <!-- <div *ngIf="!isCardElection" 
              (click)="onClickedCardLocal(carta)" 
-             [class]="showCardsService.blockCards.includes(carta) ? 'carta blocked' : 'carta not-blocked'">
+             [class]="blockedCards.includes(carta) ? 'carta blocked' : 'carta not-blocked'">
           <app-carta [player_name]="carta"></app-carta>
-        </div>
+        </div> -->
       </ng-container>
     </div>
-    <button *ngIf="!showCardsService.isCardElection" class="carta-shower-button" (click)="showCardsService.hasToShow = false">
+    <button *ngIf="!isCardElection" class="carta-shower-button" (click)="showCardsService.setHasToShow(false)">
       Cerrar
     </button>
   </div>

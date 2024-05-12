@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShowCardsService {
-  hasToShow: boolean = false;
-  text: string = '';
-  subtext: string = '';
-  isCardElection: boolean = false;
-  selectCardsToShow: any[] = ["SOPER","REDES", "FISICA"];
-  blockCards: any[] = [];
-  onClickedCard: any = () => {};
+  public hasToShow = new BehaviorSubject<boolean>(false);
+  public text = new BehaviorSubject<string>('');
+  public subtext = new BehaviorSubject<string>('');
+  public isCardElection = new BehaviorSubject<boolean>(false);
+  public selectCardsToShow = new BehaviorSubject<any[]>([]);
+  public blockCards = new BehaviorSubject<any[]>([]);
+  public onClickedCard = new BehaviorSubject<Function>(() => {});
 
   constructor() { }
 
@@ -25,13 +26,14 @@ export class ShowCardsService {
     }
   }
 
-  showStatic(text: string, subtext: string, cards: any[]): void {
-    this.text = text;
-    this.subtext = subtext;
-    this.selectCardsToShow = cards ? cards : [];
-    this.isCardElection = false;
-    this.hasToShow = true;
-  }
+  showStatic(text: string, subtext: string, cards: any[]) {
+      this.text.next(text);
+      this.subtext.next(subtext);
+      this.selectCardsToShow.next(cards || []);
+      this.isCardElection.next(false);
+      this.hasToShow.next(true);
+      console.log("cards: ", cards);
+    }
 
   showQuestion(username_asking: string, cards: any[]): void {
     const text = `${this.getBotName(username_asking)} ha preguntado:`;
@@ -40,8 +42,16 @@ export class ShowCardsService {
     this.showStatic(text, subText, cards);
   }
 
+  setHasToShow(hasToShow: boolean): void {
+    this.hasToShow.next(hasToShow);
+  }
+
+  setIsCardElection(isCardElection: boolean): void {
+    this.isCardElection.next(isCardElection);
+  }
+
   showCardShowed(username_showed: string, username_shower: string, card: any[], cards_asked: any[]): void {
-    this.selectCardsToShow = ['back'];
+    // this.selectCardsToShow.next(['back']);
     const text = card[0] != '' ?
       `${this.getBotName(username_shower)} ha enseñado a ${this.getBotName(username_showed)}:` :
       `Nadie ha enseñado a ${this.getBotName(username_showed)}`;
@@ -55,22 +65,22 @@ export class ShowCardsService {
     const subText = `¿ha sido ${cards_asked[0]} con ${cards_asked[1]} en ${cards_asked[2]}?`;
     const blocked_cards = my_cards.filter((card) => !cards_asked.includes(card));
     
-    this.text = text;
-    this.subtext = subText;
-    this.blockCards = blocked_cards;
-    this.onClickedCard = onClickedCard;
-    this.selectCardsToShow = my_cards;
-    this.isCardElection = true;
-    this.hasToShow = true;
+    this.text.next(text);
+    this.subtext.next(subText);
+    this.blockCards.next(blocked_cards);
+    this.onClickedCard.next(onClickedCard);
+    this.selectCardsToShow.next(my_cards);
+    this.isCardElection.next(true);
+    this.hasToShow.next(true);
   }
 
   restartShowCartas(): void {
-    this.hasToShow = false;
-    this.text = '';
-    this.subtext = '';
-    this.isCardElection = false;
-    this.selectCardsToShow = [];
-    this.blockCards = [];
-    this.onClickedCard = () => {};
+    this.hasToShow.next(false);
+    this.text.next('');
+    this.subtext.next('');
+    this.isCardElection.next(false);
+    this.selectCardsToShow.next([]);
+    this.blockCards.next([]);
+    this.onClickedCard.next(() => {});
   }
 }
