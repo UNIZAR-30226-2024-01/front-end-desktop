@@ -16,25 +16,31 @@ export class GameItemsComponent {
   constructor() {}
 
   ngOnInit(): void {
-    console.log("Nombre del jugador: ", this.player_name);
+    // console.log("Nombre del jugador: ", this.player_name);
     
   }
 
   getSrc(): string {
-    console.log("Nombre del jugador: ", this.player_name);
+    // console.log("Nombre del jugador: ", this.player_name);
     // this.player_name = "mr SOPER"
-    switch (this.player_name) {
-      case 'mr SOPER':
+    if (this.player_name === undefined) {
+      return this.imageSrc = 'assets/images/logo-no-back.svg';
+    }
+     let name_lower = this.player_name.toLowerCase();
+    //  console.log("Nombre del jugador_lower: ", name_lower);
+
+    switch (name_lower) {
+      case 'mr soper':
         return this.imageSrc = 'assets/images/personajes_imagen/svg/MrSoper.svg';
-      case 'miss FISICA':
+      case 'miss fisica':
         return this.imageSrc = 'assets/images/personajes_imagen/svg/missFisica.svg';
-      case 'miss IA':
+      case 'miss ia':
         return this.imageSrc = 'assets/images/personajes_imagen/svg/missIA.svg';
-      case 'mr PROG':
+      case 'mr prog':
         return this.imageSrc = 'assets/images/personajes_imagen/svg/MrProg.svg';
-      case 'miss REDES':
+      case 'miss redes':
         return this.imageSrc = 'assets/images/personajes_imagen/svg/missRedes.svg';
-      case 'mr DISCRETO':
+      case 'mr discreto':
         return this.imageSrc = 'assets/images/personajes_imagen/svg/mrDiscreto.svg';
       case 'cable de red':
         return this.imageSrc = 'assets/images/objetos_imagen/svg/CABLE.svg';

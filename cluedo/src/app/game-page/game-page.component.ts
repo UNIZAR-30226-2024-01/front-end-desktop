@@ -44,6 +44,9 @@ export class GamePageComponent implements OnInit{
     });
    }
   ngOnInit() {
+    // console.log('idGame: ' + this.idGame);
+    console.log('gameService.abandonada', this.gameService.abandonada);
+    console.log('localStorage.getItem(partida_actual)', localStorage.getItem('partida_actual'));
     if (localStorage.getItem('partida_actual') === null && this.gameService.abandonada === false) {
       console.log('se actualiza partida actual a ', this.idGame);
       localStorage.setItem('partida_actual', this.idGame ?? '');

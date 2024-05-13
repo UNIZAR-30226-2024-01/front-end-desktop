@@ -2,11 +2,12 @@
   <div class="carta-shower" [style.padding]="showCardsService.isCardElection ? '20px' : ''">
     <h1>{{ text }}</h1>
     <h3><em>{{ subtext }}</em></h3>
-    <div class="carta-shower-container">
-      <div class="carta">
-      <app-carta [player_name]="getSelectCards()"></app-carta>
-    </div>
-      <!-- <ng-container *ngFor="let carta of getSelectCards(); let i = index"> -->
+    <ng-container *ngFor="let carta of getSelectCards() ; let i = index"> 
+         <div class="carta-shower-container">
+           <div class="carta">
+           <app-carta player_name="mr soper"></app-carta>
+           </div>
+         </div>
 
         <!-- <div *ngIf="!getIsCardElection()" 
         [style.opacity]="carta === '' ? 0 : 1" 
@@ -17,8 +18,8 @@
              [class]="blockedCards.includes(carta) ? 'carta blocked' : 'carta not-blocked'">
           <app-carta [player_name]="carta"></app-carta>
         </div> -->
-      <!-- </ng-container> -->
-    </div>
+      </ng-container>
+    
     <!-- <button *ngIf="!isCardElection" class="carta-shower-button" (click)="showCardsService.setHasToShow(false)"> -->
       <button class="carta-shower-button" (click)="showCardsService.setHasToShow(false)">
       Cerrar

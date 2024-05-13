@@ -41,10 +41,13 @@ export class CartasShowComponent {
   ngOnInit(): void {
   }
 
-  getSelectCards(): string {
+  getSelectCards(): any [] {
     console.log("selectCardsToShow: ", this.selectCardsToShow);
     // return this.selectCardsToShow.join(', ');
-    return this.selectCardsToShow[0]?.toString() || '';
+    if(this.selectCardsToShow && this.selectCardsToShow.length > 0) {
+        return this.selectCardsToShow;
+    }
+    return ["null"];
   }
 
   getIsCardElection(): boolean {

@@ -100,12 +100,12 @@ export class CeldaComponent {
  
   getFillStyle():string{
     // Your logic here...
-    //console.log("por lo menos entra", this.playerPositions);
+    console.log("por lo menos entra", this.playerPositions);
     if (this.playerPositions !== undefined) {
-     // console.log('Vector playerPositions:', this.playerPositions);
-      if( this.characters !== undefined) {
-       // console.log('soy',this.characters[this.playerPositions?.indexOf(this.index)] );
-        return this.player2color(this.characters[this.playerPositions?.indexOf(this.index)]);
+     console.log('Vector characters:', this.characters);
+      if( this.gameService.personajes !== undefined) {
+        console.log('soy',this.gameService.personajes[this.playerPositions?.indexOf(this.index)] , "cin index", this.index);
+        return this.player2color(this.gameService.personajes[this.playerPositions?.indexOf(this.index)]);
       }
     }
     return 'black';
