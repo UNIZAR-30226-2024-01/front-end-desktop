@@ -89,7 +89,7 @@ export class GameService {
 
   // Devuelve la carta del usuario en la posición index
   getCard(index: number): string {
-    console.log("Carta (desde getCard): ", this.cards[index]);
+    // console.log("Carta (desde getCard): ", this.cards[index]);
     return this.cards[index];
   }
 

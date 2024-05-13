@@ -186,7 +186,7 @@ this.socket.on('turno-show-cards',(usernameAsking: string, usernameShower: strin
   // si te enseña a otro: muestra el dorso de la carta
 
   const iAmAsking = usernameAsking === this.gameService.username;
-  const cardToShow = iAmAsking || card[0] === '' ? card : ['back'];
+  const cardToShow = iAmAsking || card[0] === '' ? [card] : ['back'];
 
   console.log('cardToShow', cardToShow);
 
