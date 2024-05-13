@@ -113,6 +113,7 @@ export class CeldaComponent {
 
   handleClick() {
     if (this.celdasOptions && !this.celdasOptions[this.index]) return;
+    if (this.turnoService.getParteTurno()!="elegir-casilla") return;
     const updatedVector = this.playerPositions;
 
     //DE MOMENTO LO QUITO PARA PROBAR LO DEMAS(SIN BACKEND NO VA)

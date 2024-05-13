@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { environment } from "../../environments/environment";
+const BACKEND_URL = environment.apiUrl;
 
 @Component({
   selector: 'app-profile-page',
@@ -21,7 +23,7 @@ export class ProfilePageComponent {
   }
 
   async handlePasswordChange(): Promise<void> {
-    const url = 'http://localhost:3000/changePassword';
+    const url = BACKEND_URL+ '/changePassword';
     const response = await fetch(url, {
       method: 'PUT',
       headers: {

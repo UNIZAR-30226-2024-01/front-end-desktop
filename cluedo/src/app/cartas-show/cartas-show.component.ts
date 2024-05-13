@@ -41,6 +41,15 @@ export class CartasShowComponent {
   ngOnInit(): void {
   }
 
+  getSelectCards(): string {
+    console.log("selectCardsToShow: ", this.selectCardsToShow);
+    // return this.selectCardsToShow.join(', ');
+    return this.selectCardsToShow[0]?.toString() || '';
+  }
+
+  getIsCardElection(): boolean {
+    return this.isCardElection;
+  }
   onClickedCardLocal(carta: any): void {
     //esto falta
     // this.showCardsService.onClickedCard(carta);
