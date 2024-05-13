@@ -30,13 +30,15 @@
 		<section class="home-body">
 		  <img src="assets/images/boardGame.png" alt="Tablero del juego" width="400" height="400">
 		  <aside class="gameModes">
-			@if (this.partida==null || this.partida==undefined || this.partida=='') {
+			@if (getPartida()==null || getPartida()==undefined || getPartida()==''){
 				<button class="gamemode-button" (click)="newGameClick('l')">Crear partida solitario</button>
 				<button class="gamemode-button" (click)="newGameClick('o')">Crear partida multijugador</button>
+
 			}
 			<button class="gamemode-button" (click)="useJoinGameClick()">
-			  {{partida ? 'Continuar partida: ' + partida : 'Unirse a partida'}}
-			</button>
+				{{getPartida() ? 'Continuar partida: ' + getPartida() : 'Unirse a partida'}}
+			  </button>
+			
 		  </aside>
 		</section>
 	  </div>

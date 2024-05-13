@@ -122,7 +122,7 @@ partida: string | undefined |null;
   }
 
   async useJoinGameClick() {
-    if (!this.partida) {
+    if (!this.getPartida()) {
       let par = window.prompt('Introduzca el ID de la partida (6 dígitos):');
       console.log('par:' + par)
       if (par) {
@@ -136,7 +136,9 @@ partida: string | undefined |null;
     this.router.navigate(['/game-page/' + this.partida]);
     return;
   }
-  
+  getPartida(): string | null | undefined{
+    return localStorage.getItem('partida_actual');
+  }
   // async useJoinGame(gameId: number | null = null, execute: boolean, fromUrl: boolean = true) {
   //   if (execute) {
   //     console.log('gameId:', gameId);
