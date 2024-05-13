@@ -90,8 +90,8 @@ export class CeldaComponent {
     let cellDisplay = '';
     if ( this.playerPositions && this.playerPositions.includes(this.index)) {
       const player_idx = this.playerPositions.indexOf(this.index);
-      if (!this.characters || !this.characters[player_idx]) return '';
-      cellDisplay = this.characters[player_idx].split(' ')[1].charAt(0).toUpperCase();
+      if (!this.gameService.personajes || !this.gameService.personajes[player_idx]) return '';
+      cellDisplay = this.gameService.personajes[player_idx].split(' ')[1].charAt(0).toUpperCase();
     }
    // console.log("El nombre de cellDisplay es :", cellDisplay);
     return cellDisplay;
