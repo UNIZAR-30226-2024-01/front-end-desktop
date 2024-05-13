@@ -55,8 +55,8 @@ export class PlayerInTableroComponent {
         return "../../../assets/images/personajes_imagen/png/missIA.png";
       default:
         console.log("Personaje no encontrado", this.personaje);
-        throw new Error("Personaje no encontrado");
-    }
+        return "";
+      }
   }
   getClassName(): string {
     this.className = this.turnoService.getTurnoOwner() === this.userReal ? `player ${this.lado} turn` : `player ${this.lado}`;
