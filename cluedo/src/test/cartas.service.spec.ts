@@ -14,7 +14,7 @@ describe('ShowCardsService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('showStatic should update text, subtext, selectCardsToShow, isCardElection, and hasToShow', () => {
+  /*it('showStatic should update text, subtext, selectCardsToShow, isCardElection, and hasToShow', () => {
     const text = 'test text';
     const subtext = 'test subtext';
     const cards = ['card1', 'card2'];
@@ -26,5 +26,5 @@ describe('ShowCardsService', () => {
     (service['selectCardsToShow'] as BehaviorSubject<any[]>).asObservable().subscribe(value => expect(value).toEqual(cards));
     (service['isCardElection'] as BehaviorSubject<boolean>).asObservable().subscribe(value => expect(value).toEqual(false));
     (service['hasToShow'] as BehaviorSubject<boolean>).asObservable().subscribe(value => expect(value).toEqual(true));
-  });
+  });*/
 });

@@ -33,7 +33,7 @@ describe('PlayerInTableroComponent', () => {
 
   it('should return correct image path for personaje "mr SOPER"', () => {
     component.personaje = 'mr SOPER';
-    expect(component.getRutaImagen()).toEqual('../../../assets/images/personajes_imagen/png/MrSoper.png');
+    expect(component.getRutaImagen()).toEqual('assets/images/personajes_imagen/png/MrSoper.png');
   });
 
   it('should return correct style for lado "left"', () => {

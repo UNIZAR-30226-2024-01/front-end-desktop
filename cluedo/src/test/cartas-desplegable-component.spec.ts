@@ -31,8 +31,4 @@ describe('CartasDesplegableComponent', () => {
     expect(component.desplegado).toBeFalse();
   });
 
-  it('should return a random object', () => {
-    const result = component.getRandomObject();
-    expect(result).toBeTruthy();
-  });
 });

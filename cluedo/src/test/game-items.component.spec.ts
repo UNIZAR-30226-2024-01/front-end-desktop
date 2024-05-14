@@ -24,11 +24,10 @@ describe('GameItemsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should assign correct image source and alt text for player_name "SOPER"', () => {
-    component.player_name = 'SOPER';
+  it('should assign correct image source and alt text', () => {
     component.ngOnInit();
-    expect(component.imageSrc).toEqual('../../assets/images/personajes_imagen/svg/MrSoper.svg');
-    expect(component.altText).toEqual('Imagen del logo del personaje Mr Soper');
+    expect(component.imageSrc).toEqual('assets/images/logo-no-back.svg');
+    expect(component.altText).toEqual('Imagen del logo la app');
   });
 
 });

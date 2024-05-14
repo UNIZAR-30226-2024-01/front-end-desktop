@@ -6,13 +6,16 @@ import { GameService } from '../app/servicios/servicio-game/game.service';
 import { of } from 'rxjs';
 import { CeldasService } from '../app/servicios/servicio-celdas/celdas.service'
 import { CommonModule } from '@angular/common';
-
+import { SocketService } from '../app/servicios/servicio-socket/socket.service';
+const { infoTablero, casillasPorHabitacion,infoHabitaciones } = require('../../../../front-end-shared/infoTablero.js');
 describe('TurnoComponent', () => {
   let component: TurnoComponent;
   let fixture: ComponentFixture<TurnoComponent>;
   let turnoService: TurnoService;
   let turnoComponent: TurnoComponent;
   let gameService: GameService;
+  let celdasService: CeldasService;
+  let socketService: SocketService; 
 
 
   beforeEach(async () => {
@@ -70,8 +73,18 @@ describe('TurnoComponent', () => {
     expect(component.gunSelected).toBe('troyano');
   });
 
-  it('should set roomSelected on setRoomSelected', () => {
-    component.setRoomSelected('aulasNorte');
-    expect(component.roomSelected).toBe('aulasNorte');
+  it('should update roomSelected on setRoomSelected', () => {
+    const celdasSpy = jasmine.createSpyObj('CeldasService', [], { playerPositions: [1] });
+    const socketSpy = jasmine.createSpyObj('SocketService', ['getUserName'], { getUserName: 'username' });
+  
+    celdasService = TestBed.inject(CeldasService) as jasmine.SpyObj<CeldasService>;
+    gameService = TestBed.inject(GameService) as jasmine.SpyObj<GameService>;
+    socketService = TestBed.inject(SocketService) as jasmine.SpyObj<SocketService>;
+    const infoTablero = [{roomName: 2}];
+    const infoHabitaciones = [{roomName: 'aulasNorte'}];
+
+    const gameSpy = jasmine.createSpyObj('GameService', ['getLugarPorIndice', 'usernames'], { usernames: ['username'] });
+    component.setRoomSelected();
+    expect(component.roomSelected).toBe('aulas norte');
   });
 });
