@@ -2,26 +2,29 @@
   <div class="carta-shower" [style.padding]="showCardsService.isCardElection ? '20px' : ''">
     <h1>{{ text }}</h1>
     <h3><em>{{ subtext }}</em></h3>
-    <ng-container *ngFor="let carta of getSelectCards() ; let i = index"> 
-         <div class="carta-shower-container">
-           <div class="carta">
-            <app-carta [player_name]="carta"></app-carta>
-           </div>
-         </div>
-
-        <!-- <div *ngIf="!getIsCardElection()" 
-        [style.opacity]="carta === '' ? 0 : 1" 
-        [style.transition]="carta === '' ? 'none' : ''"  -->
-      <!-- <div class="carta"> -->
-      <!-- <div *ngIf="isCardElection" 
-             (click)="onClickedCardLocal(carta)" 
-             [class]="blockedCards.includes(carta) ? 'carta blocked' : 'carta not-blocked'">
+    <div class="carta-shower-container">
+     <ng-container *ngFor="let carta of getSelectCards() ; let i = index"> 
+          <!-- <div class="carta">
           <app-carta [player_name]="carta"></app-carta>
-        </div> -->
-      </ng-container>
+          </div>
+    </div>  -->
+
+          <div *ngIf="!getIsCardElection()" 
+            [style.opacity]="carta === '' ? 0 : 1" 
+            [style.transition]="carta === '' ? 'none' : ''" 
+          class="carta">
+            <app-carta [player_name]="carta"></app-carta>
+          </div>
+          <div *ngIf="isCardElection" 
+              (click)="onClickedCardLocal(carta)" 
+              [class]="blockedCards.includes(carta) ? 'carta blocked' : 'carta not-blocked'">
+            <app-carta [player_name]="carta"></app-carta>
+          </div>
+        </ng-container>
+      </div>
     
-    <!-- <button *ngIf="!isCardElection" class="carta-shower-button" (click)="showCardsService.setHasToShow(false)"> -->
-      <button class="carta-shower-button" (click)="showCardsService.setHasToShow(false)">
+    <button *ngIf="!isCardElection" class="carta-shower-button" (click)="showCardsService.setHasToShow(false)"> -->
+      <!-- <button class="carta-shower-button" (click)="showCardsService.setHasToShow(false)"> -->
       Cerrar
     </button> 
   </div>

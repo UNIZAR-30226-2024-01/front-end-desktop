@@ -201,7 +201,7 @@ this.socket.on('turno-asks-for-response',(usernameAsking: string, character: str
   console.log("Estoy dentro del response de la sospecha")
   const cards = [character, gun, room];
   console.log('Cards GameLogic', cards);
-  // this.showCardsService.showQuestion(usernameAsking, cards);
+  this.showCardsService.showQuestion(usernameAsking, cards);
 } );
 
 
