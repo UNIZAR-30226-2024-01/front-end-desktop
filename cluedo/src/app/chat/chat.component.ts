@@ -25,6 +25,12 @@ const {
 export class ChatComponent {
   desplegado: boolean = false;
   message: string = '';
+  unReadMessages: number = 0;
+  circleFill = this.unReadMessages > 0 ? 'flex' : 'none';
+
+  styleCircle = {
+    display: this.circleFill,
+  };
   // Mensajes compuestos por texto, user y offset
   // messages: { type: string; username: string; text: string }[] = [];
   messages = new LinkedList<MessageComponent>()
@@ -41,6 +47,12 @@ export class ChatComponent {
         this.handleNewMessage(message);
       }
     );
+    if(!this.desplegado){
+      // haz esto: setUnReadMessages((prev) => prev + 1);
+      this.setUnreadMessages(this.unReadMessages + 1);
+    }else{
+      this.setUnreadMessages(0);
+    }
   }
 
   // Cuando llega el evento mensajeEnviado del input, se gestiona el mensaje
@@ -50,7 +62,13 @@ export class ChatComponent {
     this.socketService.chatMessage(mensaje);
   }
 
-
+  setUnreadMessages(unReadMessages: number) {
+    this.unReadMessages = unReadMessages;
+    this.circleFill = unReadMessages > 0 ? 'flex' : 'none';
+    this.styleCircle = {
+      display: this.circleFill,
+    };
+  }
   // Método para gestionar un nuevo mensaje que ha llegado del servidor
   private handleNewMessage(message: any) {
     this.messages.append(this.crearMensaje(message.msg, message.emisor, message.currentTimestamp));

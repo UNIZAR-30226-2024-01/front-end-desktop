@@ -1,5 +1,9 @@
 <div class="chat-container" [style.left.px]="desplegado ? 0 : -425">
-    <app-desplegable [componentePadre]="nombreComponente" (desplegableClicked)="toggleDesplegado()"></app-desplegable>
+    <app-desplegable [componentePadre]="nombreComponente" (desplegableClicked)="toggleDesplegado()">
+        <div class="desplegable-circle-message" [style]="styleCircle">
+            <!-- <p>{unReadMessages > 9 ? '+9' : unReadMessages}</p> -->
+        </div>
+    </app-desplegable>
     <app-message-list [messages]="messages"></app-message-list>
     <app-input-message (mensajeEnviado)="enviarMensaje($event)"></app-input-message>
 </div>

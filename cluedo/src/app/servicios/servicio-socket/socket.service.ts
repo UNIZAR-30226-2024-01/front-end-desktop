@@ -136,6 +136,7 @@ export class SocketService {
       this.gameService.setLugares(info_partida.rooms);
       this.gameService.setUsuarios(info_partida.available);
       this.celdasService.setPlayerPositions(info_partida.posiciones);
+      this.gameService.setStarted(true);
     });
 ////////////////////////////////////////////////////////////
 const infoTablero = require('../../../assets/infoTablero.json');
