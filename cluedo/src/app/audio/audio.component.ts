@@ -4,7 +4,7 @@ import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/co
   selector: 'app-audio',
   standalone:true,
   template: `<audio #audioRef loop autoplay controls style="display: none;">
-              <source src="../../assets/CluedoBanger.mp3" type="audio/mpeg">
+              <source src="assets/CluedoBanger.mp3" type="audio/mpeg">
             </audio>`
 })
 export class AudioComponent implements OnInit, OnDestroy {

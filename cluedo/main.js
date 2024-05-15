@@ -10,15 +10,21 @@ const createWindow = () => {
     width: 800,
     height: 600,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
+      preload: path.join(__dirname, 'preload.js'),
+      webSecurity: false
     }
   })
 
   // and load the index.html of the app.
   mainWindow.loadFile('dist/browser/index.html')
 
-  // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  // Handle reload event
+  mainWindow.webContents.on('before-input-event', (event, input) => {
+    if (input.type === 'keyDown' && input.control && input.key.toLowerCase() === 'r') {
+      event.preventDefault(); // Prevent default behavior of reloading
+      mainWindow.reload(); // Manually reload the main window
+    }
+  });
 }
 
 // This method will be called when Electron has finished
