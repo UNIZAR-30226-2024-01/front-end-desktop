@@ -25,7 +25,7 @@ const {
 export class ChatComponent {
   desplegado: boolean = false;
   message: string = '';
-  unReadMessages: number = 0;
+  unReadMessages: number = 1;
   circleFill = this.unReadMessages > 0 ? 'flex' : 'none';
 
   styleCircle = {
@@ -89,5 +89,6 @@ export class ChatComponent {
   // Método para cambiar el estado de la variable "desplegado" para desplazar el chat
   toggleDesplegado() {
     this.desplegado = !this.desplegado;
+    this.setUnreadMessages(0);
   }
 }

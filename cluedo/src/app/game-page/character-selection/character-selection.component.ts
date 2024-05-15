@@ -14,7 +14,7 @@ export class CharacterSelectionComponent {
   }
 
   isCharacterSelected(i: number): boolean {
-    return this.gameService.charactersSelected[i];
+    return this.gameService.usernames[i] != "";
   }
 
   selectCharacter(i: number) {

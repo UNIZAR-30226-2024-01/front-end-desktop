@@ -13,7 +13,7 @@ import { DefaultEventsMap } from '@socket.io/component-emitter';
 const { casillasPorHabitacion } = require('../../../../../../front-end-shared/infoTablero.js');
 //import * as infoTablero from '../../../assets/infoTablero.json';
 import infoTablero from '../../../assets/infoTablero.json';
-
+import { ChatComponent } from '../../chat/chat.component';
 
 // const {
 //   socket
@@ -32,6 +32,7 @@ export class SocketService {
   private gameService: GameService;
   private showCardsService: ShowCardsService;
   private router: Router;
+  // private chatComponent: ChatComponent;
   infoTablero: any[] = infoTablero.infoTablero2;
   casillasPorHabitacion: any;
 
@@ -39,7 +40,8 @@ export class SocketService {
     celdasService: CeldasService,
     gameService: GameService,
     showCardsService: ShowCardsService,
-    router: Router) { 
+    router: Router,
+    ) { 
     const options: { auth: { username: string, group: string, offset: string }, transports: string[] } = {
       auth: {
         username: localStorage.getItem('username') ?? 'Anonymous',
@@ -53,6 +55,7 @@ export class SocketService {
     this.gameService = gameService;
     this.showCardsService = showCardsService;
     this.router = router;
+    // this.chatComponent = chatComponent;
     this.socket = io(environment.apiUrl, options);
     this.serverListener();
     
@@ -441,6 +444,7 @@ this.socket.on('request-sospechas', () => {
   // Método para enviar datos a los componentes que estén suscritos al evento
   sendData(data: any): void {
     this.eventMessage.next(data);
+    // this.chatComponent.setUnreadMessages(this.chatComponent.unReadMessages + 1);
   }
   
   // Método para suscribirse al evento
